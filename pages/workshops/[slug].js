@@ -39,24 +39,25 @@ export default function WorkshopPage({
 
 
   useEffect(() => {
-    // split markdown by h1 (needs a better way!)
-    const sections = content.split('\n\n# ');
+    const htmlContent = marked(content);
+    // split by h1s
+    const sections = htmlContent.split('<h1');
     // remove first, empty section
     sections.shift();
-    // add h1s back to sections
-
+    // add h1 back to sections
     const sectionsWithHeaders = sections.map((section, index) => {
-      return `# ${section}`;
+      return `<h1 ${section}`;
     });
-    // render markdown
+
     const renderedSections = sectionsWithHeaders.map((section, index) => {
-      const htmlSection = marked(section);
-      const htmlSectionHeader = marked(`# ${section.split('\n')[0]}`);
-      // get innerhtml of htmlSectionHeader
-      const header = htmlSectionHeader.replace(/<[^>]*>/g, '').replace('#', '');
+      // get header of section
+      const header = section.split('</h1>')[0];
+      // get header text after <h1>
+      const headerText = header.split('>')[1];
+
       return (
-        <div key={index} name={header}>
-          <div dangerouslySetInnerHTML={{ __html: marked(section) }} />
+        <div key={index} name={headerText}>
+          <div dangerouslySetInnerHTML={{ __html: section }} />
         </div>
       );
     });
@@ -70,10 +71,9 @@ export default function WorkshopPage({
     setCurrentPage(index);
     setCurrentContent(pages[index]);
   };
- 
+
   // list of page titles and highlight current page
   const pageTitles = pages.map((page, index) => {
-    console.log(page.props);
     return (
       <li key={index}>
         <a onClick={() => handlePageChange(index)} className={index === currentPage ? 'active' : ''}>
@@ -82,43 +82,43 @@ export default function WorkshopPage({
       </li>
     );
   });
-  
 
 
-const lastPageAndNextPageButton = (currentPage) => {
-  return(
-    <div className="last-page-and-next-page-button">
-          <div className="WorkshopPage-nav-left">
-            {currentPage > 0 && <button className='button is-primary' onClick={() => handlePageChange(currentPage - 1)}>Previous</button>}
-          </div>
-          <div className="WorkshopPage-nav-right">
-            {currentPage < pages.length - 1 && <button className='button is-primary' onClick={() => handlePageChange(currentPage + 1)}>Next</button>}
-          </div>
-    </div>
-  )
-}
+
+  const lastPageAndNextPageButton = (currentPage) => {
+    return (
+      <div className="last-page-and-next-page-button">
+        <div className="WorkshopPage-nav-left">
+          {currentPage > 0 && <button className='button is-primary' onClick={() => handlePageChange(currentPage - 1)}>Previous</button>}
+        </div>
+        <div className="WorkshopPage-nav-right">
+          {currentPage < pages.length - 1 && <button className='button is-primary' onClick={() => handlePageChange(currentPage + 1)}>Next</button>}
+        </div>
+      </div>
+    )
+  }
 
   return (
-<div className='container'>
-<nav>
-  <ul>
-    {pageTitles}
-  </ul>
-</nav>
-    <div className="content card card-page">
-      <div className="">
-        <img className="hero" src={cover_image} alt="cover" />
-        <div className="title">
-          {title}
+    <div className='container'>
+      <nav>
+        <ul>
+          {pageTitles}
+        </ul>
+      </nav>
+      <div className="content card card-page">
+        <div className="">
+          <img className="hero" src={cover_image} alt="cover" />
+          <div className="title">
+            {title}
+          </div>
+          <div>{lastPageAndNextPageButton(currentPage)}</div>
+          <div className="WorkshopPage-content-container">
+            {currentContent}
+          </div>
+          <div>{lastPageAndNextPageButton(currentPage)}</div>
         </div>
-        <div>{lastPageAndNextPageButton(currentPage)}</div>
-        <div className="WorkshopPage-content-container">
-          {currentContent}
-        </div>
-        <div>{lastPageAndNextPageButton(currentPage)}</div>
       </div>
     </div>
-</div>
   );
 }
 
