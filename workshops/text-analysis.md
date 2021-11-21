@@ -917,6 +917,7 @@ First, I'll make an empty dictionary to hold my results. (If you don't know what
 
 ```python
 tag_dict = {}
+
 # For every word/tag pair in my list,
 for (word, tag) in dq_tagged:
     if tag in tag_dict:

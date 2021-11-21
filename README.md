@@ -1,8 +1,6 @@
-# Next Markdown Blog
+# DHRI Curriculum Static
 
-Simple static blog using markdown and Next.js
-
-[DEMO](https://next-markdown-blog-drab.vercel.app/)
+Static site for DHRI workshops using next.js. 
 
 ## Usage
 
