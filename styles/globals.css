@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+p {
+  margin: 15px 0;
+  line-height: 1.8;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+header {
+  background: steelblue;
+  color: #fff;
+  padding: 5px;
+  margin-bottom: 40px;
+}
+
+header a {
+  color: #fff;
+}
+
+.container {
+  max-width: 100%;
+  margin: auto;
+  padding: 0 10px;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.btn {
+  display: inline-block;
+  background: steelblue;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:hover {
+  transform: scale(0.98);
+}
+
+.btn-back {
+  background: #f4f4f4;
+  color: #000;
+  margin-bottom: 20px;
+  align-self: flex-start;
+}
+
+.workshops {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.card {
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-page {
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+}
+
+.hero {
+  width: 50%;
+  justify-self: center;
+  align-self: center;
+  margin: 10px;
+}
+
+.last-page-and-next-page-button{
+  display:flex;
+  margin: 10px;
+}
+.WorkshopPage-nav-right{
+margin-left: 10px;
+}
+
+nav {
+  max-width: 400px;
+      min-width: 300px;
+      align-self: flex-start;
+      position: sticky;
+      top: 96px;
+      max-height: calc(100 vh - 144px);
+      overflow: auto;
+      font-size: 15px;
+      padding: 16px;
+}
+
+nav > ul > li {
+  list-style: none;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+nav > ul > li > a:hover {
+  color: lightseagreen;
+}
+
+nav > ul > li > a.active {
+  color: lightseagreen;
+  font-weight: bold;
+}
+
+nav > ul > li > ul > li {
+  list-style: none;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+nav > ul > li > ul > li > a:hover {
+  color: lightseagreen;
+}
+
+.post-title {
+  margin: 10px 0;
+  align-self: center;
+}
+
+.post-date {
+  background: #f4f4f4;
+  margin-bottom: 20px;
+  padding: 3px 10px;
+}
+
+.post-body ul,
+ol {
+  /* font-size: 110%;
+  line-height: 2.3; */
+  /* font-weight: bold; */
+  margin: 10px 0;
+}
+
+.post-body pre {
+  padding: 20px;
+  margin: 20px 0;
+  line-height: 2.3;
+}
