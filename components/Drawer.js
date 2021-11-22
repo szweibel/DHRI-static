@@ -11,6 +11,8 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Link from 'next/link'
+import IconButton from '@mui/material/IconButton';
+import ComputerIcon from '@material-ui/icons/Computer';
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -36,17 +38,21 @@ export default function TemporaryDrawer({ workshops }) {
   };
 
   const list = (anchor) => (
-    <Box
+    <Box 
+    className="drawer-list"
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Grid container
+      className='paperWorkshops'>
         {/* grid of all workshops */}
-        <Grid item md={3}>
+        <Grid item md={3} spacing={2}
+        className='paperGrid'
+        >
           {workshops.map(workshop => (
-            <Item key={workshop.slug}>
+            <Item key={workshop.slug} className='paperWorkshop'>
               <Link href={`/workshops/${workshop.slug}`}>
                 <a>{workshop.frontmatter.title}</a>
               </Link>
@@ -61,7 +67,17 @@ export default function TemporaryDrawer({ workshops }) {
   return (
     // icon and button to open  top drawer 
     <React.Fragment>
-      <Button variant="contained" color="success" onClick={toggleDrawer('top', true)}>Open Top</Button>
+      {/* <Button variant="contained" color="success" onClick={toggleDrawer('top', true)}>Open Top</Button> */}
+      <IconButton
+        size="large"
+        edge="start"
+        color="inherit"
+        aria-label="computer"
+        sx={{ mr: 2 }}
+        onClick={toggleDrawer('top', true)}
+      >
+        <ComputerIcon />
+      </IconButton>
       <Drawer anchor="top" open={state['top']} onClose={toggleDrawer('top', false)}>
         {list('top')}
       </Drawer>

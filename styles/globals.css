@@ -73,6 +73,45 @@ header a {
   align-self: flex-start;
 }
 
+.topBar{
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  /* margin-bottom: 20px; */
+  /* background-color: aqua; */
+}
+
+.drawer-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #1976d2;
+}
+
+.paperWorkshops{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+  background-color: #1976d2;
+}
+.paperGrid{
+  flex-basis: 100%;
+  max-width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+  
+}
+
+.paperWorkshop{
+  margin: 10px;
+
+}
+
+
 .workshops {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -100,14 +139,9 @@ header a {
   margin: 10px;
 }
 
-.last-page-and-next-page-button{
-  display:flex;
-  margin: 10px;
-}
 .WorkshopPage-nav-right{
 margin-left: 10px;
 }
-
 nav {
   max-width: 400px;
       min-width: 300px;

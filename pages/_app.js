@@ -20,8 +20,8 @@ function MyApp({ Component, pageProps }) {
     </Head>
     <CssBaseline />
     <ThemeProvider theme={theme}>
-      <Header workshops= { pageProps.workshops }/>
-      <ButtonAppBar />
+      {/* <Header workshops= { pageProps.workshops }/> */}
+      <ButtonAppBar workshops={ pageProps.workshops }/>
       <main className='container'>
         <Component {...pageProps} />
       </main>
