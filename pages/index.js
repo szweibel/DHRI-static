@@ -1,16 +1,14 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import Head from 'next/head'
 import Workshop from '../components/Workshop'
 import { sortByDate } from '../utils'
 
 export default function Home({ workshops }) {
+
   return (
     <div>
-      <Head>
-        <title>DHRI Curriculum</title>
-      </Head>
+
       <div className='workshops'>
         {workshops.map((workshop, index) => (
           <Workshop key={index} workshop={workshop} />

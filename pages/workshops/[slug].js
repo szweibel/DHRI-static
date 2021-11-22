@@ -5,7 +5,8 @@ import marked from 'marked'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import hljs from 'highlight.js'
-// import TableOfContents from '../../components/tableOfContents';
+import { sortByDate } from '../../utils'
+
 
 
 // Set options for marked
@@ -83,8 +84,6 @@ export default function WorkshopPage({
     );
   });
 
-
-
   const lastPageAndNextPageButton = (currentPage) => {
     return (
       <div className="last-page-and-next-page-button">
@@ -143,6 +142,28 @@ export async function getStaticProps({ params: { slug } }) {
     path.join('workshops', slug + '.md'),
     'utf-8'
   )
+  const dirents = fs.readdirSync(path.join('workshops'), { withFileTypes: true })
+  const workshopFiles = dirents
+    .filter((file) => file.isFile())
+    .map((file) => file.name);
+  // Get slug and frontmatter from workshop
+  const workshops = workshopFiles.map((filename) => {
+    // Create slug
+    const slug = filename.replace('.md', '')
+
+    // Get frontmatter
+    const markdownWithMeta = fs.readFileSync(
+      path.join('workshops', filename),
+      'utf-8',
+    )
+
+    const { data: frontmatter } = matter(markdownWithMeta)
+
+    return {
+      slug,
+      frontmatter,
+    }
+  })
 
   const { data: frontmatter, content } = matter(markdownWithMeta)
 
@@ -151,6 +172,7 @@ export async function getStaticProps({ params: { slug } }) {
       frontmatter,
       slug,
       content,
+      workshops: workshops.sort(sortByDate),
     },
   }
 }
