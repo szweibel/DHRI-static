@@ -6,7 +6,10 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import hljs from 'highlight.js'
 import { sortByDate } from '../../utils'
-
+import { endianness, type } from 'os'
+import { current } from 'hero-patterns'
+import { elementAcceptingRef } from '@mui/utils'
+import evaluationAnswers from '../../components/Quiz'
 
 
 // Set options for marked
@@ -37,35 +40,31 @@ export default function WorkshopPage({
   const [currentPage, setCurrentPage] = useState(0);
   const [pages, setPages] = useState([]);
   const [currentContent, setCurrentContent] = useState([]);
+  const htmlContent = marked(content);
+  // split by h1s
+  const sections = htmlContent.split('<h1');
+  // remove first, empty section
+  sections.shift();
+  // add h1 back to sections
+  const sectionsWithHeaders = sections.map((section, index) => {
+    return `<h1 ${section}`;
+  });
+  const renderedSections = sectionsWithHeaders.map((section, index) => {
+    // get header of section
+    const header = section.split('</h1>')[0];
+    // get header text after <h1>
+    const headerText = header.split('>')[1];
 
+    return (
+      <div dangerouslySetInnerHTML={{ __html: section }} key={index} name={headerText} className='workshop-content'>
+      </div>
+    );
+  });
 
   useEffect(() => {
-    const htmlContent = marked(content);
-    // split by h1s
-    const sections = htmlContent.split('<h1');
-    // remove first, empty section
-    sections.shift();
-    // add h1 back to sections
-    const sectionsWithHeaders = sections.map((section, index) => {
-      return `<h1 ${section}`;
-    });
-
-    const renderedSections = sectionsWithHeaders.map((section, index) => {
-      // get header of section
-      const header = section.split('</h1>')[0];
-      // get header text after <h1>
-      const headerText = header.split('>')[1];
-
-      return (
-        <div key={index} name={headerText}>
-          <div dangerouslySetInnerHTML={{ __html: section }} />
-        </div>
-      );
-    });
     // set state
     setPages(renderedSections);
     setCurrentContent(renderedSections[0]);
-
   }, [content]);
 
   const handlePageChange = (index) => {
@@ -97,23 +96,40 @@ export default function WorkshopPage({
     )
   }
 
+
+  
+  // evaluationAnswers(currentContent);
+
+  // if content contains a quiz
+  const contentAndQuiz = (currentContent) => {
+    if (currentContent.props ) {
+      const currentText = currentContent.props.dangerouslySetInnerHTML.__html;
+      if (currentText.includes('Evaluation</h2>')) {
+        return evaluationAnswers(currentText);
+      } else {
+        return currentContent;
+      }
+    } else {
+      return currentContent;
+    }
+  }
+
   return (
-    <div className='container'>
+    <div className='workshopContainer container'>
       <nav>
         <ul>
           {pageTitles}
         </ul>
       </nav>
       <div className="content card card-page">
-        <div className="">
+        <div className="workshop-container">
           <img className="hero" src={cover_image} alt="cover" />
           <div className="title">
             {title}
           </div>
           <div>{lastPageAndNextPageButton(currentPage)}</div>
-          <div className="WorkshopPage-content-container">
-            {currentContent}
-          </div>
+            {contentAndQuiz(currentContent)}
+            
           <div>{lastPageAndNextPageButton(currentPage)}</div>
         </div>
       </div>
@@ -166,7 +182,6 @@ export async function getStaticProps({ params: { slug } }) {
   })
 
   const { data: frontmatter, content } = matter(markdownWithMeta)
-
   return {
     props: {
       frontmatter,

@@ -1,7 +1,7 @@
 ---
-title: 'Git Workshop'
+title: 'Introduction to Git and GitHub'
 date: 'March 2, 2021'
-excerpt: 'Here is the Git Workshop'
+excerpt: 'Git and GitHub are powerful tools for collaborative and individual projects. Git is a version control software that aids with tracking changes made to a set of files over time. GitHub is a web-based platform for storing and sharing project files online. This session begins with a conceptual overview of both tools, including an introduction to fundamental concepts such as version control and practical applications like developing a syllabus or collaborative writing. This session then covers initializing Git repositories, committing changes, pushing to GitHub, cloning repositories to your local machine, and forking repositories from other accounts on GitHub.'
 cover_image: '/images/workshops/img4.jpg'
 ---
 

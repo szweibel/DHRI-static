@@ -1,7 +1,7 @@
 ---
 title: 'Text Analysis Workshop'
 date: 'March 21, 2021'
-excerpt: 'Here is the text analysis Workshop'
+excerpt: 'Digital technologies have made vast amounts of text available to researchers, and this same technological moment has provided us with the capacity to analyze that text faster than humanly possible. The first step in that analysis is to transform texts designed for human consumption into a form a computer can analyze. Using Python and the Natural Language ToolKit (commonly called NLTK), this workshop introduces strategies to turn qualitative texts into quantitative objects. Through that process, we will present a variety of strategies for simple analysis of text-based data.'
 cover_image: '/images/workshops/img7.jpg'
 ---
 

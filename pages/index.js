@@ -1,14 +1,45 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import Workshop from '../components/Workshop'
 import { sortByDate } from '../utils'
+import { useEffect, UseState } from 'react'
+import dynamic from 'next/dynamic'
+import Workshop from '../components/Workshop'
 
 export default function Home({ workshops }) {
 
   return (
-    <div>
-
+    <div className='container'>
+      <div className="secondHeader">
+        <h1 className='subtitle'>Further Expanding Digital Humanities Communities of Practice</h1>
+        <p>The Digital Humanities Research Institute (DHRI) is an intensive, community-oriented,
+          and foundational approach to learning technical skills in service of humanities teaching and learning.
+          You can read more about the project on our main website.</p>
+      </div>
+      <div className="cv">
+        <h2 className='title'>Curriculum Website</h2>
+        <p>The Digital Humanities Research Institute (DHRI) curriculum features workshops,
+          tutorials, glossaries, resources, reading materials, and more that have been developed
+          at The Graduate Center, City Univerity of New York since 2016. Part of a 2019 grant from
+          the National Endowment for the Humanities (NEH) Office of Digital Humanities (ODH),
+          DHRI&apos;s curriculum, which was originally developed for in-person workshops, was revised
+          in Summer 2020 to better meet the needs of virtual instruction due to the covid-19 pandemic.
+          While the curriculum has always been available openly on GitHub, this site creates a more
+          user-friendly and functional interface that is open and free for public use.</p>
+        <p>The DHRI curriculum focuses on technical skills and concepts upon which additional
+          technologies and tools rely. We call these foundational skills. Approximately one-third of
+          all workshops at the Institute could be described as foundational: they introduce concepts
+          such as the command line, version control & data collaboration, data literacy, and an
+          introduction to programming with Python. The materials and workshops on this site are
+          designed for users who are either unfamiliar with technology or could simply benefit from
+          filling in gaps in their knowledge. Workshops and tutorials here encourage the use of open
+          source technologies making them accessible to the widest possible audiences. We believe our
+          emphasis on foundational skills demonstrates our commitment to empowering humanities
+          researchers to become confident self-teachers and mentors in their own right who can make
+          informed decisions about their research materials and methods that will lead to successful,
+          sustainable, and long-term research goals.</p>
+        <p>Read more about our philosophy on the <a href='https://www.dhinstitutes.org/'>DHRI website</a>.</p>
+      </div>
       <div className='workshops'>
         {workshops.map((workshop, index) => (
           <Workshop key={index} workshop={workshop} />
@@ -17,6 +48,7 @@ export default function Home({ workshops }) {
     </div>
   )
 }
+
 
 export async function getStaticProps() {
   // Get files from the workshops dir
@@ -35,8 +67,8 @@ export async function getStaticProps() {
       'utf-8',
     )
 
-    const { data: frontmatter } = matter(markdownWithMeta)
 
+    const { data: frontmatter } = matter(markdownWithMeta)
     return {
       slug,
       frontmatter,

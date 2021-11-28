@@ -17,7 +17,16 @@ p {
 
 a {
   text-decoration: none;
-  color: #333;
+  color: lightseagreen;
+}
+
+.headerLink{
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.workshopBackground{
+  cursor: pointer;
 }
 
 img {
@@ -36,7 +45,11 @@ header a {
   color: #fff;
 }
 
-.container {
+.secondHeader{
+  background-color: #ecf0f1;
+}
+
+.workshopContainer {
   max-width: 100%;
   margin: auto;
   padding: 0 10px;
@@ -57,29 +70,37 @@ header a {
   font-size: 15px;
   font-family: inherit;
 }
-
-.btn:focus {
-  outline: none;
+.startButton{
+  align-self: flex-end;
 }
 
-.btn:hover {
-  transform: scale(0.98);
-}
-
-.btn-back {
-  background: #f4f4f4;
-  color: #000;
-  margin-bottom: 20px;
-  align-self: flex-start;
+header {
+  display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .topBar{
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* justify-content: space-between; */
-  /* align-items: center; */
-  /* margin-bottom: 20px; */
-  /* background-color: aqua; */
+  background-color: #2C3E50 !important;
+}
+header > .topBar{
+  width: 70%;
+}
+
+.logo{
+  width: 50px;
+  height: 50px;}
+
+.links{
+  display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.links > li{
+  list-style: none;
+  margin: 0 20px;
 }
 
 .drawer-list{
@@ -94,23 +115,60 @@ header a {
   flex-direction: row;
   justify-content: space-around;
   align-items: flex-end;
-  background-color: #1976d2;
+  background-color: #29343f;
 }
 .paperGrid{
-  flex-basis: 100%;
-  max-width: 80%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: flex-end;
+  flex-basis: 100% !important;
+  max-width: 80% !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-around !important;
+  align-items: flex-end !important;
+  flex-wrap: wrap !important;
   
 }
 
 .paperWorkshop{
   margin: 10px;
-
+  height: 250px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
+.paperWorkshop a{
+  font-size: 28px;
+  margin: auto;
+    width: 50%;
+    text-align: center;
+  text-decoration: none;
+  color: #fff;
+  text-shadow: 1px 1px 0 #000,
+    -1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000,
+    0px 1px 0 #000,
+    0px -1px 0 #000,
+    -1px 0px 0 #000,
+    1px 0px 0 #000,
+    2px 2px 0 #000,
+    -2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000,
+    0px 2px 0 #000,
+    0px -2px 0 #000,
+    -2px 0px 0 #000,
+    2px 0px 0 #000,
+    1px 2px 0 #000,
+    -1px 2px 0 #000,
+    1px -2px 0 #000,
+    -1px -2px 0 #000,
+    2px 1px 0 #000,
+    -2px 1px 0 #000,
+    2px -1px 0 #000,
+    -2px -1px 0 #000;
+}
 
 .workshops {
   display: grid;
@@ -123,12 +181,25 @@ header a {
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card > div {
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
 }
 
 .card-page {
+  display: block;
   padding: 15px 30px;
-  display: flex;
-  flex-direction: column;
   max-width: 80%;
 }
 
@@ -137,6 +208,30 @@ header a {
   justify-self: center;
   align-self: center;
   margin: 10px;
+}
+
+.workshop-content{
+  width: 100%;
+}
+
+.correct{
+  color: green;
+  visibility: hidden;
+}
+
+.incorrect{
+  color: red;
+  visibility: hidden;
+}
+.visible{
+  visibility: visible;
+}
+
+.last-page-and-next-page-button{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
 }
 
 .WorkshopPage-nav-right{
@@ -152,6 +247,7 @@ nav {
       overflow: auto;
       font-size: 15px;
       padding: 16px;
+      z-index: 1;
 }
 
 nav > ul > li {
@@ -189,27 +285,20 @@ nav > ul > li > ul > li > a:hover {
   font-weight: bold;
 }
 
-.post-title {
-  margin: 10px 0;
-  align-self: center;
+footer {
+  background-color: #f7f7f8;
 }
 
-.post-date {
-  background: #f4f4f4;
-  margin-bottom: 20px;
-  padding: 3px 10px;
+.funderImages {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
-.post-body ul,
-ol {
-  /* font-size: 110%;
-  line-height: 2.3; */
-  /* font-weight: bold; */
-  margin: 10px 0;
-}
-
-.post-body pre {
-  padding: 20px;
-  margin: 20px 0;
-  line-height: 2.3;
+.funderImages > div > a > img {
+  max-height: 100px;
+  margin-top: 20px;
 }
