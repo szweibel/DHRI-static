@@ -1,5 +1,4 @@
 import ButtonAppBar from '../components/ButtonAppBar'
-
 import '../styles/globals.css'
 import '../node_modules/highlight.js/styles/obsidian.css'
 import React, { useEffect, useState } from 'react'

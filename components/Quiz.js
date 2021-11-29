@@ -75,13 +75,13 @@ export default function evaluationAnswers(currentHTML) {
                         value={index}
                         onClick={() => onRadioClickhandler(answer.correct)}
                     />
-                    {answer.answer}
+                    <span className="visible" dangerouslySetInnerHTML={{__html: answer.answer}}></span>
                 </li>
             )
         });
         return (
             <div className="question-container" key={index}>
-                <h3>{question.question}</h3>
+                <h3 dangerouslySetInnerHTML={{ __html: question.question }}></h3>
                 <ul>
                     {answersHTML}
                 </ul>

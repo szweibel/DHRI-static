@@ -154,10 +154,7 @@ export async function getStaticPaths() {
 
 
 export async function getStaticProps({ params: { slug } }) {
-  const markdownWithMeta = fs.readFileSync(
-    path.join('workshops', slug + '.md'),
-    'utf-8'
-  )
+
   const dirents = fs.readdirSync(path.join('workshops'), { withFileTypes: true })
   const workshopFiles = dirents
     .filter((file) => file.isFile())
@@ -173,21 +170,23 @@ export async function getStaticProps({ params: { slug } }) {
       'utf-8',
     )
 
-    const { data: frontmatter } = matter(markdownWithMeta)
-
+    const matterResult = matter(markdownWithMeta)
+    const content = matterResult.content
     return {
       slug,
-      frontmatter,
+      content: content,
+      ...matterResult.data,
     }
   })
-
-  const { data: frontmatter, content } = matter(markdownWithMeta)
+  const currentWorkshop = workshops.find((workshop) => workshop.slug === slug)
+  const content = currentWorkshop.content
+  const frontmatter = currentWorkshop
   return {
     props: {
-      frontmatter,
-      slug,
-      content,
-      workshops: workshops.sort(sortByDate),
+      frontmatter: frontmatter,
+      slug: slug,
+      content: content,
+      workshops: workshops.sort(),
     },
   }
 }

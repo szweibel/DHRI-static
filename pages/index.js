@@ -4,7 +4,11 @@ import matter from 'gray-matter'
 import { sortByDate } from '../utils'
 import { useEffect, UseState } from 'react'
 import dynamic from 'next/dynamic'
-import Workshop from '../components/Workshop'
+// const Workshop = dynamic(() => import('../components/Workshop'))
+const Workshop = dynamic(
+  () => import('../components/Workshop'),
+   { loading: function loading() {return <p>...</p>} }
+ )
 
 export default function Home({ workshops }) {
 
@@ -49,7 +53,6 @@ export default function Home({ workshops }) {
   )
 }
 
-
 export async function getStaticProps() {
   // Get files from the workshops dir
   const dirents = fs.readdirSync(path.join('workshops'), { withFileTypes: true })
@@ -67,17 +70,18 @@ export async function getStaticProps() {
       'utf-8',
     )
 
-
-    const { data: frontmatter } = matter(markdownWithMeta)
+    const matterResult = matter(markdownWithMeta)
+    const content = matterResult.content
     return {
       slug,
-      frontmatter,
+      content: content,
+      ...matterResult.data,
     }
   })
-
+  
   return {
     props: {
-      workshops: workshops.sort(sortByDate),
+      workshops: workshops.sort(),
     },
   }
 }

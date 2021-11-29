@@ -1,5 +1,5 @@
 import * as hero from 'hero-patterns'
-import colors from '../components/Colors'
+import colors from /* preval */ '../components/Colors'
 
 
 const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)

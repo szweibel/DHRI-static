@@ -13,10 +13,8 @@ import { styled } from '@mui/material/styles';
 import Link from 'next/link'
 import IconButton from '@mui/material/IconButton';
 import ComputerIcon from '@material-ui/icons/Computer';
-import * as hero from 'hero-patterns'
-import colors from '../components/Colors'
 import { useEffect } from "react";
-import allPatterns from '../components/Backgrounds';
+import randomColor from '../node_modules/randomcolor'
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -28,7 +26,32 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 export default function TemporaryDrawer({ workshops }) {
-  console.log(workshops)
+
+  const workshopList =  workshops.map((workshop, index) => {
+    const color1 = randomColor({
+      luminosity: 'light',
+      count: 1,
+    })[0]
+    const color2 = randomColor({
+      luminosity: 'light',
+      count: 1,
+    })[0]
+    const style = {
+      background: `linear-gradient(to right, ${color1}, ${color2})`,
+    }
+    return (
+    <Link href={`/workshops/${workshop.slug}`} key={workshop.slug + index}>
+      <Item className='paperWorkshop workshopBackground' style={style} >
+        <a>{workshop.title}</a>
+      </Item>
+    </Link>
+    )
+  })
+
+
+
+  
+
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -58,13 +81,7 @@ export default function TemporaryDrawer({ workshops }) {
         <Grid item md={3}
           className='paperGrid'
         >
-          {workshops.map((workshop, index) => (
-            <Link href={`/workshops/${workshop.slug}`} key={workshop.slug + index}>
-              <Item className='paperWorkshop workshopBackground' style={allPatterns[Math.floor(Math.random() * allPatterns.length)]}>
-                <a>{workshop.frontmatter.title}</a>
-              </Item>
-            </Link>
-          ))}
+          {workshopList}
         </Grid>
       </Grid>
     </Box>

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import yaml from '../config.yml'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,7 +8,6 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useState, useEffect } from "react";
-// import Drawer from '../components/Drawer';
 import { styled } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
 const Drawer = dynamic(
@@ -19,16 +19,15 @@ export default function ButtonAppBar({ props }) {
 
     const workshops = []
     // if workshops is undefined
-    if (typeof props.workshops === 'undefined') {
-     const workshops = []
-    }else{
-        const workshops = props.workshops
-    }
+    // if (typeof props.workshops === 'undefined') {
+    //  const workshops = []
+    // }else{
+    //     const workshops = props.workshops
+    // }
     const [propsAvailable, setPropsAvailable] = useState(false);
     const [allWorkshops, setAllWorkshops] = useState(workshops);
 
     useEffect(() => {
-        console.log(props.workshops)
         if (props && props.workshops) {
             setPropsAvailable(true)
             setAllWorkshops(props.workshops)
@@ -53,10 +52,10 @@ export default function ButtonAppBar({ props }) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <img src='/images/logo.png' alt='DHRI logo' className='logo' />
+                    <img src='/images/logo.png' alt= {yaml.organization + ' logo'} className='logo' />
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         <Link href='/' passHref>
-                            <h2 className='headerLink'>DHRI Curriculum</h2>
+                            <h2 className='headerLink'>{yaml.organization} {yaml.event}</h2>
                         </Link>
                     </Typography>
                     <ul className='links'>
