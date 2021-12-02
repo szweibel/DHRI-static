@@ -1,6 +1,18 @@
 const withYAML = require('next-yaml')
-module.exports = withYAML()
-// module.exports = {
-//   reactStrictMode: true,
-// }
+const compose = require('next-compose')
 
+
+module.exports = compose(
+    [[withYAML],
+    {
+    webpack: (cfg) => {
+    cfg.module.rules.push(
+        {
+            test: /\.md$/,
+            loader: 'frontmatter-markdown-loader',
+            options: { mode: ['react-component'] }
+        }
+    )
+        return cfg;
+}}
+    ])

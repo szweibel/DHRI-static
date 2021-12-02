@@ -37,20 +37,17 @@ export default function TemporaryDrawer({ workshops }) {
       count: 1,
     })[0]
     const style = {
-      background: `linear-gradient(to right, ${color1}, ${color2})`,
+      // background: `linear-gradient(to right, ${color1}, ${color2})`,
+      background: `${color1}`,
     }
     return (
     <Link href={`/workshops/${workshop.slug}`} key={workshop.slug + index}>
-      <Item className='paperWorkshop workshopBackground' style={style} >
+      <Item className='paperWorkshop workshopBackground drawer-item' style={style} >
         <a>{workshop.title}</a>
       </Item>
     </Link>
     )
   })
-
-
-
-  
 
   const [state, setState] = React.useState({
     top: false,

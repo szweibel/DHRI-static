@@ -10,7 +10,7 @@ import { endianness, type } from 'os'
 import { current } from 'hero-patterns'
 import { elementAcceptingRef } from '@mui/utils'
 import evaluationAnswers from '../../components/Quiz'
-
+import {Glossary} from '../../components/Glossary'
 
 // Set options for marked
 marked.setOptions({
@@ -40,6 +40,7 @@ export default function WorkshopPage({
   const [currentPage, setCurrentPage] = useState(0);
   const [pages, setPages] = useState([]);
   const [currentContent, setCurrentContent] = useState([]);
+  // convert from markdown to HTML 
   const htmlContent = marked(content);
   // split by h1s
   const sections = htmlContent.split('<h1');
@@ -96,13 +97,11 @@ export default function WorkshopPage({
     )
   }
 
-
   
-  // evaluationAnswers(currentContent);
 
   // if content contains a quiz
   const contentAndQuiz = (currentContent) => {
-    if (currentContent.props ) {
+    if (currentContent.props) {
       const currentText = currentContent.props.dangerouslySetInnerHTML.__html;
       if (currentText.includes('Evaluation</h2>')) {
         return evaluationAnswers(currentText);
@@ -113,7 +112,6 @@ export default function WorkshopPage({
       return currentContent;
     }
   }
-
   return (
     <div className='workshopContainer container'>
       <nav>
@@ -121,15 +119,14 @@ export default function WorkshopPage({
           {pageTitles}
         </ul>
       </nav>
-      <div className="content card card-page">
+      <div className="content card-page">
         <div className="workshop-container">
           <img className="hero" src={cover_image} alt="cover" />
           <div className="title">
             {title}
           </div>
           <div>{lastPageAndNextPageButton(currentPage)}</div>
-            {contentAndQuiz(currentContent)}
-            
+          {contentAndQuiz(currentContent)}
           <div>{lastPageAndNextPageButton(currentPage)}</div>
         </div>
       </div>
@@ -169,7 +166,6 @@ export async function getStaticProps({ params: { slug } }) {
       path.join('workshops', filename),
       'utf-8',
     )
-
     const matterResult = matter(markdownWithMeta)
     const content = matterResult.content
     return {

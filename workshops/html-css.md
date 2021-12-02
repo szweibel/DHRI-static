@@ -1,6 +1,5 @@
 ---
 title: 'Introduction to HTML and CSS'
-date: 'March 7, 2021'
 excerpt: 'HTML (Hypertext Markup Language) is used to create and organize the content of a website. CSS (Cascading Style Sheets) is used for website design and layout. Together, these languages form the foundation of what one needs to know to create useful and well-designed websites. This workshop walks participants through the fundamentals of HTML and CSS. The purpose of this website is to help participants understand the rudiments of making websites, with the intention of providing a strong base of knowledge from which to imagine web-based digital humanities projects.'
 cover_image: '/images/workshops/img3.jpg'
 ---

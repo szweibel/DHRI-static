@@ -1,12 +1,14 @@
 ---
-title: 'Data Ethics Workshop'
-date: 'March 1, 2021'
-excerpt: 'What is data? What counts as data? These are questions we will explore throughout the workshop.
-
-Data is foundational to nearly all digital projects and often help us to understand and express our ideas and narratives. Hence, in order to do digital work, we should know how data is captured, constructed, and manipulated. In this workshop we will be discussing the basics of research data, in terms of its material, transformation, and presentation. We will also engage with the ethical dimensions of what it means to work with data, from collection to visualization to representation.'
-cover_image: '/images/workshops/img3.jpg'
+title: Data Ethics
+excerpt: In tis workshop we will be discussing the basics of research data in
+  terms of material, transformation, and presentation. We will also be
+  discussing the ethical issues that arise in data collection, cleaning, and
+  representation. Because everyone has a different approach and understanding to
+  data and ethics, this workshop will also include multiple sites for
+  discussions to help us think through what data literacies mean within our
+  projects and broader applications.
+thumbnail: /images/uploads/img6.jpg
 ---
-
 # Data is Foundational
 
 In this workshop we will be discussing the basics of research data in terms of material, transformation, and presentation. We will also be discussing the ethical issues that arise in data collection, cleaning, and representation. Because everyone has a different approach and understanding to data and ethics, this workshop will also include multiple sites for discussions to help us think through what data literacies mean within our projects and broader applications.
@@ -198,7 +200,7 @@ Processing data puts it into a state more readily available for analysis and mak
 </Cats>
 ```
 
-![Screenshot of XML cats file](/images/data-ethics/cats_XML.png)
+![Screenshot of XML cats file](/images/cats_XML.png)
 This file is viewed on an online [XML Viewer](https://www.xmlviewer.org/). If you would like to, you can either copy the code chunk above to try it out on [XML Viewer](https://www.xmlviewer.org) or [download the XML file](https://raw.githubusercontent.com/DHRI-Curriculum/data-literacies/v2.0/files/cats.xml) to try it out in other viewers. To save the file onto your local computer, **right click** on `Raw` button (top right-hand corner of the data set) and click `Save Link As...` to save the file onto your local computer.
 
 For example, after downloading the file, can you try to open this file in your browser? (Psst! Try right clicking on `cats.xml` in your local directory and choosing `Open with Other Application` in the drop down menu to select the browser of your choice.)
@@ -230,7 +232,7 @@ For example, after downloading the file, can you try to open this file in your b
 } 
 ```
 
-![Screenshot of JSON cats file](/images/data-ethics/cats_JSON.png)
+![Screenshot of JSON cats file](/images/cats_JSON.png)
 This file is viewed on my Firefox browser from my local directory. To view it in your browser, you can drag and drop the local file onto a open tab or window. You can also [download the JSON file](https://raw.githubusercontent.com/DHRI-Curriculum/data-literacies/v2.0/files/cats.json) and try opening it in other viewers (e.g. R Studio, webviewers like Code Beautify's [JSON Viewer](https://codebeautify.org/jsonviewer)). To save the file onto your local computer, **right click** on `Raw` button (top right-hand corner of the data set) and click `Save Link As...` to save the file onto your local computer.
 
 ## CSV
@@ -245,7 +247,7 @@ Foots,Smith
 Tiger,Jaws
 ```
 
-![Screenshot of CSV cats file](/images/data-ethics/cats_CSV.png)
+![Screenshot of CSV cats file](/images/cats_CSV.png)
 
 This file is viewed on my VSCode with the extension `Excel Viewer`. To view in VSCode, [install the extension](https://marketplace.visualstudio.com/items?itemName=GrapeCity.gc-excelviewer) in VSCode, open the .csv, and then right click on the file and click `Open Preview`. You can also [download the CSV file](https://raw.githubusercontent.com/DHRI-Curriculum/data-literacies/v2.0/files/cats.csv) to open it in other viewers (e.g. Microsoft Excel, Notepad). To save the file onto your local computer, **right click** on `Raw` button (top right-hand corner of the data set) and click `Save Link As...` to save the file onto your local computer.
 
@@ -415,7 +417,7 @@ Do you think you can explain the rules of tidy data structuring?
 1. `Artist Role`, `Artist Display Name`, `Artist Display Bio`, `Artist Alpha Sort`, `Artist Nationality`, `Artist Begin Date`, `Artist End Date`, or `Classification`.
 2. I will choose to convert to the tidy data format if I was interested in any of the variables listed above, so that it will be easier to analyse the entries. I will have to unnest the entries by separating the data into different columns. For example, if I am interested in understanding the type of roles that are predominantly held by non-cisgender men, I will unnest the column `Artist Role` as two columns (e.g. `Artist 1 Role`, `Artist 2 Role`) as illustrated in this example:
 
-![Comparison of moSmall after tidy format](/images/data-ethics/moSmall2_tidytogether.png)
+![Comparison of moSmall after tidy format](/images/moSmall2_tidytogether.png)
 
 ## Keywords
 
@@ -658,7 +660,7 @@ As we transform our results into visuals, we are also trying to tell a narrative
 3. Exaggerated differences through the choice of scales on the x and y-axis can misled a casual viewer to think that the data is representing a larger difference than it actually is reporting.
 4. Data visualization can help us convey dense information quickly. The casual viewer can glance at the visualization and understand what we are trying to communicate with our data. Data visualization also can be affective device, like the DuBois' examples which helps to tell the urgency of the narrative/story.
 5. The difficulty of representing this dataset is how at first glance there's an assumption that gender is binary given that only 2 bars are representing the dataset. Even though the other bar is labeled `Unknown` to suggest that this is not a comprehensive breakdown, I'm not sure how effective it is.
-![Plot of media objects in public domain by gender of artist](/images/data-ethics/genderPD.png)
+![Plot of media objects in public domain by gender of artist](/images/genderPD.png)
 
 # Data Literacy and Ethics
 

@@ -15,23 +15,23 @@ export default function Workshop({ workshop }) {
   })[0]
 
   const style = {
-    background: `linear-gradient(to right, ${color1}, ${color2})`,
+    // background: `linear-gradient(to right, ${color1}, ${color2})`,
+    background: `${color1}`,
   }
 
   return (
     <div className='card'>
-      {/* <img src={workshop.cover_image} loading="lazy" alt='' /> */}
       <Link href={`/workshops/${workshop.slug}`}>
-        {/* <div key={workshop.slug} className={'pt'+Math.floor(Math.random() * 37)+' paperWorkshop workshopBackground'} > */}
-          
         <div key={workshop.slug} className='paperWorkshop workshopBackground' style={style} >
           <a>{workshop.title}</a>
         </div>
       </Link>
       <p>{workshop.excerpt}</p>
+      <div className='workshop-footer'>
       <Link href={`/workshops/${workshop.slug}`} >
-        <a className='btn startButton'>Start</a>
+        <a className='btn startButton'>Start »</a>
       </Link>
+      </div>
     </div>
 
   )
