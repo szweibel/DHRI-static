@@ -4,7 +4,6 @@ import matter from 'gray-matter'
 import { sortByDate } from '../utils'
 import { useEffect, UseState } from 'react'
 import dynamic from 'next/dynamic'
-// const Workshop = dynamic(() => import('../components/Workshop'))
 const Workshop = dynamic(
   () => import('../components/Workshop'),
    { loading: function loading() {return <p>...</p>} }

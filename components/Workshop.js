@@ -21,11 +21,11 @@ export default function Workshop({ workshop }) {
 
   return (
     <div className='card'>
-      <Link href={`/workshops/${workshop.slug}`}>
-        <div key={workshop.slug} className='paperWorkshop workshopBackground' style={style} >
-          <a>{workshop.title}</a>
-        </div>
-      </Link>
+    <Link href={`/workshops/${workshop.slug}`} key={workshop.slug}>
+      <div className='paperWorkshop workshopBackground' style={style} >
+        <a>{workshop.title}</a>
+      </div>
+    </Link>
       <p>{workshop.excerpt}</p>
       <div className='workshop-footer'>
       <Link href={`/workshops/${workshop.slug}`} >

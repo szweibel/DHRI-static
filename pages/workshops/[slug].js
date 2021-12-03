@@ -128,6 +128,7 @@ export default function WorkshopPage({
           <div>{lastPageAndNextPageButton(currentPage)}</div>
           {contentAndQuiz(currentContent)}
           <div>{lastPageAndNextPageButton(currentPage)}</div>
+
         </div>
       </div>
     </div>
