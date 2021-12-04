@@ -97,8 +97,8 @@ export default function GuidePage({
  // list of page titles and highlight current page
  const pageTitles = pages.map((page, index) => {
   return (
-    <li key={index} className={currentPage === index + 1 ? 'active' : ''}>
-      <a onClick={() => handlePageChange(event, index + 1)}>{page.props.name}</a>
+    <li key={index}>
+      <a className={currentPage === index + 1 ? 'active' : ''} onClick={() => handlePageChange(event, index + 1)}>{page.props.name}</a>
     </li>
   );
 });
@@ -108,6 +108,11 @@ export default function GuidePage({
    console.log(event, value)
    setCurrentPage(value);
    setCurrentContent(pages[value - 1]);
+     // scroll smoothly to top of page
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
  }
  
  

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
+/* @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"; */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,6 +9,10 @@
 
 body {
   font-family: 'Poppins', sans-serif;
+}
+
+li{
+  list-style: none;
 }
 
 p {
@@ -51,9 +56,6 @@ header a {
 }
 
 .workshopContainer {
-  max-width: 100%;
-  margin: auto;
-  padding: 0 10px;
   display:flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -190,7 +192,7 @@ header > .topBar{
   margin-top: 30px;
 }
 
-.card {
+/* .card {
   border-radius: 0;
   display: flex;
   flex-direction: column;
@@ -203,11 +205,35 @@ header > .topBar{
 .card:hover {
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
   transform: scale(1.01);
+} */
+
+.overlay {
+  position: absolute;
+  top: 50px;
+  background: rgba(0, 0, 0, 0.7); /* Black see-through */
+  width: 100%;
+  color:white;
+  transition: .5s ease;
+  font-size: 20px;
+  text-align: center;
 }
 
-.card > p{
-  margin-left: 10px;
-  margin-right: 10px;
+.card-content{
+  padding: 0;
+  position: relative;
+}
+
+.card-content > h2{
+  font-size: 1.5rem;
+  /* margin-left: 10px;
+  margin-top: 20px; */
+}
+
+.card-content> p{
+  margin: 10px;
+  font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.43;
 }
 
 .workshop-footer {
@@ -288,10 +314,11 @@ nav > ul > li {
 }
 
 nav.sidenav > ul > li > a:hover {
-  color: lightseagreen;
+  /* color: lightseagreen; */
+  cursor: pointer;
 }
 
-nav.sidenav > ul > li.active {
+nav.sidenav > ul > li > a.active {
   color: lightseagreen;
   font-weight: bold;
 }

@@ -12,7 +12,7 @@ const Workshop = dynamic(
 export default function Home({ workshops }) {
 
   return (
-    <div className='container'>
+    <div className='mui-container'>
       <div className="secondHeader">
         <h1 className='subtitle'>Further Expanding Digital Humanities Communities of Practice</h1>
         <p>The Digital Humanities Research Institute (DHRI) is an intensive, community-oriented,
