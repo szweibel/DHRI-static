@@ -54,33 +54,43 @@ export default function Home({ workshops }) {
 
 export async function getStaticProps() {
   // Get files from the workshops dir
-  const dirents = fs.readdirSync(path.join('workshops'), { withFileTypes: true })
-  const workshopFiles = dirents
-    .filter((file) => file.isFile())
-    .map((file) => file.name);
-  // Get slug and frontmatter from workshop
-  const workshops = workshopFiles.map((filename) => {
-    // Create slug
-    const slug = filename.replace('.md', '')
+  const getFilesandProcess = (dir) => {
 
-    // Get frontmatter
-    const markdownWithMeta = fs.readFileSync(
-      path.join('workshops', filename),
-      'utf-8',
-    )
+      const dirents = fs.readdirSync(path.join(dir), { withFileTypes: true })
+      const dirFiles = dirents
+          .filter((file) => file.isFile())
+          .map((file) => file.name);
+      // Get slug and frontmatter from workshop
+      const markdownFiles = dirFiles.map((filename) => {
+          // Create slug
+          const slug = filename.replace('.md', '')
 
-    const matterResult = matter(markdownWithMeta)
-    const content = matterResult.content
-    return {
-      slug,
-      content: content,
-      ...matterResult.data,
-    }
-  })
-  
+          // Get frontmatter
+          const markdownWithMeta = fs.readFileSync(
+              path.join(dir, filename),
+              'utf-8',
+          )
+
+          const matterResult = matter(markdownWithMeta)
+          const content = matterResult.content
+          return {
+              slug,
+              content: content,
+              ...matterResult.data,
+          }
+
+      })
+      return markdownFiles
+  }
+  const workshopFiles = getFilesandProcess('workshops')
+  const installFiles = getFilesandProcess('guides')
+  const insightsFiles = getFilesandProcess('insights')
+
   return {
-    props: {
-      workshops: workshops.sort(),
-    },
+      props: {
+          workshops: workshopFiles.sort(),
+          guides: installFiles.sort(),
+          insights: insightsFiles.sort(),
+      },
   }
 }

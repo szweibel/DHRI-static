@@ -1,4 +1,4 @@
-import ButtonAppBar from '../components/ButtonAppBar'
+import Header from '../components/Header'
 import '../styles/globals.css'
 import '../node_modules/highlight.js/styles/obsidian.css'
 import React, { useEffect, useState } from 'react'
@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <ButtonAppBar props={pageProps} />
+        <Header props={pageProps} />
         <main className='container'>
           <Component {...pageProps} />
         </main>

@@ -11,6 +11,9 @@ import { current } from 'hero-patterns'
 import { elementAcceptingRef } from '@mui/utils'
 import evaluationAnswers from '../../components/Quiz'
 import {Glossary} from '../../components/Glossary'
+import { useRouter } from 'next/router'
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 // Set options for marked
 marked.setOptions({
@@ -31,13 +34,21 @@ marked.setOptions({
 });
 
 export default function WorkshopPage({
-  frontmatter: { title, date, cover_image },
-  slug,
-  content,
+  workshops,
+  guides,
+  insights
 }) {
 
+  const router = useRouter()
+  const { slug } = router.query
+  const currentFile = workshops.find((workshop) => workshop.slug === slug)
+
+  const content = currentFile.content
+  const cover_image = currentFile.cover_image
+  const title = currentFile.title
+
   // return content according to the current page
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState([]);
   const [currentContent, setCurrentContent] = useState([]);
   // convert from markdown to HTML 
@@ -68,36 +79,42 @@ export default function WorkshopPage({
     setCurrentContent(renderedSections[0]);
   }, [content]);
 
-  const handlePageChange = (index) => {
-    setCurrentPage(index);
-    setCurrentContent(pages[index]);
-  };
 
+const PaginationComponent = (currentPage) => {
+  return (
+    <Stack className='pagination'>
+      <Pagination
+        count={pages.length}
+        page={currentPage}
+        onChange={handlePageChange}
+        siblingCount={2} 
+        boundaryCount={2}
+        defaultPage={2}
+      />
+    </Stack>
+  )
+}
+
+
+
+// list of page titles and highlight current page
+// use handlePageChange() to change page
   // list of page titles and highlight current page
   const pageTitles = pages.map((page, index) => {
     return (
-      <li key={index}>
-        <a onClick={() => handlePageChange(index)} className={index === currentPage ? 'active' : ''}>
-          {page.props.name}
-        </a>
+      <li key={index} className={currentPage === index + 1 ? 'active' : ''}>
+        <a onClick={() => handlePageChange(event, index + 1)}>{page.props.name}</a>
       </li>
     );
   });
 
-  const lastPageAndNextPageButton = (currentPage) => {
-    return (
-      <div className="last-page-and-next-page-button">
-        <div className="WorkshopPage-nav-left">
-          {currentPage > 0 && <button className='button is-primary' onClick={() => handlePageChange(currentPage - 1)}>Previous</button>}
-        </div>
-        <div className="WorkshopPage-nav-right">
-          {currentPage < pages.length - 1 && <button className='button is-primary' onClick={() => handlePageChange(currentPage + 1)}>Next</button>}
-        </div>
-      </div>
-    )
-  }
+      
+const handlePageChange = (event, value) => {
+  console.log(event, value)
+  setCurrentPage(value);
+  setCurrentContent(pages[value - 1]);
+}
 
-  
 
   // if content contains a quiz
   const contentAndQuiz = (currentContent) => {
@@ -114,7 +131,7 @@ export default function WorkshopPage({
   }
   return (
     <div className='workshopContainer container'>
-      <nav>
+      <nav className='sidenav'>
         <ul>
           {pageTitles}
         </ul>
@@ -125,10 +142,9 @@ export default function WorkshopPage({
           <div className="title">
             {title}
           </div>
-          <div>{lastPageAndNextPageButton(currentPage)}</div>
+          <div>{PaginationComponent(currentPage)}</div>
           {contentAndQuiz(currentContent)}
-          <div>{lastPageAndNextPageButton(currentPage)}</div>
-
+          <div>{PaginationComponent(currentPage)}</div>
         </div>
       </div>
     </div>
@@ -151,39 +167,45 @@ export async function getStaticPaths() {
 }
 
 
-export async function getStaticProps({ params: { slug } }) {
+export async function getStaticProps() {
+  // Get files from the workshops dir
+  const getFilesandProcess = (dir) => {
 
-  const dirents = fs.readdirSync(path.join('workshops'), { withFileTypes: true })
-  const workshopFiles = dirents
-    .filter((file) => file.isFile())
-    .map((file) => file.name);
-  // Get slug and frontmatter from workshop
-  const workshops = workshopFiles.map((filename) => {
-    // Create slug
-    const slug = filename.replace('.md', '')
+      const dirents = fs.readdirSync(path.join(dir), { withFileTypes: true })
+      const dirFiles = dirents
+          .filter((file) => file.isFile())
+          .map((file) => file.name);
+      // Get slug and frontmatter from workshop
+      const markdownFiles = dirFiles.map((filename) => {
+          // Create slug
+          const slug = filename.replace('.md', '')
 
-    // Get frontmatter
-    const markdownWithMeta = fs.readFileSync(
-      path.join('workshops', filename),
-      'utf-8',
-    )
-    const matterResult = matter(markdownWithMeta)
-    const content = matterResult.content
-    return {
-      slug,
-      content: content,
-      ...matterResult.data,
-    }
-  })
-  const currentWorkshop = workshops.find((workshop) => workshop.slug === slug)
-  const content = currentWorkshop.content
-  const frontmatter = currentWorkshop
+          // Get frontmatter
+          const markdownWithMeta = fs.readFileSync(
+              path.join(dir, filename),
+              'utf-8',
+          )
+
+          const matterResult = matter(markdownWithMeta)
+          const content = matterResult.content
+          return {
+              slug,
+              content: content,
+              ...matterResult.data,
+          }
+
+      })
+      return markdownFiles
+  }
+  const workshopFiles = getFilesandProcess('workshops')
+  const installFiles = getFilesandProcess('guides')
+  const insightsFiles = getFilesandProcess('insights')
+
   return {
-    props: {
-      frontmatter: frontmatter,
-      slug: slug,
-      content: content,
-      workshops: workshops.sort(),
-    },
+      props: {
+          workshops: workshopFiles.sort(),
+          guides: installFiles.sort(),
+          insights: insightsFiles.sort(),
+      },
   }
 }

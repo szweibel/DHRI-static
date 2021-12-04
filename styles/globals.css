@@ -82,6 +82,11 @@ header {
     justify-content: space-evenly;
 }
 
+header a:hover{
+  text-decoration: underline;
+  color:#23d5ab
+}
+
 .topBar{
   background-color: #2C3E50 !important;
 }
@@ -180,7 +185,7 @@ header > .topBar{
 
 .workshops {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   margin-top: 30px;
 }
@@ -236,11 +241,15 @@ header > .topBar{
 }
 
 .workshop-container{
-  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+}
+
+.workshop-content{
+  max-width: 100%;
 }
 
 .correct{
@@ -256,17 +265,10 @@ header > .topBar{
   visibility: visible;
 }
 
-.last-page-and-next-page-button{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
-}
-
 .WorkshopPage-nav-right{
 margin-left: 10px;
 }
-nav {
+nav.sidenav {
   max-width: 400px;
       min-width: 300px;
       align-self: flex-start;
@@ -285,23 +287,27 @@ nav > ul > li {
   font-size: 16px;
 }
 
-nav > ul > li > a:hover {
+nav.sidenav > ul > li > a:hover {
   color: lightseagreen;
 }
 
-nav > ul > li > a.active {
+nav.sidenav > ul > li.active {
   color: lightseagreen;
   font-weight: bold;
 }
 
-nav > ul > li > ul > li {
+nav.sidenav > ul > li > ul > li {
   list-style: none;
   margin-bottom: 10px;
   font-size: 13px;
 }
 
-nav > ul > li > ul > li > a:hover {
+nav.sidenav > ul > li > ul > li > a:hover {
   color: lightseagreen;
+}
+
+.pagination > nav > ul{
+  margin: 0;
 }
 
 .muiButton-root {

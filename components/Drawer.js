@@ -24,10 +24,17 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+const BootstrapButton = styled(Button)(({ theme }) => ({
+  ...theme.typography.button,
+  padding: theme.spacing(1, 2),
+  margin: theme.spacing(1),
+  color: "green",
+}));
 
-export default function TemporaryDrawer({ workshops }) {
 
-  const workshopList =  workshops.map((workshop, index) => {
+export default function TemporaryDrawer({ files, category, onClick, onClose, open }) {
+
+  const filesList = files.map((file, index) => {
     const color1 = randomColor({
       luminosity: 'light',
       count: 1,
@@ -41,11 +48,11 @@ export default function TemporaryDrawer({ workshops }) {
       background: `${color1}`,
     }
     return (
-    <Link href={`/workshops/${workshop.slug}`} key={workshop.slug + index}>
-      <Item className='paperWorkshop workshopBackground drawer-item' style={style} >
-        <a>{workshop.title}</a>
-      </Item>
-    </Link>
+      <Link key={file.slug + index} href={`/[category]/[slug]`} as={`/${category}/${file.slug}`}>
+        <Item className='paperWorkshop workshopBackground drawer-item' style={style} >
+          <a>{file.title}</a>
+        </Item>
+      </Link>
     )
   })
 
@@ -74,11 +81,10 @@ export default function TemporaryDrawer({ workshops }) {
     >
       <Grid container
         className='paperWorkshops'>
-        {/* grid of all workshops */}
         <Grid item md={3}
           className='paperGrid'
         >
-          {workshopList}
+          {filesList}
         </Grid>
       </Grid>
     </Box>
@@ -89,16 +95,11 @@ export default function TemporaryDrawer({ workshops }) {
   return (
     // icon and button to open top drawer 
     <React.Fragment>
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="computer"
-        sx={{ mr: 2 }}
-        onClick={toggleDrawer('top', true)}
-      >
-        <ComputerIcon />
-      </IconButton>
+      
+        <a onClick={toggleDrawer('top', true)}>
+          {category.charAt(0).toUpperCase() + category.slice(1)}
+        </a>
+      
       <Drawer anchor="top" open={state['top']} onClose={toggleDrawer('top', false)}>
         {list('top')}
       </Drawer>
