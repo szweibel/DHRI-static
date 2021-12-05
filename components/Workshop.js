@@ -50,6 +50,7 @@ export default function Workshop({ workshop }) {
 
   return (
     <Card sx={{ maxWidth: 500 }} className='card'>
+      <Link href={`/workshops/${workshop.slug}`} passHref>
       <CardContent className='card-content'>
         {
           workshop.cover_image ?
@@ -70,14 +71,13 @@ export default function Workshop({ workshop }) {
         <Typography variant="body2" color="textSecondary" component="p">
           {workshop.excerpt}
         </Typography>
-        <CardActions>
-          <Link href={`/workshops/${workshop.slug}`} >
-            <Button size="small" color="primary">
+
+            {/* <Button size="small" color="primary">
               Start »
-            </Button>
-          </Link>
-        </CardActions>
+            </Button> */}
+
       </CardContent>
+          </Link>
     </Card>
   )
 }

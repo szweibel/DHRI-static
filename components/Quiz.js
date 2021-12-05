@@ -1,5 +1,3 @@
-import { endlessClouds } from "hero-patterns";
-
 // evaluate quiz questions
 export default function evaluationAnswers(currentHTML) {
     const onRadioClickhandler = (correct) => {

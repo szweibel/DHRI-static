@@ -2,7 +2,8 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import marked from 'marked'
-import glossaryFile from '../workshops/terms/glossary.yaml'
+// import glossaryFile from '../workshops/terms/glossary.yaml'
+import yaml from 'js-yaml'
 import { useState, useEffect } from 'react'
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
@@ -11,8 +12,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 
-export default function Glossary() {
-    const [glossary, setGlossary] = useState(glossaryFile)
+export default function Glossary({glossary}){
     const termsAndDefs = []
     Object.keys(glossary).forEach(key => {
         let termAndDefinition = glossary[key]
@@ -147,11 +147,14 @@ export async function getStaticProps() {
     const installFiles = getFilesandProcess('guides')
     const insightsFiles = getFilesandProcess('insights')
 
+    const glossary = yaml.load(fs.readFileSync('glossary.yaml', 'utf-8'))
+
     return {
         props: {
             workshops: workshopFiles.sort(),
             guides: installFiles.sort(),
             insights: insightsFiles.sort(),
+            glossary: glossary,
         },
     }
 }

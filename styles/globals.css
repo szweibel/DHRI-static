@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 /* @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"; */
+/* @import "//unpkg.com/@highlightjs/cdn-assets@11.3.1/styles/default.min.css"; */
 
 * {
   box-sizing: border-box;
@@ -123,6 +124,10 @@ header > .topBar{
   margin: 15px;
 }
 
+.drawer-click{
+  cursor: pointer;
+}
+
 .paperWorkshops{
   display: flex;
   flex-direction: row;
@@ -131,14 +136,19 @@ header > .topBar{
   background-color: #29343f;
 }
 .paperGrid{
-  flex-basis: 100% !important;
+  /* flex-basis: 100% !important;
   max-width: 80% !important;
   display: flex !important;
   flex-direction: row !important;
   justify-content: space-around !important;
   align-items: flex-end !important;
-  flex-wrap: wrap !important;
-  
+  flex-wrap: wrap !important; */
+  display: grid;
+  grid-template-columns: 300px 300px 300px 300px;
+  justify-content: space-around;
+  gap: 30px;
+  margin-top: 30px;
+  width: 100%;
 }
 
 .paperWorkshop{
@@ -192,21 +202,6 @@ header > .topBar{
   margin-top: 30px;
 }
 
-/* .card {
-  border-radius: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
-  transition: all 0.2s;
-}
-
-.card:hover {
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
-  transform: scale(1.01);
-} */
-
 .overlay {
   position: absolute;
   top: 50px;
@@ -217,6 +212,12 @@ header > .topBar{
   font-size: 20px;
   text-align: center;
 }
+.drawer-over{
+  position: relative;
+}
+.drawer-overlay {
+  top: -100px;
+}
 
 .card-content{
   padding: 0;
@@ -225,15 +226,14 @@ header > .topBar{
 
 .card-content > h2{
   font-size: 1.5rem;
-  /* margin-left: 10px;
-  margin-top: 20px; */
 }
 
 .card-content> p{
   margin: 10px;
   font-weight: 400;
-    font-size: 0.875rem;
-    line-height: 1.43;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  color:black;
 }
 
 .workshop-footer {

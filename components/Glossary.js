@@ -1,6 +1,6 @@
-import glossaryFile from '../workshops/terms/glossary.yaml'
+// import glossaryFile from '../workshops/terms/glossary.yaml'
 
-export function Glossary (currentHTML) {
+export function Glossary (currentHTML, glossaryFile) {
     // create array of terms and definitions
     const termsAndDefs = []
      Object.keys(glossaryFile).forEach(key => {

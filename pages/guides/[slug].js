@@ -4,7 +4,7 @@ import matter from 'gray-matter'
 import marked from 'marked'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import hljs from 'highlight.js'
+// import hljs from 'highlight.js'
 import { sortByDate } from '../../utils'
 import { endianness, type } from 'os'
 import { current } from 'hero-patterns'
@@ -36,7 +36,8 @@ marked.setOptions({
 export default function GuidePage({
   workshops,
   guides,
-  insights
+  insights,
+  paths
 }) {
   const router = useRouter()
   const { slug } = router.query
@@ -130,7 +131,7 @@ export default function GuidePage({
      }
    }
    return (
-     <div className='workshopContainer container'>
+     <div className='workshopContainer mui-container'>
        <nav className='sidenav'>
          <ul>
            {pageTitles}
@@ -138,7 +139,9 @@ export default function GuidePage({
        </nav>
        <div className="content card-page">
          <div className="workshop-container">
+
            <img className="hero" src={cover_image} alt="cover" />
+
            <div className="title">
              {title}
            </div>
