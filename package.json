@@ -17,6 +17,7 @@
     "@mui/material": "^5.2.1",
     "@next/mdx": "^12.0.7",
     "caniuse-lite": "^1.0.30001283",
+    "compose": "^0.1.2",
     "gray-matter": "^4.0.3",
     "hero-patterns": "^2.1.0",
     "highlight.js": "^11.3.1",
