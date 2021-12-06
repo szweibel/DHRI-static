@@ -611,7 +611,7 @@ When variable names accurately reflect what they represent, and are therefore me
 
 2. First, ignore this challenge because it's too hard. Next, look up a new concept—"f-string" (a formatting technique for strings)—on Google and use it to write a loop that gives the following output:
 
-    ```
+    ```pycon
     The square of 2 is 4.
     The square of 3 is 9.
     The square of 5 is 25.
