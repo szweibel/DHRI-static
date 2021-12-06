@@ -1,17 +1,19 @@
 import Markdown, {compiler} from 'markdown-to-jsx';
 import hljs from 'highlight.js'
+import 'highlight.js/styles/sunburst.css'
 
 const Code = ({className, children}) => {
     // using hljs to highlight code
-    // get class of children IF THEY EXIST
-    const classNames = children ? children.props.className : '';
-    // highlight
-    const highlighted = hljs.highlightAuto(children.props.children).value;
-    // return code block with highlighted code
-    return <pre className={`${className} ${classNames}`}>
-        <code className={classNames + ' hljs'} dangerouslySetInnerHTML={{__html: highlighted}} />  
-    </pre>
+    // use hljs.highlightElement 
+    const html = children.props.children;
+    const highlighted = hljs.highlightAuto(html).value;
+    return (
+        <pre className={className}>
+            <code className={className} dangerouslySetInnerHTML={{__html: highlighted}}></code>
+        </pre>
+    );
 }
+
 
 
 export default function ConvertMarkdown(markdown) {

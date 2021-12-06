@@ -14,7 +14,7 @@ import { useRouter } from 'next/router'
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import ReactDOMServer from 'react-dom/server';
-
+import hljs from 'highlight.js';
 
 export default function WorkshopPage({
   workshops,
