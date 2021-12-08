@@ -278,19 +278,6 @@ header > .topBar{
   max-width: 100%;
 }
 
-.correct{
-  color: green;
-  visibility: hidden;
-}
-
-.incorrect{
-  color: red;
-  visibility: hidden;
-}
-.visible{
-  visibility: visible;
-}
-
 .WorkshopPage-nav-right{
 margin-left: 10px;
 }

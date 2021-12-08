@@ -73,6 +73,7 @@ The REPL is useful for quick tests and, later, can be used for exploring and deb
 ## Evaluation
 
 What are the characteristics of the REPL? Select all that apply.
+
 - The REPL has a prompt that begins with `$`.
 - The REPL has a prompt that begins with `>>>`.*
 - The REPL and the terminal are the same thing.
@@ -144,6 +145,7 @@ When you google "python function," you may see some phrases that look unfamiliar
 ## Evaluation
 
 Select all the following that accurately describe the data type categories.
+
 - Booleans represent only `True` or `False` values.*
 - Integers can be expressed with numbers like `1` or letters `one`.
 - Strings can contain numbers within quotations, like `"1"`.*
@@ -222,6 +224,7 @@ Second, you might also notice that variable syntax requires you to write the var
 ## Evaluation
 
 Select all the variable expressions that are allowed in Python.
+
 - `1 = one`
 - `one = 1`*
 - `$$$ = "dollar_signs"`
@@ -303,6 +306,7 @@ Fundamentally, Python programs are just text files. You can write them in any te
 ## Evaluation
 
 What are the differences between the terminal, REPL, and text editor? Select the correct statement from the below options.
+
 - You can run scripts from the **terminal** that were written on the text editor. *
 - The **REPL** allows you to save scripts for later use.
 - The **text editor** allows you to test code on the fly.
@@ -428,6 +432,7 @@ Some examples of **traceback errors** include...
 ## Evaluation
 
 If you get an error, what can you do to debug it? Select all that apply:
+
 - If it's a _syntax error_, look for the caret as a starting point.*
 - If it's a _traceback error_, make sure all your variables are defined.*
 - Copy the error message into a Google search.*
@@ -539,6 +544,7 @@ Create a new list of books in the REPL, with at least 5 books in your list. Make
 ## Evaluation
 
 How would you get Python to print the length of the last book in the list? Hint: this number reflects the length of the _string_ which is the last item in the list. Choose the correct expression from the options below.
+
 - `len(books)`
 - `print(books[-1])`
 - `print(len[-1])`
@@ -643,6 +649,7 @@ When variable names accurately reflect what they represent, and are therefore me
 ## Evaluation
 
 What are different ways for describing what a "for loop" can do?
+
 - for each item in a list, multiply it against itself.*
 - print the contents of a list.*
 - add a new item to a list.
@@ -720,6 +727,7 @@ else:
 ## Evaluation
 
 What is the difference between the double equals (`==`) and single equals (`=`)?
+
 - The double equals checks to see if one value is equivalent to the other, as in `2 == 2`.*
 - The double equals assigns the value on the right to the variable on the left, as in `x == 2`.
 - The single equals checks to see if one value is equivalent to the other, as in `2 = 2`.
@@ -817,6 +825,7 @@ else:
 ## Evaluation
 
 If we wanted to calculate the length of an input using `len()`, how would we write that expression?
+
 - `input() = len()`
 - `response = len().input()`
 - `len(input()) = length_of_response`
@@ -930,6 +939,7 @@ else:
 ## Evaluation
 
 Select the following statements that truly describe `sort()`, `append()`, and `pop()`.
+
 - methods are like functions which are attached to objects.*
 - `sort()`, `append()`, and `pop()` are functions.
 - `append()` always takes an argument.*
@@ -1085,6 +1095,7 @@ Before moving on to the next section, complete the first challenge below. This c
 ## Evaluation
 
 If we wanted to make a string like `'hello'` uppercase, we would use the method `upper()`, in the following way:
+
 - `upper('hello')`
 - `upper().'hello'`
 - `'hello'.upper()`*
@@ -1176,6 +1187,7 @@ In your research, you may also want to look at the libraries that come with Pyth
 ## Evaluation
 
 What is a module? Select all that apply:
+
 - A module is a file of code.*
 - Applications can incorporate many different modules.*
 - A module needs to be downloaded and installed.
@@ -1299,6 +1311,7 @@ This is just the tip of the iceberg for using `requests`. In order to get more i
 ## Evaluation
 
 Why would someone use `dir()`? Select all that apply:
+
 - to examine a function like `print()`.*
 - to see what can be done with an object, like a string or a list.*
 - to see what can be done with a variable that's been assigned to a value.*

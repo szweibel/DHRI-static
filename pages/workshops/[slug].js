@@ -13,7 +13,6 @@ import { Glossary } from '../../components/Glossary'
 import { useRouter } from 'next/router'
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import ReactDOMServer from 'react-dom/server';
 import hljs from 'highlight.js';
 
 export default function WorkshopPage({
@@ -34,40 +33,58 @@ export default function WorkshopPage({
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState([]);
   const [currentContent, setCurrentContent] = useState([]);
+  const [pageTitles, setPageTitles] = useState([]);
 
-
+  // convert markdown to html and split into pages
   const htmlContent = function (content) {
     const htmlifiedContent = ConvertMarkdown(content);
+    // split react element array into pages
+    const allPages = [];
+    const pages = htmlifiedContent.props.children.reduce((acc, curr) => {
+      // allPages = [[h1, p, p][h1, p, div]]
+      if (curr.type === 'h1') {
+        allPages.push([curr]);
+      } else {
+        allPages[allPages.length - 1].push(curr);
+      }
+      return acc;
+    }, []);
 
     return (
-     ReactDOMServer.renderToStaticMarkup(htmlifiedContent)
+     allPages.map((page, index) => {  // page = [h1, p, p]
+        return (
+          <div key={index}>
+            {page.map((element, index) => {
+              return (
+                <>
+                  {element}
+                </>
+              )
+            }
+            )}
+          </div>
+        )
+      }
+      )
     )
   }
 
-  const sections = htmlContent(content).split('<h1');
-  // remove first, empty section
-  sections.shift();
-  // add h1 back to sections
-  const sectionsWithHeaders = sections.map((section, index) => {
-    return `<h1 ${section}`;
-  });
-  const renderedSections = sectionsWithHeaders.map((section, index) => {
-    // get header of section
-    const header = section.split('</h1>')[0];
-    // get header text after <h1>
-    const headerText = header.split('>')[1];
-
-    return (
-      <div dangerouslySetInnerHTML={{ __html: section }} key={index} name={headerText} className='workshop-content'>
-      </div>
-    );
-  });
+   // list of page titles and highlight current page
+ const getPageTitles = pages.map((page, index) => {
+   const header = (page.props.children[0].props.children.props.children[0])
+  return (
+    <li key={index}>
+      <a className={currentPage === index + 1 ? 'active' : ''} onClick={() => handlePageChange(event, index + 1)}>{header}</a>
+    </li>
+  );
+});
 
   useEffect(() => {
-    // set state
-    setPages(renderedSections);
-    setCurrentContent(renderedSections[0]);
+    setPages(htmlContent(content));
+    setCurrentContent(htmlContent(content)[0]);
+    setPageTitles(getPageTitles);
   }, [content]);
+
 
 
   const PaginationComponent = (currentPage) => {
@@ -86,16 +103,6 @@ export default function WorkshopPage({
   }
 
 
-  // list of page titles and highlight current page
-  const pageTitles = pages.map((page, index) => {
-    return (
-      <li key={index}>
-        <a className={currentPage === index + 1 ? 'active' : ''} onClick={() => handlePageChange(event, index + 1)}>{page.props.name}</a>
-      </li>
-    );
-  });
-
-
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
     setCurrentContent(pages[value - 1]);
@@ -107,28 +114,11 @@ export default function WorkshopPage({
 
   }
 
-
-  // if content contains a quiz
-  const contentAndQuiz = (currentContent) => {
-    if (currentContent.props) {
-      const currentText = currentContent.props.dangerouslySetInnerHTML.__html;
-      if (currentText.includes('Evaluation</h2>')) {
-        return evaluationAnswers(currentText);
-      } else {
-        return currentContent;
-      }
-    } else {
-      return currentContent;
-    }
-  }
-
-
-
   return (
     <div className='workshopContainer mui-container'>
       <nav className='sidenav'>
         <ul>
-          {pageTitles}
+      {getPageTitles}
         </ul>
       </nav>
       <div className="content card-page">
@@ -138,7 +128,7 @@ export default function WorkshopPage({
             {title}
           </div>
           <div>{PaginationComponent(currentPage)}</div>
-          {contentAndQuiz(currentContent)}
+          {currentContent}
           <div>{PaginationComponent(currentPage)}</div>
         </div>
       </div>

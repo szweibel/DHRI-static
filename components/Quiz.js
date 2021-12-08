@@ -1,105 +1,63 @@
+import ReactDOMServer from 'react-dom/server';
+import { useState } from 'react';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+import parse from 'html-react-parser';
+
 // evaluate quiz questions
-export default function evaluationAnswers(currentHTML) {
-    const onRadioClickhandler = (correct) => {
-        const radio = document.querySelector(`input[class="${correct}"]:checked`);
-        console.log(radio);
-        // get the class of the radio button
-        if (radio.classList.contains("true")) {
-            radio.parentElement.parentElement.nextElementSibling.classList.add("correct");
-            radio.parentElement.parentElement.nextElementSibling.classList.remove("incorrect");
-            // add visible class
-            radio.parentElement.parentElement.nextElementSibling.children[0].classList.add("visible");
-            // hide incorrect 
-            radio.parentElement.parentElement.nextElementSibling.children[1].classList.remove("visible");
-        }else if (radio.classList.contains("false")) {
-            radio.parentElement.parentElement.nextElementSibling.classList.add("incorrect");
-            radio.parentElement.parentElement.nextElementSibling.classList.remove("correct");
-            // add visible class
-            radio.parentElement.parentElement.nextElementSibling.children[1].classList.add("visible");
-            // hide correct
-            radio.parentElement.parentElement.nextElementSibling.children[0].classList.remove("visible");
-        }
-    }
+export default function Quiz({ className, children }) {
+    // useState 
+    const [isCorrect, setIsCorrect] = useState(false);
 
-
-
-
-
-    // find 'Evaluation' h2   
-    let evaluation = currentHTML.split('Evaluation</h2>')[1].split('<h2')[0];
-
-    const nextH2 = currentHTML.split('Evaluation</h2>')[1].split('<h2')[1];
-    const currentHTMLNoEval = currentHTML.split('Evaluation</h2>')[0] + '<h2 ' + nextH2;
-    // find all sets of ul
-    const parser = new DOMParser();
-    var doc = parser.parseFromString(evaluation, "text/html");
-    //   get each paragraph in doc
-    const evaluationQuestions = doc.getElementsByTagName('p');
-    const evaluationQuestionsArray = Object.values(evaluationQuestions);
-
-    const ul = doc.getElementsByTagName('ul');
-    const ulArray = Object.values(ul);
-    // map questions to uls 
-    const evaluationQuestionsMap = ulArray.map((ul, index) => {
-        const answers = ul.getElementsByTagName('li');
-        const answersArray = Object.values(answers);
-        // answer is correct if it ends with '*'
-        const correctAnswers = answersArray.filter(answer => answer.innerHTML.endsWith('*'));
-        // remove '*' from answers
-        const answersNoStar = answersArray.map(answer => answer.innerHTML.replace('*', ''));
-        // map answers to correct answer
-        const answersMap = answersNoStar.map((answer, index) => {
-            const isAnswerCorrect = correctAnswers.includes(answersArray[index]);
+    // list of lis in children 
+    const lis = children.map((child, index) => {
+        const flattened = ReactDOMServer.renderToString(child);
+        // remove <li data-reactroot="">
+        // strip last 5 characters '</li>'
+        const li = flattened.replace('<li data-reactroot="">', '').slice(0, -5);
+        // correct if ends with *</li>
+        const correct = li.endsWith('*');
+        // strip *
+        if (correct) {
+            const liStripped = li.slice(0, -1);
+            console.log(liStripped);
             return {
-                answer: answer,
-                correct: isAnswerCorrect
-            }
-        });
-
-        return {
-            question: evaluationQuestionsArray[index].innerHTML,
-            answers: answersMap
+                index,
+                correct,
+                li: parse(liStripped)
+            };
         }
-    });
-
-    // create quiz questions
-    const evaluationQuestionsHTML = evaluationQuestionsMap.map((question, index) => {
-        const answersHTML = question.answers.map((answer, index) => {
-            return (
-                <li key={index} >
-                    <input type="radio"
-                        className={`${answer.correct ? 'true' : 'false'}`}
-                        name={question.question}
-                        value={index}
-                        onClick={() => onRadioClickhandler(answer.correct)}
-                    />
-                    <span className="visible" dangerouslySetInnerHTML={{__html: answer.answer}}></span>
-                </li>
-            )
-        });
-        return (
-            <div className="question-container" key={index}>
-                <h3 dangerouslySetInnerHTML={{ __html: question.question }}></h3>
-                <ul>
-                    {answersHTML}
-                </ul>
-                <div className="answer-container">
-                    <div className="correct">Correct</div>
-                    <div className="incorrect">Incorrect</div>
-                </div>
-            </div>
-        )
-    });
-
+        return {
+            index,
+            correct,
+            li: parse(li)
+        }
+    })
+    // if at least one item is correct, it's a quiz
+    const isQuiz = lis.some(li => li.correct);
+    if (!isQuiz) {
+        return children;
+    }
     return (
-        <div className='workshop-content'>
-            <div dangerouslySetInnerHTML={{ __html: currentHTMLNoEval }}>
-            </div>
-            <h2>Evaluation</h2>
-            {evaluationQuestionsHTML}
+       <div>
+       <FormControl component="fieldset">
+            <FormLabel component="legend">Quiz</FormLabel>
+            <RadioGroup aria-label="quiz" name="quiz">
+                {lis.map(li => (
+                    <FormControlLabel
+                        key={li.index}
+                        value={li.index}
+                        control={<Radio />}
+                        label={li.li}
+                        onChange={() => setIsCorrect(li.correct)}
+                    />
+                ))}
+            </RadioGroup>
+        </FormControl>
+        {isCorrect && <p>Correct!</p>}
         </div>
     );
 }
-
-
-
