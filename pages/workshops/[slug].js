@@ -14,6 +14,7 @@ import { useRouter } from 'next/router'
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import hljs from 'highlight.js';
+import FrontPage from '../../components/FrontPage'
 
 export default function WorkshopPage({
   workshops,
@@ -51,7 +52,7 @@ export default function WorkshopPage({
     }, []);
 
     return (
-     allPages.map((page, index) => {  // page = [h1, p, p]
+      allPages.map((page, index) => {  // page = [h1, p, p]
         return (
           <div key={index}>
             {page.map((element, index) => {
@@ -69,15 +70,19 @@ export default function WorkshopPage({
     )
   }
 
-   // list of page titles and highlight current page
- const getPageTitles = pages.map((page, index) => {
-   const header = (page.props.children[0].props.children.props.children[0])
-  return (
-    <li key={index}>
-      <a className={currentPage === index + 1 ? 'active' : ''} onClick={() => handlePageChange(event, index + 1)}>{header}</a>
-    </li>
-  );
-});
+  // get front page content
+  const frontPageContent = FrontPage(currentFile)
+
+
+  // list of page titles and highlight current page
+  const getPageTitles = pages.map((page, index) => {
+    const header = (page.props.children[0].props.children.props.children[0])
+    return (
+      <li key={index}>
+        <a className={currentPage === index + 1 ? 'active' : ''} onClick={() => handlePageChange(event, index + 1)}>{header}</a>
+      </li>
+    );
+  });
 
   useEffect(() => {
     setPages(htmlContent(content));
@@ -118,7 +123,7 @@ export default function WorkshopPage({
     <div className='workshopContainer mui-container'>
       <nav className='sidenav'>
         <ul>
-      {getPageTitles}
+          {getPageTitles}
         </ul>
       </nav>
       <div className="content card-page">
@@ -156,7 +161,6 @@ export async function getStaticPaths() {
 export async function getStaticProps() {
   // Get files from the workshops dir
   const getFilesandProcess = (dir) => {
-
     const dirents = fs.readdirSync(path.join(dir), { withFileTypes: true })
     const dirFiles = dirents
       .filter((file) => file.isFile())
