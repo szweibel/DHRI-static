@@ -117,7 +117,6 @@ export default function WorkshopPage({
           onChange={handlePageChange}
           siblingCount={2}
           boundaryCount={2}
-          defaultPage={2}
         />
       </Stack>
     )
