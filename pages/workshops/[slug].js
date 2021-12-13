@@ -67,9 +67,9 @@ export default function WorkshopPage({
           <div key={index}>
             {page.map((element, index) => {
               return (
-                <>
+                <React.Fragment key={index}>
                   {element}
-                </>
+                </React.Fragment>
               )
             }
             )}
@@ -86,25 +86,19 @@ export default function WorkshopPage({
   const [currentContent, setCurrentContent] = useState([]);
   const [pageTitles, setPageTitles] = useState([]);
 
+
   // list of page titles and highlight current page
   const getPageTitles = pages.map((page, index) => {
-
-    if (page.props.children[0].props.children.props != undefined) {
-      const header = (page.props.children[0].props.children.props.children[0])
+    let header = undefined;
+    // if it's the frontpage vs not
+    index === 0 ? header = page.props.children[0].props.children : header = page.props.children[0].props.children.props.children[0]
       return (
         <li key={index}>
           <a className={currentPage === index + 1 ? 'active' : ''} onClick={() => handlePageChange(event, index + 1)}>{header}</a>
         </li>
       )
-    } else {
-      const header = (page.props.children[0].props.children[0].props.children)
-      return (
-        <li key={index}>
-          <a className={currentPage === index + 1 ? 'active' : ''} onClick={() => handlePageChange(event, index + 1)}>{header}</a>
-        </li>
-      );
-    }
-  });
+    })
+
 
   useEffect(() => {
     setPages(htmlContent(content));

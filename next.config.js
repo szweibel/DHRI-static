@@ -5,7 +5,7 @@ const withMDX = require('@next/mdx')({
   })
 
 const nextConfig = {
-    reactStrictMode: true,
+    // reactStrictMode: true,
     trailingSlash: true,
 }
 

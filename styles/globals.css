@@ -324,6 +324,10 @@ nav.sidenav > ul > li > ul > li {
   font-size: 13px;
 }
 
+nav.sidenav > ul > li > a > h1 {
+  font-size: 13px;
+}
+
 nav.sidenav > ul > li > ul > li > a:hover {
   color: lightseagreen;
 }

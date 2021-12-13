@@ -8,18 +8,16 @@ export default function FrontPage(currentFile, allFiles) {
   const installGuides = allFiles.guides
   const insights = allFiles.insights
 
-
   if (dependencies === undefined) {
     return (
       <div className="frontpage">
-        {excerpt && <div className="excerpt">
           <h1>{title}</h1>
+        {excerpt && <div className="excerpt">
           <p>{excerpt}</p>
         </div>}
       </div>
     )
   }
-
   const formattedDependencies = Object.keys(dependencies).map(key => {
     const items = dependencies[key]
     const addLinktoItems = Object.keys(items).map(key => {
@@ -49,12 +47,12 @@ export default function FrontPage(currentFile, allFiles) {
 
   const formedDeps = formattedDependencies.map(dep => {
     return (
-      <div className="dependency">
+      <div className="dependency" key={dep.title}>
         <h2>{dep.title}</h2>
         <ul>
           {dep.items.map(item => {
             return (
-              <li>
+              <li key={item.title}>
                 <a href={item.allItems[Object.keys(item.allItems)[0]].link}>{item.allItems[Object.keys(item.allItems)[0]].title}</a>
                 <p>{item.allItems[Object.keys(item.allItems)[0]].excerpt}</p>
               </li>
@@ -64,7 +62,6 @@ export default function FrontPage(currentFile, allFiles) {
       </div>
     )
   })
-
 
   // all objects in currentFile
   const allObjects = Object.keys(currentFile).map(key => {
@@ -80,13 +77,12 @@ export default function FrontPage(currentFile, allFiles) {
     }
   })
   
-
   const formattedObjects = allObjects.map(obj => {
     if (obj === null) {
       return null
     }
     return (
-      <div className="object">
+      <div className="object"  key={obj.title}> 
         <h2>{obj.title}</h2>
         <ul>
           {obj.items && Object.keys(obj.items).map(key => {
@@ -94,14 +90,14 @@ export default function FrontPage(currentFile, allFiles) {
             // if there's a description, show it
             if (key === 'description') {
               return (
-                <li>
+                <li key={key}>
                   <p>{item}</p>
                 </li>
               )
             }
             
             return (
-              <li>
+              <li key={key}>
                 <a href={item.link}>{key}</a>
                 <p>{item.excerpt}</p>
               </li>
@@ -111,18 +107,15 @@ export default function FrontPage(currentFile, allFiles) {
       </div>
     )
   })
-
   return (
     <div className="frontpage">
-      {excerpt && <div className="excerpt">
         <h1>{title}</h1>
+      {excerpt && <div className="excerpt">
         <p>{excerpt}</p>
-      </div>}
-      {cover_image && <div className="cover-image">
-      </div>}
       {formedDeps}
       {formattedObjects}
+        </div>}
     </div>
-  )
+    )
 }
 
