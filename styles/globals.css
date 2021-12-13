@@ -26,6 +26,14 @@ a {
   color: lightseagreen;
 }
 
+pre {
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+ }
+
 .headerLink{
   cursor: pointer;
   margin-left: 20px;
@@ -249,7 +257,6 @@ header > .topBar{
 .card-page {
   display: block;
   padding: 15px 30px;
-  max-width: 80%;
   padding: 15px;
   /* border-radius: 10px; */
   flex-direction: column;
@@ -272,6 +279,7 @@ header > .topBar{
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .workshop-content{

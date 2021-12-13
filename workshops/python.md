@@ -1,7 +1,27 @@
 ---
-title: 'Python Workshop'
-excerpt: 'Python is a general-purpose programming language suitable for a wide variety of tasks in the digital humanities. Learning Python fundamentals is a gateway to analyzing data, creating visualizations, composing interactive websites, scraping the internet, and engaging in the distant reading of texts. This workshop first introduces participants to core programming concepts such as data types, variables, and functions. Participants will then learn about basic control flow by writing small programs with loops and conditional statements. They will also learn to problem solve, and practice searching for answers and debugging scripts. The workshop wraps up by exposing participants to intermediate tools for further exploration.'
-cover_image: '/images/workshops/img2.jpg'
+title: Python Workshop
+excerpt: Python is a general-purpose programming language suitable for a wide variety of tasks in the digital humanities. Learning Python fundamentals is a gateway to analyzing data, creating visualizations, composing interactive websites, scraping the internet, and engaging in the distant reading of texts. This workshop first introduces participants to core programming concepts such as data types, variables, and functions. Participants will then learn about basic control flow by writing small programs with loops and conditional statements. They will also learn to problem solve, and practice searching for answers and debugging scripts. The workshop wraps up by exposing participants to intermediate tools for further exploration.
+cover_image: /images/workshops/img2.jpg
+dependencies: 
+    workshops: 
+        command-line: Knowing how to use the command line is important.
+        data-ethics: Programmers can do evil things. Don't do them!
+    installations:
+        python: clearly you need python for python.
+        visual-studio-code: VS Code is useful.
+readings:
+ethical considerations:
+projects:
+    description: these are important projects.
+    The NEH Impact Index:
+        excerpt: Built by former Digital Fellow Patrick Smyth, The NEH Impact Index makes visible the distribution of funds by National Endowment for the Humanities across the United States. The website uses python to map projects, communities, and cultural institutions who have received NEH support. You can check out the code on Github.
+        link: http://www.nehimpact.org/about
+    Mapping Arts NYC: 
+        excerpt: Mapping Arts NYC, created in 2019 by the Graduate Center’s Data for Public Good fellows, “is a project that explores the geography and representation of arts and culture in New York City over time.” It includes a number of Python scripts written to clean and make sense of all the data.
+cheat sheets:
+    Digital Fellows’ Python Cheat Sheet: 
+        excerpt: See the Digital Fellows’ Python Cheat Sheet for handy commands that we cover in this workshop.
+        link: https://curriculum.dhinstitutes.org/shortcuts/workshop/python
 ---
 
 # Interacting with Python

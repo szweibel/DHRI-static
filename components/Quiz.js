@@ -23,7 +23,6 @@ export default function Quiz({ className, children }) {
         // strip *
         if (correct) {
             const liStripped = li.slice(0, -1);
-            console.log(liStripped);
             return {
                 index,
                 correct,

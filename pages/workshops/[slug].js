@@ -30,17 +30,21 @@ export default function WorkshopPage({
   const cover_image = currentFile.cover_image
   const title = currentFile.title
 
-  // return content according to the current page
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pages, setPages] = useState([]);
-  const [currentContent, setCurrentContent] = useState([]);
-  const [pageTitles, setPageTitles] = useState([]);
+  // get front page content
+  const frontPageContent = FrontPage(
+    currentFile,
+    {
+      workshops,
+      guides,
+      insights
+    })
 
   // convert markdown to html and split into pages
   const htmlContent = function (content) {
     const htmlifiedContent = ConvertMarkdown(content);
     // split react element array into pages
     const allPages = [];
+
     const pages = htmlifiedContent.props.children.reduce((acc, curr) => {
       // allPages = [[h1, p, p][h1, p, div]]
       if (curr.type === 'h1') {
@@ -50,9 +54,15 @@ export default function WorkshopPage({
       }
       return acc;
     }, []);
-
+    allPages.unshift(frontPageContent);
     return (
       allPages.map((page, index) => {  // page = [h1, p, p]
+        // if page classname is 'frontpage' then render frontpage
+        if (page.props != undefined && page.props.className.includes('frontpage')) {
+          return (
+            frontPageContent
+          )
+        }
         return (
           <div key={index}>
             {page.map((element, index) => {
@@ -70,23 +80,35 @@ export default function WorkshopPage({
     )
   }
 
-  // get front page content
-  const frontPageContent = FrontPage(currentFile)
-
+  // set defaults 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pages, setPages] = useState([]);
+  const [currentContent, setCurrentContent] = useState([]);
+  const [pageTitles, setPageTitles] = useState([]);
 
   // list of page titles and highlight current page
   const getPageTitles = pages.map((page, index) => {
-    const header = (page.props.children[0].props.children.props.children[0])
-    return (
-      <li key={index}>
-        <a className={currentPage === index + 1 ? 'active' : ''} onClick={() => handlePageChange(event, index + 1)}>{header}</a>
-      </li>
-    );
+
+    if (page.props.children[0].props.children.props != undefined) {
+      const header = (page.props.children[0].props.children.props.children[0])
+      return (
+        <li key={index}>
+          <a className={currentPage === index + 1 ? 'active' : ''} onClick={() => handlePageChange(event, index + 1)}>{header}</a>
+        </li>
+      )
+    } else {
+      const header = (page.props.children[0].props.children[0].props.children)
+      return (
+        <li key={index}>
+          <a className={currentPage === index + 1 ? 'active' : ''} onClick={() => handlePageChange(event, index + 1)}>{header}</a>
+        </li>
+      );
+    }
   });
 
   useEffect(() => {
     setPages(htmlContent(content));
-    setCurrentContent(htmlContent(content)[0]);
+    setCurrentContent(frontPageContent);
     setPageTitles(getPageTitles);
   }, [content]);
 
@@ -175,11 +197,13 @@ export async function getStaticProps() {
         path.join(dir, filename),
         'utf-8',
       )
+      const itemPath = path.join(dir, filename).replace('.md', '')
 
       const matterResult = matter(markdownWithMeta)
       const content = matterResult.content
       return {
         slug,
+        itemPath,
         content: content,
         ...matterResult.data,
       }
