@@ -51,18 +51,12 @@ export default function TemporaryDrawer({ files, category, onClick, onClose, ope
       return `<svg width="100" height="100" style="background-color: ${color}"></svg>`
     }
     const style = {
-      // background: `linear-gradient(to right, ${color1}, ${color2})`,
       background: `${color1}`,
       height: "140px",
       width: "100%",
     }
     return (
-      // <Link key={file.slug + index} href={`/[category]/[slug]`} as={`/${category}/${file.slug}`}>
-      //   <Item className='paperWorkshop workshopBackground drawer-item' style={style} >
-      //     <a>{file.title}</a>
-      //   </Item>
-      // </Link>
-      // <CardActionArea key={file.slug + index} href={`/${category}/${file.slug}`}>
+
       <Link href={`/${category}/${file.slug}`} passHref key={file.slug + index}>
         <CardContent className='drawer-over'>
           {file.cover_image ?

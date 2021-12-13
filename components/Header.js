@@ -32,7 +32,6 @@ export default function Header({ props }) {
         }
     }, [props.workshops])
     
-
     return (
         <Box
             className='topBar' id="back-to-top-anchor">
@@ -50,7 +49,9 @@ export default function Header({ props }) {
                     >
                         <MenuIcon />
                     </IconButton>
+                    <Link href='/' passHref>
                     <img src='/images/logo.png' alt= {yaml.organization + ' logo'} className='logo' />
+                    </Link>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         <Link href='/' passHref>
                             <h2 className='headerLink'>{yaml.organization} {yaml.event}</h2>
@@ -70,7 +71,7 @@ export default function Header({ props }) {
                             Resources
                         </li>
                         <li>
-                            Terms
+                            <Link href='/Glossary' passHref>Glossary</Link>
                         </li>
                     </ul>
                     

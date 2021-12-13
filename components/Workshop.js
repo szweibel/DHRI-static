@@ -25,31 +25,12 @@ export default function Workshop({ workshop }) {
 
 
   const style = {
-    // background: `linear-gradient(to right, ${color1}, ${color2})`,
     background: `${color1}`,
     height: '140px',
   }
 
-  //   return (
-  //     <div className='card'>
-  //     <Link href={`/workshops/${workshop.slug}`} key={workshop.slug}>
-  //       <div className='paperWorkshop workshopBackground' style={style} >
-  //         <a>{workshop.title}</a>
-  //       </div>
-  //     </Link>
-  //       <p>{workshop.excerpt}</p>
-  //       <div className='workshop-footer'>
-  //       <Link href={`/workshops/${workshop.slug}`} >
-  //         <a className='btn startButton'>Start »</a>
-  //       </Link>
-  //       </div>
-  //     </div>
-
-  //   )
-  // }
-
   return (
-    <Card sx={{ maxWidth: 500 }} className='card'>
+    <Card sx={{ minWidth: 400 }} className='card'>
       <Link href={`/workshops/${workshop.slug}`} passHref>
       <CardContent className='card-content'>
         {
@@ -65,13 +46,10 @@ export default function Workshop({ workshop }) {
               <div className='workshop-color' dangerouslySetInnerHTML={{ __html: renderColor(color1) }} />
             </div>
         }
-        <Typography gutterBottom variant="h5" component="h2" className='overlay'>
-          {workshop.title}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <h1 className='overlay'>{workshop.title}</h1>
+        <div className='workshop-info'>
           {workshop.excerpt}
-        </Typography>
-
+        </div>
             {/* <Button size="small" color="primary">
               Start »
             </Button> */}

@@ -2,7 +2,6 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import marked from 'marked'
-// import glossaryFile from '../workshops/terms/glossary.yaml'
 import yaml from 'js-yaml'
 import { useState, useEffect } from 'react'
 import Button from '@mui/material/Button';
@@ -98,7 +97,7 @@ export default function Glossary({glossary}){
     )
 
     return (
-        <div className="glossary">
+        <div className="glossary mui-container">
             <div className="glossary-header">
                 <h1>Glossary</h1>
                 <div className="letter-selector">
