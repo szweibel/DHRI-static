@@ -5,6 +5,7 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-dark.css'
 
 const Code = ({ className, children }) => {
+    const [isShown, setIsShown] = useState(false);
     // using hljs to highlight code
     const html = children.props.children;
     const childClassName = children.props.className;
@@ -12,7 +13,6 @@ const Code = ({ className, children }) => {
         const language = childClassName.replace('lang-', '');
         const highlighted = hljs.highlight(html, { language: language, ignoreIllegals: true });
         const getLang = hljs.getLanguage(highlighted.language).name
-        const [isShown, setIsShown] = useState(false);
         return (
             <div className="code-block"
                 onMouseEnter={() => setIsShown(true)}
