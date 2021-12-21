@@ -31,7 +31,6 @@ const Code = ({ className, children }) => {
         );
     }
     else {
-
         // const highlighted = hljs.highlightAuto(html).value
         return (
             <pre className={className}>
@@ -40,7 +39,6 @@ const Code = ({ className, children }) => {
         );
     }
 }
-
 export default function ConvertMarkdown(markdown) {
     return (
         compiler(markdown, {
