@@ -36,6 +36,8 @@ jobs:
       # - run: yarn export
       - run: npm install
       - run: npm run build
+        env:
+          NODE_ENV: "production"
 
 
 
