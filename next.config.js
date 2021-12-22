@@ -13,7 +13,7 @@ const imagesConfig = function(build, isGitHub) {
     if (isGitHub) {
         return {
             loader: 'imgix',
-            path: '/' + repoName + '/_next/static/image',
+            path: '/' + repoName + '/',
         }
     } 
     else if (build) {
