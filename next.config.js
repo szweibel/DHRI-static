@@ -4,20 +4,32 @@ const withMDX = require('@next/mdx')({
     extension: /\.(md|mdx)$/,
 })
 const repoName = 'DHRI-static'
-const debug = process.env.NODE_ENV !== "production";
+const production = process.env.NODE_ENV === "production";
 console.log(`Running in ${process.env.NODE_ENV} mode`);
 const isGitHub = process.env.GITHUB_ACTIONS === "true";
 console.log(`Running in ${isGitHub ? "GitHub Actions" : "local"} mode`);
+
+const imagesConfig = function(production, isGitHub) {
+    if (isGitHub) {
+        return {
+            loader: 'imgix',
+            path: '/' + repoName + '/_next/image',
+        }
+    } else if (production) {
+        return {
+            loader: 'imgix',
+        }
+    }
+}
+
 const nextConfig = {
     // reactStrictMode: true,
     trailingSlash: true,
     basePath: isGitHub ? '/' + repoName : '',
     assetPrefix: isGitHub ? '/' + repoName + '/' : '',
-    images: isGitHub ? {
-        path: '/' + repoName + '/_next/image',
-    } : null,
+    images: imagesConfig(production, isGitHub),
 }
-console.log(`nextConfig: ${JSON.stringify(nextConfig)}`);
+
 module.exports = withPlugins([
     [withMDX],
     [withYAML],

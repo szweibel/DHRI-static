@@ -43,14 +43,14 @@ const Code = ({ className, children }) => {
 
 const Imager = ({ className, ...props }) => {
     // concatenate props
-    // const newProps = { ...props };
-    // console.log(newProps)
+    // https://dev.to/felixhaeberle/responsive-fix-for-the-next-js-image-component-1351 for a fix?
     return (
         <Image {...props} 
         className='markdown-image'
         width={800}
         height={450}
         layout="responsive"
+        unoptimized={true}
         />
 
     );
