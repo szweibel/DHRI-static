@@ -6,15 +6,16 @@ const withMDX = require('@next/mdx')({
 
 const debug = process.env.NODE_ENV !== "production";
 console.log(`Running in ${process.env.NODE_ENV} mode`);
-
+const isGitHub = process.env.GITHUB_ACTIONS === "true";
+console.log(`Running in ${isGitHub ? "GitHub Actions" : "local"} mode`);
 const nextConfig = {
     // reactStrictMode: true,
     trailingSlash: true,
-    basePath: !debug ? '/DHRI-static' : '',
-    assetPrefix: !debug ? '/DHRI-static/' : '',
+    basePath: isGitHub ? '/DHRI-static' : '',
+    assetPrefix: isGitHub ? '/DHRI-static/' : '',
     
 }
-
+console.log(`nextConfig: ${JSON.stringify(nextConfig)}`);
 module.exports = withPlugins([
     [withMDX],
     [withYAML],
