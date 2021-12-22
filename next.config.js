@@ -29,7 +29,7 @@ const nextConfig = {
     trailingSlash: true,
     basePath: isGitHub ? '/' + repoName : '',
     assetPrefix: isGitHub ? '/' + repoName + '/' : '',
-    images: imagesConfig(production, isGitHub),
+    images: imagesConfig(build, isGitHub),
 }
 
 module.exports = withPlugins([
