@@ -15,6 +15,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import hljs from 'highlight.js';
 import FrontPage from '../../components/FrontPage'
+import Image from 'next/image'
 
 export default function WorkshopPage({
   workshops,
@@ -27,7 +28,8 @@ export default function WorkshopPage({
   const currentFile = workshops.find((workshop) => workshop.slug === slug)
 
   const content = currentFile.content
-  const cover_image = currentFile.cover_image
+  const cover_image_location = currentFile.cover_image
+
   const title = currentFile.title
 
   // get front page content
@@ -143,7 +145,11 @@ export default function WorkshopPage({
       </nav>
       <div className="content card-page">
         <div className="workshop-container">
-          <img className="hero" src={cover_image} alt="cover" />
+          <Image
+            src={cover_image_location}
+            alt={title}
+            width={800}
+            height={450}/>
           <div className="title">
             {title}
           </div>
