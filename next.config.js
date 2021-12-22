@@ -4,7 +4,7 @@ const withMDX = require('@next/mdx')({
     extension: /\.(md|mdx)$/,
 })
 const repoName = 'DHRI-static'
-const production = process.env.NODE_ENV === "production";
+const build = process.env.NODE_ENV === "production";
 console.log(`Running in ${process.env.NODE_ENV} mode`);
 const isGitHub = process.env.GITHUB_ACTIONS === "true";
 console.log(`Running in ${isGitHub ? "GitHub Actions" : "local"} mode`);
@@ -13,11 +13,13 @@ const imagesConfig = function(production, isGitHub) {
     if (isGitHub) {
         return {
             loader: 'imgix',
-            path: '/' + repoName + '/_next/image',
+            path: '/' + repoName + '/_next/static/image',
         }
-    } else if (production) {
+    } 
+    else if (build) {
         return {
             loader: 'imgix',
+            path: '/',
         }
     }
 }
