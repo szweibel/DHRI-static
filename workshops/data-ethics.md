@@ -7,7 +7,7 @@ excerpt: In tis workshop we will be discussing the basics of research data in
   data and ethics, this workshop will also include multiple sites for
   discussions to help us think through what data literacies mean within our
   projects and broader applications.
-thumbnail: /images/uploads/img6.jpg
+cover_image: /images/uploads/img6.jpg
 ---
 # Data is Foundational
 

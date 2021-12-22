@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import { sortByDate } from '../utils'
 import { useEffect, UseState } from 'react'
 import dynamic from 'next/dynamic'
+import Container from '@mui/material/Container';
 const Workshop = dynamic(
   () => import('../components/Workshop'),
    { loading: function loading() {return <p>...</p>} }
@@ -12,7 +13,10 @@ const Workshop = dynamic(
 export default function Home({ workshops }) {
 
   return (
-    <div className='mui-container'>
+    <Container
+    disableGutters={true}
+    maxWidth="xl"
+    >
       <div className="secondHeader">
         <h1 className='subtitle'>Further Expanding Digital Humanities Communities of Practice</h1>
         <p>The Digital Humanities Research Institute (DHRI) is an intensive, community-oriented,
@@ -48,7 +52,7 @@ export default function Home({ workshops }) {
           <Workshop key={index} workshop={workshop} />
         ))}
       </div>
-    </div>
+    </Container>
   )
 }
 

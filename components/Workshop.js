@@ -7,6 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Image from 'next/image'
 
 export default function Workshop({ workshop }) {
   const color1 = randomColor({
@@ -32,30 +33,46 @@ export default function Workshop({ workshop }) {
   return (
     <Card sx={{ minWidth: 400 }} className='card'>
       <Link href={`/workshops/${workshop.slug}`} passHref>
-      <CardContent className='card-content'>
-        {
-          workshop.cover_image ?
-            <CardMedia
-              component="img"
-              height='140'
-              className='card-media'
-              image={workshop.cover_image}
-              title={workshop.title}
-            /> :
-            <div className='card-media' style={style}>
-              <div className='workshop-color' dangerouslySetInnerHTML={{ __html: renderColor(color1) }} />
-            </div>
-        }
-        <h1 className='overlay'>{workshop.title}</h1>
-        <div className='workshop-info'>
-          {workshop.excerpt}
-        </div>
-            {/* <Button size="small" color="primary">
+        <CardContent className='card-content'>
+          {
+            workshop.cover_image ?
+              <div>
+                <CardMedia
+                  className='card-media'
+                  title={workshop.title}
+                >
+                  <Image
+                    src={workshop.cover_image}
+                    // height='inherit'
+                    // width='inherit'
+                    className='card-image'
+                    layout='fill'
+                    object-fit='cover'
+                    object-position='center'
+                  />
+
+                </CardMedia>
+                <h1 className='overlay'>{workshop.title}</h1>
+                <div className='workshop-info'>
+                  {workshop.excerpt}
+                </div>
+              </div> :
+              <div>
+                <div className='card-media' style={style}>
+                  <div className='workshop-color' dangerouslySetInnerHTML={{ __html: renderColor(color1) }} />
+                </div>
+                <h1 className='overlay'>{workshop.title}</h1>
+                <div className='workshop-info-other'>
+                  {workshop.excerpt}
+                </div>
+              </div>
+          }
+          {/* <Button size="small" color="primary">
               Start »
             </Button> */}
 
-      </CardContent>
-          </Link>
+        </CardContent>
+      </Link>
     </Card>
   )
 }

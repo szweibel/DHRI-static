@@ -16,6 +16,7 @@ import Stack from '@mui/material/Stack';
 import hljs from 'highlight.js';
 import FrontPage from '../../components/FrontPage'
 import Image from 'next/image'
+import Container from '@mui/material/Container';
 
 export default function WorkshopPage({
   workshops,
@@ -137,7 +138,10 @@ export default function WorkshopPage({
   }
 
   return (
-    <div className='workshopContainer mui-container'>
+    <Container
+    maxWidth="xl"
+    style={{display: 'flex'}}
+    >
       <nav className='sidenav'>
         <ul>
           {getPageTitles}
@@ -145,11 +149,15 @@ export default function WorkshopPage({
       </nav>
       <div className="content card-page">
         <div className="workshop-container">
+          <div className="workshop-image" style={{width:'100%', height: '100%'}}>
           <Image
             src={cover_image_location}
             alt={title}
-            width={800}
-            height={450}/>
+            width={'500px'}
+            height={'500px'}
+            object-fit='cover'
+            />
+          </div>
           <div className="title">
             {title}
           </div>
@@ -158,7 +166,7 @@ export default function WorkshopPage({
           <div>{PaginationComponent(currentPage)}</div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 }
 
