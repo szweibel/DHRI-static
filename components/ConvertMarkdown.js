@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Quiz from './Quiz';
 import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-dark.css'
+import Image from 'next/image'
 
 const Code = ({ className, children }) => {
     const [isShown, setIsShown] = useState(false);
@@ -39,6 +40,23 @@ const Code = ({ className, children }) => {
         );
     }
 }
+
+const Imager = ({ className, ...props }) => {
+    // concatenate props
+    // const newProps = { ...props };
+    // console.log(newProps)
+    return (
+        <Image {...props} 
+        className='markdown-image'
+        width={800}
+        height={450}
+        layout="responsive"
+        />
+
+    );
+}
+            
+
 export default function ConvertMarkdown(markdown) {
     return (
         compiler(markdown, {
@@ -55,6 +73,12 @@ export default function ConvertMarkdown(markdown) {
                         className: 'list-group'
                     }
                 },
+                img: {
+                    component: Imager,
+                    props: {
+                        className: 'image',
+                    }
+                }
             }
         })
     );

@@ -10,13 +10,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { useState, useEffect } from "react";
 import { styled } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
+import Image from 'next/image'
 const Drawer = dynamic(
     () => import('../components/Drawer'),
      { loading: function loading() {return <p>...</p>} }
    )
 
 export default function Header({ props }) {
-
 
     const [propsAvailable, setPropsAvailable] = useState(false);
     const [allWorkshops, setAllWorkshops] = useState([]);
@@ -50,7 +50,12 @@ export default function Header({ props }) {
                         <MenuIcon />
                     </IconButton>
                     <Link href='/' passHref>
-                    <img src='/images/logo.png' alt= {yaml.organization + ' logo'} className='logo' />
+                    {/* <img src='/images/logo.png' alt= {yaml.organization + ' logo'} className='logo' /> */}
+                    <Image src='/images/logo.png' 
+                    alt={yaml.organization + ' logo'}
+                    width={100}
+                    height={100}
+                    className='logo' />
                     </Link>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         <Link href='/' passHref>
