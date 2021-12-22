@@ -45,11 +45,8 @@ const Imager = ({ className, ...props }) => {
 
     // https://dev.to/felixhaeberle/responsive-fix-for-the-next-js-image-component-1351 for a fix?
 
-    const newProps = {...props};
-    const imageSource = newProps.src
     return (
         <Image
-        src={imageSource}
         alt={newProps.alt} 
         className='markdown-image'
         width={800}
@@ -77,12 +74,12 @@ export default function ConvertMarkdown(markdown) {
                         className: 'list-group'
                     }
                 },
-                img: {
-                    component: Imager,
-                    props: {
-                        className: 'image',
-                    }
-                }
+                // img: {
+                //     component: Imager,
+                //     props: {
+                //         className: 'image',
+                //     }
+                // }
             }
         })
     );
