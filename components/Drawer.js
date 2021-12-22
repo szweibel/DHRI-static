@@ -19,6 +19,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import Image from 'next/image'
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -61,12 +62,16 @@ export default function TemporaryDrawer({ files, category, onClick, onClose, ope
         <CardContent className='drawer-over'>
           {file.cover_image ?
             <CardMedia
-              component="img"
-              height='140'
               className='card-media'
-              image={file.cover_image}
               title={file.title}
-            /> :
+              >
+                <Image
+                  src={file.cover_image}
+                  height={160}
+                  width={300}
+                />
+            </CardMedia>  
+               :
             <div className='card-media' style={style}>
               <div className='workshop-color' dangerouslySetInnerHTML={{ __html: renderColor(color1) }} />
             </div>
