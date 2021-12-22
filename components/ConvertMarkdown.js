@@ -47,7 +47,7 @@ const Imager = ({ className, ...props }) => {
 
     const newProps = {...props};
     const imageSource = newProps.src
-    console.log(process.env.GITHUB_ACTIONS)
+    console.log(process.env.NEXT_PUBLIC_GITHUB_ACTIONS)
     return (
         <Image
         src={imageSource}
