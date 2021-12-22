@@ -13,7 +13,8 @@ const nextConfig = {
     trailingSlash: true,
     basePath: isGitHub ? '/DHRI-static' : '',
     assetPrefix: isGitHub ? '/DHRI-static/' : '',
-    
+    images: isGitHub ? {
+        path: `yourBasePath/_next/image`} : null,
 }
 console.log(`nextConfig: ${JSON.stringify(nextConfig)}`);
 module.exports = withPlugins([
