@@ -1,10 +1,11 @@
 const withYAML = require('next-yaml')
-const compose = require('next-compose')
+const withPlugins = require('next-compose-plugins')
 const withMDX = require('@next/mdx')({
     extension: /\.(md|mdx)$/,
   })
 
 const debug = process.env.NODE_ENV !== "production";
+console.log(`Running in ${process.env.NODE_ENV} mode`);
 
 const nextConfig = {
     // reactStrictMode: true,
@@ -14,8 +15,7 @@ const nextConfig = {
     
 }
 
-
-module.exports = compose([
+module.exports = withPlugins([
     [withMDX],
     [withYAML],
 ],
