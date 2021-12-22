@@ -10,8 +10,8 @@ console.log(`Running in ${process.env.NODE_ENV} mode`);
 const nextConfig = {
     // reactStrictMode: true,
     trailingSlash: true,
-    basePath: !debug ? '/DHRI-STATIC' : '',
-    assetPrefix: !debug ? '/DHRI-STATIC/' : '',
+    basePath: !debug ? '/DHRI-static' : '',
+    assetPrefix: !debug ? '/DHRI-static/' : '',
     
 }
 
