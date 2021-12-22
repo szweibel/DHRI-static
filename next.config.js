@@ -9,7 +9,7 @@ console.log(`Running in ${process.env.NODE_ENV} mode`);
 const isGitHub = process.env.GITHUB_ACTIONS === "true";
 console.log(`Running in ${isGitHub ? "GitHub Actions" : "local"} mode`);
 
-const imagesConfig = function(production, isGitHub) {
+const imagesConfig = function(build, isGitHub) {
     if (isGitHub) {
         return {
             loader: 'imgix',
