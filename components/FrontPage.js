@@ -42,7 +42,7 @@ export default function FrontPage(currentFile, allFiles) {
   })
   const formedDeps = formattedDependencies.map(dep => {
     return (
-      <div className="dependency" className='frontpage-item dependency' key={dep.title}>
+      <div className='frontpage-item dependency' key={dep.title}>
         <h2>{dep.title}</h2>
         <ul>
           {dep.items.map(item => {

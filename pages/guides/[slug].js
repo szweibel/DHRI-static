@@ -106,7 +106,7 @@ export default function GuidePage({
  
        
  const handlePageChange = (event, value) => {
-   console.log(event, value)
+
    setCurrentPage(value);
    setCurrentContent(pages[value - 1]);
      // scroll smoothly to top of page

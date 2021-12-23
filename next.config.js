@@ -32,7 +32,6 @@ const nextConfig = {
     assetPrefix: isGitHub ? '/' + repoName + '/' : '',
     images: imagesConfig(build, isGitHub),
 }
-console.log(nextConfig);
 module.exports = withPlugins([
     [withMDX],
     [withYAML],
