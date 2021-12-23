@@ -1,23 +1,16 @@
 
+import Masonry from '@mui/lab/Masonry';
+
 export default function FrontPage(currentFile, allFiles) {
   const excerpt = currentFile.excerpt
   const title = currentFile.title
   const cover_image = currentFile.cover_image
-  const dependencies = currentFile.dependencies
+  const dependencies = currentFile.dependencies || []
   const workshops = allFiles.workshops
   const installGuides = allFiles.guides
   const insights = allFiles.insights
 
-  if (dependencies === undefined) {
-    return (
-      <div className="frontpage">
-          <h1>{title}</h1>
-        {excerpt && <div className="excerpt">
-          <p>{excerpt}</p>
-        </div>}
-      </div>
-    )
-  }
+
   const formattedDependencies = Object.keys(dependencies).map(key => {
     const items = dependencies[key]
     const addLinktoItems = Object.keys(items).map(key => {
@@ -27,10 +20,13 @@ export default function FrontPage(currentFile, allFiles) {
       const insight = insights.find(insight => insight.slug === key)
       const guide = installGuides.find(guide => guide.slug === key)
       const which = workshop ? workshop : ((insight ? insight : (guide ? guide : null)))
+
       const allItems = {
         [key]: {
           title: which.title,
-          excerpt: item,
+          excerpt: item.excerpt,
+          required: item.required,
+          recommended: item.recommended,
           link: which ? `/${which.itemPath}` : '#'
         }
       }
@@ -44,16 +40,19 @@ export default function FrontPage(currentFile, allFiles) {
       items: addLinktoItems
     }
   })
-
   const formedDeps = formattedDependencies.map(dep => {
     return (
-      <div className="dependency" key={dep.title}>
+      <div className="dependency" className='frontpage-item dependency' key={dep.title}>
         <h2>{dep.title}</h2>
         <ul>
           {dep.items.map(item => {
+            const required = item.allItems[Object.keys(item.allItems)[0]].required
+            const recommended = item.allItems[Object.keys(item.allItems)[0]].recommended
+            const requiredOrRecommended = required ? 'required' : recommended ? 'recommended' : ''
+
             return (
-              <li key={item.title}>
-                <a href={item.allItems[Object.keys(item.allItems)[0]].link}>{item.allItems[Object.keys(item.allItems)[0]].title}</a>
+              <li key={item.title} className={requiredOrRecommended}>
+                <a href={item.allItems[Object.keys(item.allItems)[0]].link}>{item.title}</a>
                 <p>{item.allItems[Object.keys(item.allItems)[0]].excerpt}</p>
               </li>
             )
@@ -68,7 +67,7 @@ export default function FrontPage(currentFile, allFiles) {
     const item = currentFile[key]
     // if object name is 'dependencies' or 'workshops' or 'insights' or 'installations' or 'excerpt' or 'title' or 'cover_image', don't add to list
     if (key === 'dependencies' || key === 'workshops' || key === 'insights' || key === 'installations' || key === 'excerpt' || key === 'title' || key === 'cover_image' || key === 'content' || key === 'slug'
-    || key === 'path' || key === 'itemPath') {
+      || key === 'path' || key === 'itemPath') {
       return null
     }
     return {
@@ -76,46 +75,54 @@ export default function FrontPage(currentFile, allFiles) {
       items: item
     }
   })
-  
-  const formattedObjects = allObjects.map(obj => {
-    if (obj === null) {
-      return null
-    }
-    return (
-      <div className="object"  key={obj.title}> 
-        <h2>{obj.title}</h2>
-        <ul>
-          {obj.items && Object.keys(obj.items).map(key => {
-            const item = obj.items[key]
-            // if there's a description, show it
-            if (key === 'description') {
+
+  const formattedObjects = allObjects.
+    filter(item => item !== null).map(obj => {
+      return (
+        <div className="frontpage-item" key={obj.title}>
+          <h2>{obj.title}</h2>
+          <ul>
+            {obj.items && Object.keys(obj.items).map(key => {
+              const item = obj.items[key]
+              // if there's a description, show it
+              if (key === 'description') {
+                return (
+                  <li key={key}>
+                    <p>{item}</p>
+                  </li>
+                )
+              }
+              if (typeof item === 'string') {
+                return (
+                  <li key={key} className='frontpage-list'>
+                    {item}
+                  </li>
+                )
+              }
               return (
                 <li key={key}>
-                  <p>{item}</p>
+                  <a href={item.link}>{key}</a>
+                  {<p>{item.excerpt}</p>}
                 </li>
               )
-            }
-            
-            return (
-              <li key={key}>
-                <a href={item.link}>{key}</a>
-                <p>{item.excerpt}</p>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-    )
-  })
+            })}
+          </ul>
+        </div>
+      )
+    })
+  // check if formattedObjects or formattedDeps is empty, if so, return null
+  const formatted = formattedObjects.length === 0 && formedDeps.length === 0 ? true : false
+
   return (
     <div className="frontpage">
-        <h1>{title}</h1>
+      <h1>{title}</h1>
       {excerpt && <div className="excerpt">
-        <p>{excerpt}</p>
-      {formedDeps}
-      {formattedObjects}
-        </div>}
+        <p>{excerpt}</p></div>}
+      {!formatted && <Masonry columns={{ sm: 1, md: 2 }} spacing={2}>
+        {formedDeps}
+        {formattedObjects}
+      </Masonry>}
     </div>
-    )
+  )
 }
 

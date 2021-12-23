@@ -169,6 +169,7 @@ header > .topBar{
 .overlay {
   position: absolute;
   top: 50px;
+  left: 0px;
   background: rgba(0, 0, 0, 0.7); /* Black see-through */
   width: 100%;
   color:white;
@@ -264,6 +265,8 @@ header > .topBar{
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  padding: 10px;
+  font-size: 1.5rem;
 }
 .workshop-image{
   display: flex;
@@ -272,7 +275,49 @@ header > .topBar{
   justify-content: center;
   align-items: center;
 }
-
+.frontpage> h1{
+  font-size: 3rem;
+}
+.frontpage p{
+  font-size: 1.5rem;
+}
+.dependency li.required{
+  border-left: 0.5rem solid #e74c3c50;
+    position: relative;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+.dependency li.required:hover {
+  border-left: 0.5rem solid #e74c3c;
+}
+.dependency li.recommended{
+  border-left: 0.5rem solid #f39c1250;
+    position: relative;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+.dependency li.recommended:hover {
+  border-left: 0.5rem solid #f39c12
+}
+.frontpage-item{
+  /* margin: 10px; */
+  border: 5px dashed #000000;
+  border-width: 2px;
+  padding: 10px;
+  font-size: 1.5rem;
+}
+.frontpage-item h2{
+  font-size: 2rem;
+  text-transform: capitalize;
+}
+.frontpage-item p{
+  font-size: 1.5rem;
+  margin: 0 0 20px;
+}
+.frontpage-list{
+  list-style-type: disc;
+  margin-left: 20px;
+}
 .workshop-content{
   max-width: 100%;
 }

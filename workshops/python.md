@@ -4,13 +4,19 @@ excerpt: Python is a general-purpose programming language suitable for a wide va
 cover_image: /images/workshops/img2.jpg
 dependencies: 
     workshops: 
-        command-line: Knowing how to use the command line is important.
-        data-ethics: Programmers can do evil things. Don't do them!
+        command-line: 
+            excerpt: Knowing how to use the command line is important.
+            required: true
+        data-ethics: 
+            excerpt: Programmers can do evil things. Don't do them!
     installations:
-        python: clearly you need python for python.
-        visual-studio-code: VS Code is useful.
-readings:
-ethical considerations:
+        python: 
+            excerpt: clearly you need python for python.
+            recommended: true
+        visual-studio-code: 
+            excerpt: VS Code is useful.
+# readings:
+# ethical considerations:
 projects:
     description: these are important projects.
     The NEH Impact Index:

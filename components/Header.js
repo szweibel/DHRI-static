@@ -12,6 +12,7 @@ import { styled } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
 import Image from 'next/image'
 import logo from '../public/images/logo.png';
+
 const Drawer = dynamic(
     () => import('../components/Drawer'),
      { loading: function loading() {return <p>...</p>} }

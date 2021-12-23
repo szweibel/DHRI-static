@@ -149,18 +149,6 @@ export default function WorkshopPage({
       </nav>
       <div className="content card-page">
         <div className="workshop-container">
-          <div className="workshop-image" style={{width:'100%', height: '100%'}}>
-          <Image
-            src={cover_image_location}
-            alt={title}
-            width={'500px'}
-            height={'500px'}
-            object-fit='cover'
-            />
-          </div>
-          <div className="title">
-            {title}
-          </div>
           <div>{PaginationComponent(currentPage)}</div>
           {currentContent}
           <div>{PaginationComponent(currentPage)}</div>
