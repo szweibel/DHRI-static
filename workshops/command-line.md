@@ -3,6 +3,7 @@ title: 'Command Line Workshop'
 excerpt: 'If asked to show someone who has never seen a computer how to do something on your computer, many of us would explain what a screen and a cursor are, and then show how to point and click on icons. This approach relies on a graphical user interface, or GUI (pronounced “gooey!”). Today we’re going to explore another way to make your computer do things: through the command line. Instead of pointing and clicking, we’ll be typing in either git bash (Windows) or terminal (macOS) to tell the computer directly what task we’d like it to perform.'
 cover_image: '/images/workshops/img2.jpg'
 goals: 
+    - description: 'The goals of this workshop are to:'
     - Become familiar with core programming concepts, including variables, loops, and conditionals.
     - Distinguish among five core data types—integers, floats, strings, booleans, and lists.
     - Engage with error output and use the internet and documentation to independently research language features.

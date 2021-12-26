@@ -84,6 +84,7 @@ export default function FrontPage(currentFile, allFiles) {
           <ul>
             {obj.items && Object.keys(obj.items).map(key => {
               const item = obj.items[key]
+              console.log('type:' + typeof item)
               // if there's a description, show it
               if (key === 'description') {
                 return (
@@ -97,6 +98,17 @@ export default function FrontPage(currentFile, allFiles) {
                   <li key={key} className='frontpage-list'>
                     {item}
                   </li>
+                )
+              }
+              if (typeof item === 'object') {
+                return (
+                  // return object key value 
+                  <div>
+                    {Object.keys(item).map(key => {
+                      return (
+                        <h3 key={key} className='list-description'>{item[key]}</h3>
+                      )})}
+                  </div>
                 )
               }
               return (
