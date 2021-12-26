@@ -15,8 +15,10 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import hljs from 'highlight.js';
 import FrontPage from '../../components/FrontPage'
+import Sidebar from '../../components/Sidebar'
 import Image from 'next/image'
 import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 export default function WorkshopPage({
   workshops,
@@ -89,27 +91,27 @@ export default function WorkshopPage({
   const [currentContent, setCurrentContent] = useState([]);
   const [pageTitles, setPageTitles] = useState([]);
 
-
   // list of page titles and highlight current page
   const getPageTitles = pages.map((page, index) => {
     let header = undefined;
     // if it's the frontpage vs not
     index === 0 ? header = page.props.children[0].props.children : header = page.props.children[0].props.children.props.children[0]
-      return (
-        <li key={index}>
-          <a className={currentPage === index + 1 ? 'active' : ''} onClick={() => handlePageChange(event, index + 1)}>{header}</a>
-        </li>
-      )
-    })
+    return (
+      <li key={index}>
+        <a className={currentPage === index + 1 ? 'active' : ''} onClick={() => handlePageChange(event, index + 1)}>{header}</a>
+      </li>
+    )
+  })
+
+  const sidebar = Sidebar(getPageTitles, currentPage)
 
 
   useEffect(() => {
     setPages(htmlContent(content));
+    setCurrentPage(1);
     setCurrentContent(frontPageContent);
     setPageTitles(getPageTitles);
   }, [content]);
-
-
 
   const PaginationComponent = (currentPage) => {
     return (
@@ -139,14 +141,15 @@ export default function WorkshopPage({
 
   return (
     <Container
-    maxWidth="xl"
-    style={{display: 'flex'}}
+      maxWidth="xl"
+      style={{ display: 'flex',
+    marginTop: '1rem', }}
     >
-      <nav className='sidenav'>
-        <ul>
-          {getPageTitles}
-        </ul>
-      </nav>
+      <div className='sidebar'
+        sx={{ display: { md: 'none' } }}
+      >
+        {sidebar}
+      </div>
       <div className="content card-page">
         <div className="workshop-container">
           <div>{PaginationComponent(currentPage)}</div>
@@ -158,7 +161,6 @@ export default function WorkshopPage({
   );
 }
 
-
 export async function getStaticPaths() {
   const files = fs.readdirSync(path.join('workshops'))
   const paths = files.map((filename) => ({
@@ -166,14 +168,11 @@ export async function getStaticPaths() {
       slug: filename.replace('.md', ''),
     },
   }))
-
-
   return {
     paths,
     fallback: false,
   }
 }
-
 
 export async function getStaticProps() {
   // Get files from the workshops dir

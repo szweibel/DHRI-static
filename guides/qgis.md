@@ -4,8 +4,6 @@ excerpt: 'QGIS!'
 cover_image: '/images/img4.jpg'
 ---
 
-<!-- TODO: add a QGIS header image ![](https://raw.githubusercontent.com/DHRI-Curriculum/install/v2.0/_django-meta/header-images/qgis%403x.png) -->
-
 # QGIS
 
 ## What it is
@@ -22,19 +20,19 @@ For the Digital Humanities Research Institute, we use QGIS because it is free an
 
 Download the latest version of QGIS from the [QGIS download page](https://qgis.org/en/site/forusers/download.html)
 
-![List of QGIS download options ](images/qgis-install.png)
+![List of QGIS download options ](/images/guides/qgis-install.png)
 
 ### Step 2: Follow the installation instructions
 
 After opening the install package, you will be taken through a prompt. Follow the instructions.
 
-![Screenshot depicting the QGIS Installer](images/qgis-download-prompt.png)
+![Screenshot depicting the QGIS Installer](/images/guides/qgis-download-prompt.png)
 
 ### Step 3: Move the application into your Applications folder
 
 After the package installs, move the QGIS application into your applications.
 
-![QGIS move to apps](images/qgis-into-apps.png)
+![QGIS move to apps](/images/guides/qgis-into-apps.png)
 
 ### Step 4: Open the QGIS Application
 
@@ -46,7 +44,7 @@ From this point onward, you will not have to go through allowing the software to
  
 Launch QGIS. A new project will look like this:
 
-![QGIS installer](images/qgis-interface.png)
+![QGIS installer](/images/guides/qgis-interface.png)
 
 ## Installation instructions: Windows
 

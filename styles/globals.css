@@ -9,10 +9,16 @@
   padding: 0;
 }
 
+#__next {
+  min-height: 100vh;
+  position: relative;
+}
+
 body {
   font-family: 'Lato', sans-serif !important;
   font-size: 19px;
   background-color: rgb(231, 235, 240) !important;
+  position: relative;
 }
 
 li{
@@ -36,6 +42,10 @@ pre {
   white-space: -o-pre-wrap;    /* Opera 7 */
   word-wrap: break-word;       /* Internet Explorer 5.5+ */
  }
+
+main.container{
+  padding-bottom: 242px;
+}
 
 .headerLink{
   width:fit-content;
@@ -105,9 +115,18 @@ header a:hover{
 
 .topBar{
   background-color: #2C3E50 !important;
+  position:static;
+  margin: 0;
+  z-index: 2;
 }
 header > .topBar{
   width: 70%;
+}
+
+@media(min-width: 899px) {
+  .buttonCollapse{
+    display: none;
+  }
 }
 
 .logo{
@@ -311,7 +330,7 @@ header > .topBar{
   text-transform: capitalize;
 }
 .frontpage-item p{
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin: 0 0 20px;
 }
 .frontpage-list{
@@ -325,19 +344,53 @@ header > .topBar{
 .WorkshopPage-nav-right{
 margin-left: 10px;
 }
-nav.sidenav {
-  max-width: 400px;
-      min-width: 300px;
-      align-self: flex-start;
-      position: sticky;
-      top: 96px;
-      max-height: calc(100 vh - 144px);
-      overflow: auto;
-      font-size: 15px;
-      padding: 16px;
-      z-index: 1;
+
+/* sidebar  */
+@media(max-width: 2100px) {
+  .drawer-left.permanent{
+    display: none;
+  }
 }
 
+.sidebar-button{
+  background-color: rgb(102, 104, 107) !important;
+  color: white !important;
+  /* border-radius: 30px !important; */
+  top: 50% !important;
+  position: fixed !important;
+  left:-15px
+}
+.sidebar-button svg{
+  margin-left: 15px;
+}
+@media(min-width: 2099px) {
+  .sidebar-button{
+    display: none !important;
+  }
+}
+.drawer-left > div{
+  z-index: 1 !important;
+}
+
+/* .drawer-left.permanent div {
+  max-height: 100vh;
+} */
+
+nav.sidenav {
+  max-width: 325px;
+  min-width: 300px;
+  align-self: flex-start;
+  position: sticky;
+  top: 96px;
+  max-height: calc(100 vh - 144px);
+  overflow: auto;
+  font-size: 15px;
+  padding: 16px;
+  z-index: 1;
+}
+nav.sidenav ul{
+  margin-top: 200px;
+}
 nav > ul > li {
   list-style: none;
   margin-bottom: 10px;
@@ -377,6 +430,10 @@ nav.sidenav > ul > li > ul > li > a:hover {
 
 footer {
   background-color: #f7f7f8;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
 }
 
 .funderImages {

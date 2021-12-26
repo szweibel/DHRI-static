@@ -4,8 +4,6 @@ excerpt: 'NLTK!'
 cover_image: '/images/img4.jpg'
 ---
 
-![](https://raw.githubusercontent.com/DHRI-Curriculum/install/v2.0/_django-meta/header-images/nltk%403x.png)
-
 # Natural Language Toolkit
 
 ## What it is
@@ -30,11 +28,11 @@ Finally, NLTK requires Python versions 3.5, 3.6, 3.7, or 3.8. The most recent An
 
 Open an OSX terminal and type `python` to launch a Python interpreter. You should get something like this:
 
-![image of starting python interpreter](images/nltk_mac_1.png)
+![image of starting python interpreter](/images/guides/nltk_mac_1.png)
 
 Load NLTK by typing the following in your environment and *pressing* 'enter':
 
-![image of importing nltk](images/nltk_mac_2.png)
+![image of importing nltk](/images/guides/nltk_mac_2.png)
 
 If this step fails, you will get an error, and you should  follow the next step, Install NLTK. If it is already installed, nothing will happen and you'll see the three `>>>` in the window. In that case, skip to Step 3, [Install NLTK Data](#step-3:-install-nltk-data-with-the-gui-(mac)).
 
@@ -48,7 +46,7 @@ $ conda install nltk -y
 
 When you press enter, the terminal should look something like the following:
 
-![image of installing nltk](images/nltk_mac_3.png)
+![image of installing nltk](/images/guides/nltk_mac_3.png)
 
 When it's finished, go back into the Python interpreter to import NLTK, typing `import NLTK` after the `>>>`. If it downloaded correctly, nothing will happen and you'll see the three `>>>` in the window.  In that case, continue to step 3.
 
@@ -64,7 +62,7 @@ In your Python environment run the following command *after* import nltk:
 
 For example, the interpreter above would now look like:
 
-![image of downloading nltk on interpreter](images/nltk_mac_4.png)
+![image of downloading nltk on interpreter](/images/guides/nltk_mac_4.png)
 
 The Python environment that the GUI was launched from should now have a message that looks something like this:
 
@@ -74,7 +72,7 @@ showing info https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/index.xml
 
 Now, look for the NLTK download GUI - this will appear automatically but may appear hidden behind your browser window or behind where you are working in Python.
 
-![NLTK downloader interface with four tabs: collections, corpora, models, all packages](images/nltk_downloader.png)
+![NLTK downloader interface with four tabs: collections, corpora, models, all packages](/images/guides/nltk_downloader.png)
 
 Click on the first tab (collections), and on the first record on that tab: all. Then, click the "download" button on the left hand side of that window.
 
@@ -94,15 +92,15 @@ nltk.download('all', halt_on_error=False)
 
 The interpreter above should now look something like:
 
-![image of entering nltk data download command on command line](images/nltk_mac_5.png)
+![image of entering nltk data download command on command line](/images/guides/nltk_mac_5.png)
 
 If the command is successful, the terminal will print out something like:
 
-![image of downloading nltk data on command line](images/nltk_mac_6.png)
+![image of downloading nltk data on command line](/images/guides/nltk_mac_6.png)
 
 It will take a few minutes to download. At the end, your terminal should look like this, bringing you back to the python interpreter prompt:
 
-![image of completing the nltk data download on command line](images/nltk_mac_7.png)
+![image of completing the nltk data download on command line](/images/guides/nltk_mac_7.png)
 
 ### Step 5: Test Installation (MAC)
 
@@ -128,7 +126,7 @@ from nltk.book import *
 
 If installed successfully, you should see the following:
 
-![images of nltk books imported into command line](images/nltk_mac_8.png)
+![images of nltk books imported into command line](/images/guides/nltk_mac_8.png)
 
 **Penn Parts of speech**
 
@@ -140,7 +138,7 @@ nltk.help.upenn_tagset('NN')
 
 If installed successfully, you should see the following:
 
-![image of nltk Part of Speech tagger installed into command line](images/nltk_mac_9.png)
+![image of nltk Part of Speech tagger installed into command line](/images/guides/nltk_mac_9.png)
 
 ---
 
@@ -225,7 +223,7 @@ showing info https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/index.xml
 
 Now, look for the NLTK download GUI - this will appear automatically but may appear hidden behind your browser window or behind where you are working in Python.
 
-![NLTK downloader interface with four tabs: collections, corpora, models, all packages](images/nltk_downloader.png)
+![NLTK downloader interface with four tabs: collections, corpora, models, all packages](/images/guides/nltk_downloader.png)
 
 Click on the first tab (collections), and on the first record on that tab: all. Then, click the "download" button on the left hand side of that window.
 
@@ -294,7 +292,7 @@ from nltk.book import *
 
 If installed successfully, you should see the following:
 
-![images of nltk books imported into command line](images/nltk_mac_8.png)
+![images of nltk books imported into command line](/images/guides/nltk_mac_8.png)
 
 **Penn Parts of speech**
 
@@ -306,4 +304,4 @@ nltk.help.upenn_tagset('NN')
 
 If installed successfully, you should see the following:
 
-![image of nltk Part of Speech tagger installed into command line](images/nltk_mac_9.png)
+![image of nltk Part of Speech tagger installed into command line](/images/guides/nltk_mac_9.png)

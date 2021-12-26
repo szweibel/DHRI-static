@@ -4,8 +4,6 @@ excerpt: 'Git!'
 cover_image: '/images/img4.jpg'
 ---
 
-![](https://raw.githubusercontent.com/DHRI-Curriculum/install/v2.0/_django-meta/header-images/git%403x.png)
-
 # Git (and Git Bash)
 
 ## What it is
@@ -32,7 +30,7 @@ With Git, we talk to the computer through the terminal, so let's go ahead and op
 
 To open the terminal, open spotlight search (default way to do this is by hitting command and the space bar) and type in “terminal”. Select the application called terminal and press the return key. This should open up an app with a black background. When you see your username followed by a dollar sign, you’re ready to start using command line.
 
-![Image shows terminal, a black box in which you can enter text to interact with your computer. Look for your username and the dollar sign at the top.](images/terminal.png)
+![Image shows terminal, a black box in which you can enter text to interact with your computer. Look for your username and the dollar sign at the top.](/images/guides/terminal.png)
 
 ### Step 1: Type the following command into the terminal
 
@@ -46,7 +44,7 @@ Install this package by typing the following command into your terminal and clic
 $ xcode-select --install
 ```
 
-![Image shows terminal with the above command typed in.](images/commandlinetools.png)
+![Image shows terminal with the above command typed in.](/images/guides/commandlinetools.png)
 
 ### Step 2: Test the Install
 
@@ -70,7 +68,7 @@ usage: git [--version] [--help] [-C <path>] [-c name=value]
 
 ```
 
-[shows terminal on mac osx](images/osxterminalgit.png) 
+[shows terminal on mac osx](/images/guides/osxterminalgit.png) 
 
 ## Installation instructions: Microsoft Windows 10
 
@@ -80,31 +78,31 @@ First, go to this website: https://git-scm.com/download/win
 
 From the option, select "Click here to download manually" and save the file. 
 
-![Image shows webpage with downloads and circles the desired option](images/windowsdlgit.png)
+![Image shows webpage with downloads and circles the desired option](/images/guides/windowsdlgit.png)
 
 ### Step 2: *Click* on the git installer:
 
-![git installation icon, looks like a tree branch inside 4 colored squares](images/git00.png)
+![git installation icon, looks like a tree branch inside 4 colored squares](/images/guides/git00.png)
 
 ### Step 3: Accept the license and *click* `Next`:
 
- ![license acceptance window](images/git01.png)
+ ![license acceptance window](/images/guides/git01.png)
 
 ### Step 4: Select the installation folder:
 
 The default folder should be fine. *Click* `Next`.
 
-![installation folder browser with text window showing folder path](images/git02.png)
+![installation folder browser with text window showing folder path](/images/guides/git02.png)
 
 ### Step 5: Select the components to be installed: 
 
 Again, the default is fine here.
 
-![list of check boxes showing install options: additional icons, on the desktop, Windows Explorer integration, Git Bash, Git GUI, Git LFS, Associate *.git configuration files with the default text editor, associate .sh files to be run with bash,  use a true type font in all console windows, check daily for git for windows, check daily for git console updates](images/git03.png)
+![list of check boxes showing install options: additional icons, on the desktop, Windows Explorer integration, Git Bash, Git GUI, Git LFS, Associate *.git configuration files with the default text editor, associate .sh files to be run with bash,  use a true type font in all console windows, check daily for git for windows, check daily for git console updates](/images/guides/git03.png)
 
 - Windows Only: select start menu folder (default is fine):
 
-![textbox with browse button listing start menu folder options](images/git04.png)
+![textbox with browse button listing start menu folder options](/images/guides/git04.png)
 
 ### Step 6: Choose the default editor used by Git. 
 
@@ -112,48 +110,48 @@ Select `Visual Studio Code` as the default editor. (Note that you must install `
 
 *Click* `Next` when you're ready.
 
-![installation menu containing drop down of editor options: nano, vim, notepad++, visual studio code, visual studio code insiders](images/git06.png)
+![installation menu containing drop down of editor options: nano, vim, notepad++, visual studio code, visual studio code insiders](/images/guides/git06.png)
 
 ### Step 7: Choose the "Use Git from the Windows Command Prompt" radio button.
 
 *Click* `Next` when you're ready.
 
-![three radio buttons: use git from git bash, use git from windows command prompt, use git and optional unix tools from the windows command prompt](images/git07.png) 
+![three radio buttons: use git from git bash, use git from windows command prompt, use git and optional unix tools from the windows command prompt](/images/guides/git07.png) 
 
 ### Step 8: Choose the HTTPS transport backend (the default is fine).
 
 *Click* `Next` when you're ready.
 
-![list of radio button optionsL 1) use the OpenSSL library, 2) use the native windows secure channel library](images/git08.png)
+![list of radio button optionsL 1) use the OpenSSL library, 2) use the native windows secure channel library](/images/guides/git08.png)
 
 ### Step 9: Configure the line ending conversions.
 
 Again, the default is fine. *Click* `Next` when you're ready.
 
-![list of radio button options: 1) checkout Windows-style, commit unix-style , 2) checkout is as is, commit is unix style, 3)checkout as is, commit is as is](images/git09.png)
+![list of radio button options: 1) checkout Windows-style, commit unix-style , 2) checkout is as is, commit is unix style, 3)checkout as is, commit is as is](/images/guides/git09.png)
 
 ### Step 10: Configure the terminal emulator.
 
 On the 'configuring the terminal emulator to use with Git Bash' window, choose the "Use Windows default console window" option.
 
-![two radio buttons: 1) Use MinTTY, 2) use Windows default console window](images/git10.png)
+![two radio buttons: 1) Use MinTTY, 2) use Windows default console window](/images/guides/git10.png)
 Note: Do not choose "Use MinTTY (the default terminal of MSYS2)" as that MinTTY wil break Python. 
 
 ### Step 11: Configure the extra options. 
 
 Again, the defaults are fine. *Click* `Next` when you are ready.
 
-![check boxes: 1) enable file system caching, 2) enable git credential manager, 3) enable symbolic links](images/git11.png)
+![check boxes: 1) enable file system caching, 2) enable git credential manager, 3) enable symbolic links](/images/guides/git11.png)
 
 ### Step 12: Git should now be installing.
  
-![image of progress bar](images/git12.png)
+![image of progress bar](/images/guides/git12.png)
 
 ### Step 13: Finish the installation.
 
 *Click* through the rest of the install, leaving the defaults, and then *click* `Finish` on the last window.
 
-![final installation window that says "completing the git setup wizard"](images/git13.png)
+![final installation window that says "completing the git setup wizard"](/images/guides/git13.png)
 
 ### Step 14: Test the install.
 

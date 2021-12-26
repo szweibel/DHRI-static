@@ -8,10 +8,12 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useState, useEffect } from "react";
+import CssBaseline from '@mui/material/CssBaseline';
 import { styled } from '@mui/material/styles';
 import dynamic from 'next/dynamic';
 import Image from 'next/image'
 import logo from '../public/images/logo.png';
+import ButtonAppBarCollapse from "./ButtonAppBarCollapse";
 
 const Drawer = dynamic(
     () => import('../components/Drawer'),
@@ -33,12 +35,34 @@ export default function Header({ props }) {
             setAllInsights(props.insights)
         }
     }, [props.workshops])
-    
+    const drawerWidth = 240;
     return (
         <Box
-            className='topBar' id="back-to-top-anchor">
+            className='topBar' 
+            id="back-to-top-anchor"
+            sx={{ display: 'flex' }}
+            >
+            <CssBaseline />
+            <ButtonAppBarCollapse
+            sx={{
+                display: {
+                    xs: 'block',
+                    md: 'none',
+                    lg: 'none',
+                    xl: 'none',
+                    xxl: 'none',
+                }
+            }}
+            >
+                <div>hello</div>
+            </ButtonAppBarCollapse>
             <AppBar
                 position="static"
+                sx={{
+                    display: {xs: 'none',
+                    md: 'block'},
+                    Zindex:10000,
+                }}
                 className='topBar'>
                 <Toolbar
                     className='topBar'>

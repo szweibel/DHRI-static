@@ -3,7 +3,9 @@ import path from 'path'
 
 export default function Footer() {
     return (
-        <footer className="container">
+        <footer className="container" 
+        sx={{Zindex: 20000}}
+        >
             <div className="funderImages">
                 <div>
                     <a href="http://www.neh.gov/" target="_blank" rel="noreferrer"><img src="//static.dhinstitutes.org/curriculum/website/images/logos/neh.png" className="img-fluid" alt='NEH'/></a>
