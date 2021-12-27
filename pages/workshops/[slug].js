@@ -1,24 +1,15 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-// import marked from 'marked'
-import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { sortByDate } from '../../utils'
-import { endianness, type } from 'os'
-import { elementAcceptingRef } from '@mui/utils'
-import evaluationAnswers from '../../components/Quiz'
 import ConvertMarkdown from '../../components/ConvertMarkdown'
-import { Glossary } from '../../components/Glossary'
 import { useRouter } from 'next/router'
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import hljs from 'highlight.js';
 import FrontPage from '../../components/FrontPage'
 import Sidebar from '../../components/Sidebar'
-import Image from 'next/image'
 import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
+
 
 export default function WorkshopPage({
   workshops,

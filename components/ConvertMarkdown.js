@@ -48,15 +48,16 @@ const Imager = ({ className, ...props }) => {
     const newProps = {...props};
     const imageSource = newProps.src
     return (
-        <Image
-        src={imageSource}
-        alt={newProps.alt} 
-        className='markdown-image'
-        width={800}
-        height={450}
-        layout="responsive"
-        />
-
+//         <div className='markdown-image-container' 
+//         style={{  position: 'relative', width: '100vw', height: '66.66vw'}}>
+//         <Image
+//         src={imageSource}
+//         alt={newProps.alt}
+//         layout="fill"
+//   objectFit="cover"
+//         />
+//         </div>
+        <img className={className} src={imageSource} alt={newProps.alt} />
     );
 }
             

@@ -287,12 +287,11 @@ header > .topBar{
   padding: 10px;
   font-size: 1.5rem;
 }
-.workshop-image{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+.markdown-image-container > div{
+  /* position: relative !important; */
+  /* display: flex !important; */
+  /* width: auto !important;
+  height: auto !important; */
 }
 .frontpage> h1{
   font-size: 3rem;

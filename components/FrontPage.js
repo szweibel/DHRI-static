@@ -4,7 +4,6 @@ import Masonry from '@mui/lab/Masonry';
 export default function FrontPage(currentFile, allFiles) {
   const excerpt = currentFile.excerpt
   const title = currentFile.title
-  const cover_image = currentFile.cover_image
   const dependencies = currentFile.dependencies || []
   const workshops = allFiles.workshops
   const installGuides = allFiles.guides
@@ -46,14 +45,14 @@ export default function FrontPage(currentFile, allFiles) {
         <h2>{dep.title}</h2>
         <ul>
           {dep.items.map(item => {
-            const required = item.allItems[Object.keys(item.allItems)[0]].required
-            const recommended = item.allItems[Object.keys(item.allItems)[0]].recommended
+            const workshopObject = item.allItems[Object.keys(item.allItems)[0]]
+            const required = workshopObject.required
+            const recommended = workshopObject.recommended
             const requiredOrRecommended = required ? 'required' : recommended ? 'recommended' : ''
-
             return (
-              <li key={item.title} className={requiredOrRecommended}>
-                <a href={item.allItems[Object.keys(item.allItems)[0]].link}>{item.title}</a>
-                <p>{item.allItems[Object.keys(item.allItems)[0]].excerpt}</p>
+              <li key={workshopObject} className={requiredOrRecommended}>
+                <a href={workshopObject.link}>{item.title}</a>
+                <p>{workshopObject.excerpt}</p>
               </li>
             )
           })}
@@ -84,7 +83,6 @@ export default function FrontPage(currentFile, allFiles) {
           <ul>
             {obj.items && Object.keys(obj.items).map(key => {
               const item = obj.items[key]
-              console.log('type:' + typeof item)
               // if there's a description, show it
               if (key === 'description') {
                 return (
@@ -101,8 +99,23 @@ export default function FrontPage(currentFile, allFiles) {
                 )
               }
               if (typeof item === 'object') {
+                if (item.link) {
+                  return (
+                    <li key={key}>
+                      <a href={item.link}>{key}</a>
+                      {<p>{item.excerpt}</p>}
+                    </li>
+                  )
+                }
+                if (item.excerpt) {
+                  return (
+                    <li key={key}>
+                      {key}
+                      <p>{item.excerpt}</p>
+                    </li>
+                  )
+                }
                 return (
-                  // return object key value 
                   <div>
                     {Object.keys(item).map(key => {
                       return (
@@ -111,12 +124,6 @@ export default function FrontPage(currentFile, allFiles) {
                   </div>
                 )
               }
-              return (
-                <li key={key}>
-                  <a href={item.link}>{key}</a>
-                  {<p>{item.excerpt}</p>}
-                </li>
-              )
             })}
           </ul>
         </div>
