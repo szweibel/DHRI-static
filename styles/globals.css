@@ -287,12 +287,24 @@ header > .topBar{
   padding: 10px;
   font-size: 1.5rem;
 }
-.markdown-image-container > div{
-  /* position: relative !important; */
-  /* display: flex !important; */
-  /* width: auto !important;
-  height: auto !important; */
+.markdown-image-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  min-width: 500px;
 }
+.markdown-image-container > div {
+      position: unset !important;
+      min-width: 50%;
+}
+.markdown-image {
+      object-fit: contain;
+      width: 100% !important;
+      position: relative !important;
+      height: unset !important;
+}
+
 .frontpage> h1{
   font-size: 3rem;
 }
