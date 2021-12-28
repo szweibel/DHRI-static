@@ -4,6 +4,8 @@ import Quiz from './Quiz';
 import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-dark.css'
 import Image from 'next/image'
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 
 const Code = ({ className, children }) => {
     const [isShown, setIsShown] = useState(false);
@@ -45,21 +47,25 @@ const Imager = ({ className, ...props }) => {
 
     // https://dev.to/felixhaeberle/responsive-fix-for-the-next-js-image-component-1351 for a fix?
 
-    const newProps = {...props};
+    const newProps = { ...props };
     const imageSource = newProps.src
     return (
-        <div className='markdown-image-container' >
-        <Image
-        className='markdown-image' 
-        src={imageSource}
-        alt={newProps.alt}
-        layout="fill"
-        />
+        <div className="image-container">
+        <Zoom>
+            <div className='markdown-image-container' >
+                <Image
+                    className='markdown-image'
+                    src={imageSource}
+                    alt={newProps.alt}
+                    layout="fill"
+                />
+            </div>
+        </Zoom>
         </div>
         // <img className={className} src={imageSource} alt={newProps.alt} />
     );
 }
-            
+
 
 export default function ConvertMarkdown(markdown) {
     return (

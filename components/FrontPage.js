@@ -119,7 +119,7 @@ export default function FrontPage(currentFile, allFiles) {
                   <div>
                     {Object.keys(item).map(key => {
                       return (
-                        <h3 key={key} className='list-description'>{item[key]}</h3>
+                        <p key={key} className='list-description'>{item[key]}</p>
                       )})}
                   </div>
                 )

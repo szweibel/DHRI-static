@@ -3,7 +3,7 @@ import path from 'path'
 
 export default function Footer() {
     return (
-        <footer className="container" 
+        <footer 
         sx={{Zindex: 20000}}
         >
             <div className="funderImages">

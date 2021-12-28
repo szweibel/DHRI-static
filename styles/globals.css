@@ -1,6 +1,5 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap'); */
-/* @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"; */
-/* @import "//unpkg.com/@highlightjs/cdn-assets@11.3.1/styles/default.min.css"; */
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 @import 'http://fonts.googleapis.com/css?family=Lato:400,700';
 
 * {
@@ -285,14 +284,21 @@ header > .topBar{
   align-items: center;
   flex-wrap: wrap;
   padding: 10px;
-  font-size: 1.5rem;
+}
+
+.content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.image-container{
+  text-align: center;
 }
 .markdown-image-container {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
-  min-width: 500px;
 }
 .markdown-image-container > div {
       position: unset !important;
@@ -304,12 +310,8 @@ header > .topBar{
       position: relative !important;
       height: unset !important;
 }
-
 .frontpage> h1{
   font-size: 3rem;
-}
-.frontpage p{
-  font-size: 1.5rem;
 }
 .dependency li.required{
   border-left: 0.5rem solid #e74c3c50;
@@ -330,18 +332,14 @@ header > .topBar{
   border-left: 0.5rem solid #f39c12
 }
 .frontpage-item{
-  /* margin: 10px; */
-  border: 5px dashed #000000;
-  border-width: 2px;
+  border: 1px lightgrey solid;
   padding: 10px;
-  font-size: 1.5rem;
 }
 .frontpage-item h2{
   font-size: 2rem;
   text-transform: capitalize;
 }
 .frontpage-item p{
-  font-size: 1rem;
   margin: 0 0 20px;
 }
 .frontpage-list{
@@ -350,6 +348,12 @@ header > .topBar{
 }
 .workshop-content{
   max-width: 100%;
+}
+
+.workshop-container tr{
+}
+.workshop-container table{
+  table-layout: fixed;
 }
 
 .WorkshopPage-nav-right{
@@ -383,9 +387,6 @@ margin-left: 10px;
   z-index: 1 !important;
 }
 
-/* .drawer-left.permanent div {
-  max-height: 100vh;
-} */
 
 nav.sidenav {
   max-width: 325px;

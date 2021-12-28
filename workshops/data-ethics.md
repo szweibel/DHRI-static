@@ -7,7 +7,7 @@ excerpt: In tis workshop we will be discussing the basics of research data in
   data and ethics, this workshop will also include multiple sites for
   discussions to help us think through what data literacies mean within our
   projects and broader applications.
-cover_image: /images/uploads/img6.jpg
+cover_image: /images/img6.jpg
 ---
 # Data is Foundational
 
@@ -200,7 +200,7 @@ Processing data puts it into a state more readily available for analysis and mak
 </Cats>
 ```
 
-![Screenshot of XML cats file](/images/cats_XML.png)
+![Screenshot of XML cats file](/images/data-literacies/cats_XML.png)
 This file is viewed on an online [XML Viewer](https://www.xmlviewer.org/). If you would like to, you can either copy the code chunk above to try it out on [XML Viewer](https://www.xmlviewer.org) or [download the XML file](https://raw.githubusercontent.com/DHRI-Curriculum/data-literacies/v2.0/files/cats.xml) to try it out in other viewers. To save the file onto your local computer, **right click** on `Raw` button (top right-hand corner of the data set) and click `Save Link As...` to save the file onto your local computer.
 
 For example, after downloading the file, can you try to open this file in your browser? (Psst! Try right clicking on `cats.xml` in your local directory and choosing `Open with Other Application` in the drop down menu to select the browser of your choice.)
@@ -232,7 +232,7 @@ For example, after downloading the file, can you try to open this file in your b
 } 
 ```
 
-![Screenshot of JSON cats file](/images/cats_JSON.png)
+![Screenshot of JSON cats file](/images/data-literacies/data-literacies/cats_JSON.png)
 This file is viewed on my Firefox browser from my local directory. To view it in your browser, you can drag and drop the local file onto a open tab or window. You can also [download the JSON file](https://raw.githubusercontent.com/DHRI-Curriculum/data-literacies/v2.0/files/cats.json) and try opening it in other viewers (e.g. R Studio, webviewers like Code Beautify's [JSON Viewer](https://codebeautify.org/jsonviewer)). To save the file onto your local computer, **right click** on `Raw` button (top right-hand corner of the data set) and click `Save Link As...` to save the file onto your local computer.
 
 ## CSV
@@ -247,7 +247,7 @@ Foots,Smith
 Tiger,Jaws
 ```
 
-![Screenshot of CSV cats file](/images/cats_CSV.png)
+![Screenshot of CSV cats file](/images/data-literacies/cats_CSV.png)
 
 This file is viewed on my VSCode with the extension `Excel Viewer`. To view in VSCode, [install the extension](https://marketplace.visualstudio.com/items?itemName=GrapeCity.gc-excelviewer) in VSCode, open the .csv, and then right click on the file and click `Open Preview`. You can also [download the CSV file](https://raw.githubusercontent.com/DHRI-Curriculum/data-literacies/v2.0/files/cats.csv) to open it in other viewers (e.g. Microsoft Excel, Notepad). To save the file onto your local computer, **right click** on `Raw` button (top right-hand corner of the data set) and click `Save Link As...` to save the file onto your local computer.
 
@@ -417,7 +417,7 @@ Do you think you can explain the rules of tidy data structuring?
 1. `Artist Role`, `Artist Display Name`, `Artist Display Bio`, `Artist Alpha Sort`, `Artist Nationality`, `Artist Begin Date`, `Artist End Date`, or `Classification`.
 2. I will choose to convert to the tidy data format if I was interested in any of the variables listed above, so that it will be easier to analyse the entries. I will have to unnest the entries by separating the data into different columns. For example, if I am interested in understanding the type of roles that are predominantly held by non-cisgender men, I will unnest the column `Artist Role` as two columns (e.g. `Artist 1 Role`, `Artist 2 Role`) as illustrated in this example:
 
-![Comparison of moSmall after tidy format](/images/moSmall2_tidytogether.png)
+![Comparison of moSmall after tidy format](/images/data-literacies/moSmall2_tidytogether.png)
 
 ## Keywords
 
@@ -573,66 +573,66 @@ Visualizing your data helps you tell a story and construct a narrative that guid
         <th rowspan="3">Comparisons</th>
          <td>Bar charts</td>
          <td>Comparison across distinct categories</td>
-        <td><img src="/images/D4PG_bar.png" alt="Bar Chart">From <a href="https://dataforgood.commons.gc.cuny.edu/report-on-covid-19s-impact-on-cuny-students/" target="_blank">The Data for Public Good</a> at the Graduate Center.</figcaption></td>
+        <td><img src="/images/data-literacies/D4PG_bar.png" alt="Bar Chart">From <a href="https://dataforgood.commons.gc.cuny.edu/report-on-covid-19s-impact-on-cuny-students/" target="_blank">The Data for Public Good</a> at the Graduate Center.</figcaption></td>
     </tr>
     <tr height="300px">
         <td>Histograms</td>
         <td>Comparison across continuous variable</td>
-        <td><img src="/images/PolicyViz_histogram.png" alt="Histogram"><figcaption>From <a href="https://policyviz.com/2018/11/27/histogram-design-decisions/" target="_blank">Policy Viz.</figcaption></td>
+        <td><img src="/images/data-literacies/PolicyViz_histogram.png" alt="Histogram"><figcaption>From <a href="https://policyviz.com/2018/11/27/histogram-design-decisions/" target="_blank">Policy Viz.</figcaption></td>
     </tr>
     <tr height="300px">
         <td>Scatter plots</td>
         <td>Useful to check for correlation (not causation!)</td>
-        <td><img src="/images/538_scatter.png" alt="Scatter plot"><figcaption>From <a href="https://fivethirtyeight.com/features/the-gops-primary-rules-might-doom-carson-and-cruz/" target="_blank">FiveThirtyEight.</figcaption></td>
+        <td><img src="/images/data-literacies/538_scatter.png" alt="Scatter plot"><figcaption>From <a href="https://fivethirtyeight.com/features/the-gops-primary-rules-might-doom-carson-and-cruz/" target="_blank">FiveThirtyEight.</figcaption></td>
     </tr>
     <tr height="300px">
         <th rowspan="3">Time</th>
         <td>Stacked area charts</td>
         <td>Evolution of value across different groups</td>
-        <td><img src="/images/DatatoViz_stackedarea.png" alt="Stacked area chart"><figcaption>From <a href="https://www.data-to-viz.com/graph/stackedarea.html" target="_blank">From Data to Viz.</figcaption></td>
+        <td><img src="/images/data-literacies/DatatoViz_stackedarea.png" alt="Stacked area chart"><figcaption>From <a href="https://www.data-to-viz.com/graph/stackedarea.html" target="_blank">From Data to Viz.</figcaption></td>
     </tr>
     <tr height="300px">
         <td>Sankey Diagrams</td>
         <td>Displaying flows of changes</td>
-        <td><img src="/images/DatatoViz_sankey.png" alt="Sankey"><figcaption>From <a href="https://www.data-to-viz.com/graph/sankey.html" target="_blank">From Data to Viz.</figcaption></td>
+        <td><img src="/images/data-literacies/DatatoViz_sankey.png" alt="Sankey"><figcaption>From <a href="https://www.data-to-viz.com/graph/sankey.html" target="_blank">From Data to Viz.</figcaption></td>
     </tr>
    <tr height="300px">
         <td>Line graphs</td>
         <td>Tracking changes over time</td>
-        <td><img src="/images/D4PG_line.jpg" alt="Line Graph"><figcaption>From <a href="https://dataforgood.commons.gc.cuny.edu/report-on-covid-19s-impact-on-cuny-students/" target="_blank">The Data for Public Good</a> at the Graduate Center.</figcaption></td>
+        <td><img src="/images/data-literacies/D4PG_line.jpg" alt="Line Graph"><figcaption>From <a href="https://dataforgood.commons.gc.cuny.edu/report-on-covid-19s-impact-on-cuny-students/" target="_blank">The Data for Public Good</a> at the Graduate Center.</figcaption></td>
     </tr>
     <tr height="300px">
         <th rowspan="2">Small numbers/percentages</th>
         <td>Pie charts</td>
         <td>Demonstrate proportions between categories</td>
-        <td><img src="/images/DB_pie.jpg" alt="Pie chart"><figcaption>From <a href="https://www.loc.gov/pictures/search/?q=%22lot%2011931%22%20NOT%20medal&st=grid&co=anedub&loclr=blogpic" target="_blank">The Library of Congress.</figcaption></td>
+        <td><img src="/images/data-literacies/DB_pie.jpg" alt="Pie chart"><figcaption>From <a href="https://www.loc.gov/pictures/search/?q=%22lot%2011931%22%20NOT%20medal&st=grid&co=anedub&loclr=blogpic" target="_blank">The Library of Congress.</figcaption></td>
     </tr>
     <tr height="300px">
         <td>Tree maps</td>
         <td>Demonstrate hierarchy and proportion</td>
-        <td><img src="/images/DataViz_treemap.png" alt="Tree map"><figcaption>From <a href="https://datavizcatalogue.com/methods/treemap.html" target="_blank">The Data Visualization Catalogue.</figcaption></td>
+        <td><img src="/images/data-literacies/DataViz_treemap.png" alt="Tree map"><figcaption>From <a href="https://datavizcatalogue.com/methods/treemap.html" target="_blank">The Data Visualization Catalogue.</figcaption></td>
     </tr>
     <tr height="300px">
         <th rowspan="2">Survey responses</th>
         <td>Stacked bar charts</td>
         <td>Compares total amount across each group (e.g. plotting Likert scale)</td>
-        <td><img src="/images/DB_stackedbar.jpg" alt="Stacked bar charts"><figcaption>From <a href="https://www.loc.gov/pictures/search/?q=%22lot%2011931%22%20NOT%20medal&st=grid&co=anedub&loclr=blogpic" target="_blank">The Library of Congress.</figcaption></td>
+        <td><img src="/images/data-literacies/DB_stackedbar.jpg" alt="Stacked bar charts"><figcaption>From <a href="https://www.loc.gov/pictures/search/?q=%22lot%2011931%22%20NOT%20medal&st=grid&co=anedub&loclr=blogpic" target="_blank">The Library of Congress.</figcaption></td>
     </tr>
     <tr height="300px">
         <td>Nested area graphs</td>
         <td>Visualize branching/nested questions</td>
-        <td><img src="/images/evergreen_nestedarea.jpg" alt="Nested area graph"><figcaption>From <a href="https://stephanieevergreen.com/nested-area-graph/" target="_blank">Evergreen Data.</figcaption></td>
+        <td><img src="/images/data-literacies/evergreen_nestedarea.jpg" alt="Nested area graph"><figcaption>From <a href="https://stephanieevergreen.com/nested-area-graph/" target="_blank">Evergreen Data.</figcaption></td>
     </tr>
     <tr height="300px">
         <th rowspan="2">Place</th>
         <td>Choropleth maps</td>
         <td>Visualize values over a geographic area to demonstrate pattern</td>
-        <td><img src="/images/DB_choropleth.jpg" alt="Choropleth map"><figcaption>From <a href="https://www.loc.gov/pictures/search/?q=%22lot%2011931%22%20NOT%20medal&st=grid&co=anedub&loclr=blogpic" target="_blank">The Library of Congress.</figcaption></td>
+        <td><img src="/images/data-literacies/DB_choropleth.jpg" alt="Choropleth map"><figcaption>From <a href="https://www.loc.gov/pictures/search/?q=%22lot%2011931%22%20NOT%20medal&st=grid&co=anedub&loclr=blogpic" target="_blank">The Library of Congress.</figcaption></td>
     </tr>
     <tr height="300px">
         <td>Hex(bin) or Tile maps</td>
         <td>Similar to Choropleth with the hexbin/tile representing regions equally rather than by geographic size</td>
-        <td><img src="/images/rgraph_hexbin.png" alt="Hexbin graph"><figcaption>From <a href="https://www.r-graph-gallery.com/328-hexbin-map-of-the-usa.html" target="_blank">R Graph Gallery.</figcaption></td>
+        <td><img src="/images/data-literacies/rgraph_hexbin.png" alt="Hexbin graph"><figcaption>From <a href="https://www.r-graph-gallery.com/328-hexbin-map-of-the-usa.html" target="_blank">R Graph Gallery.</figcaption></td>
     </tr>
     <tr>
         <th colspan="4"> Adapted from <a href="https://us.sagepub.com/en-us/nam/effective-data-visualization/book265203_"> Stephanie D. Evergreen (2019) Effective data visualization : The right chart for the right data</a>, <a href="https://datavizcatalogue.com/">The Data Visualization Catalogue</a>, and <a href="https://www.data-to-viz.com/">From Data to Viz</a></th>
@@ -660,7 +660,7 @@ As we transform our results into visuals, we are also trying to tell a narrative
 3. Exaggerated differences through the choice of scales on the x and y-axis can misled a casual viewer to think that the data is representing a larger difference than it actually is reporting.
 4. Data visualization can help us convey dense information quickly. The casual viewer can glance at the visualization and understand what we are trying to communicate with our data. Data visualization also can be affective device, like the DuBois' examples which helps to tell the urgency of the narrative/story.
 5. The difficulty of representing this dataset is how at first glance there's an assumption that gender is binary given that only 2 bars are representing the dataset. Even though the other bar is labeled `Unknown` to suggest that this is not a comprehensive breakdown, I'm not sure how effective it is.
-![Plot of media objects in public domain by gender of artist](/images/genderPD.png)
+![Plot of media objects in public domain by gender of artist](/images/data-literacies/genderPD.png)
 
 # Data Literacy and Ethics
 
