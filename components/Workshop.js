@@ -41,16 +41,15 @@ export default function Workshop({ workshop }) {
                   className='card-media'
                   title={workshop.title}
                 >
-                  <Image
-                    src={workshop.cover_image}
-                    // height='inherit'
-                    // width='inherit'
-                    className='card-image'
-                    layout='fill'
-                    object-fit='cover'
-                    object-position='center'
-                  />
-
+                  <div className='frontpage-image-container' >
+                    <Image
+                      src={workshop.cover_image}
+                      className='card-image'
+                      layout='fill'
+                      object-fit='cover'
+                      object-position='center'
+                    />
+                  </div>
                 </CardMedia>
                 <h1 className='overlay'>{workshop.title}</h1>
                 <div className='workshop-info'>

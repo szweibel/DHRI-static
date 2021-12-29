@@ -95,8 +95,6 @@ export default function WorkshopPage({
   })
 
   const sidebar = Sidebar(getPageTitles, currentPage)
-
-
   useEffect(() => {
     setPages(htmlContent(content));
     setCurrentPage(1);

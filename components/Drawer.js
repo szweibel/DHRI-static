@@ -67,7 +67,7 @@ export default function TemporaryDrawer({ files, category, onClick, onClose, ope
               <div className='workshop-color' dangerouslySetInnerHTML={{ __html: renderColor(color1) }} />
             </div>
           }
-          <div className='card-content drawer-over'>
+          <div className='drawer-over'>
             <Typography gutterBottom variant="h5" component="h2" className='overlay drawer-overlay'>
               {file.title}
             </Typography>

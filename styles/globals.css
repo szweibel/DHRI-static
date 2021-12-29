@@ -246,6 +246,7 @@ header > .topBar{
   top: -100px;
 }
 .card{
+  min-height: 500px;
   background-color: var(--background-page)  !important;
   color: var(--foreground) !important;
 }
@@ -260,6 +261,17 @@ header > .topBar{
   object-fit: cover;
 }
 
+.frontpage-image-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.frontpage-image-container > span {
+      position: unset !important;
+      height: 50px;
+}
+
 .card:hover {
   box-shadow: 0 1rem 3rem rgba(0,0,0,0.5);
   transition: .5s ease;
@@ -268,6 +280,7 @@ header > .topBar{
   cursor: pointer;
   padding: 0;
   position: relative;
+  height:150px;
 }
 .card-content > h2{
   font-size: 1.5rem;
@@ -282,7 +295,6 @@ header > .topBar{
 
 .workshop-info{
   padding: 10px;
-  padding-top: 170px;
 }
 .workshop-info-other{
   padding: 10px;
@@ -509,6 +521,10 @@ footer {
 .funderImages > div > a > img {
   max-height: 100px;
   margin-top: 20px;
+}
+
+.funding-text{
+  color:#333
 }
 
 .workshopTest{
