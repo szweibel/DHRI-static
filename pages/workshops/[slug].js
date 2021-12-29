@@ -184,7 +184,9 @@ export async function getStaticProps() {
       )
       const itemPath = path.join(dir, filename).replace('.md', '')
 
-      const matterResult = matter(markdownWithMeta)
+      // replace '+' with '&#43;' 
+      const replaced = markdownWithMeta.replace(/\+/g, String.fromCharCode(65291))
+      const matterResult = matter(replaced)
       const content = matterResult.content
       return {
         slug,

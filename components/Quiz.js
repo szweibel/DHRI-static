@@ -38,7 +38,8 @@ export default function Quiz({ className, children }) {
     // if at least one item is correct, it's a quiz
     const isQuiz = lis.some(li => li.correct);
     if (!isQuiz) {
-        return children;
+        
+        return (<ul>{children}</ul>);
     }
     return (
        <div>

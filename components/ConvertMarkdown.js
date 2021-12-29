@@ -44,9 +44,6 @@ const Code = ({ className, children }) => {
 }
 
 const Imager = ({ className, ...props }) => {
-
-    // https://dev.to/felixhaeberle/responsive-fix-for-the-next-js-image-component-1351 for a fix?
-
     const newProps = { ...props };
     const imageSource = newProps.src
     return (
@@ -62,14 +59,13 @@ const Imager = ({ className, ...props }) => {
             </div>
         </Zoom>
         </div>
-        // <img className={className} src={imageSource} alt={newProps.alt} />
     );
 }
 
-
 export default function ConvertMarkdown(markdown) {
     return (
-        compiler(markdown, {
+        compiler(markdown, 
+             {
             overrides: {
                 pre: {
                     component: Code,
@@ -88,7 +84,7 @@ export default function ConvertMarkdown(markdown) {
                     props: {
                         className: 'image',
                     }
-                }
+                },
             }
         })
     );

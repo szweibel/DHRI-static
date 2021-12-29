@@ -5,10 +5,10 @@ import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
-import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../utils/theme';
 import BackToTop from '../components/ScrollTop'
 import dynamic from 'next/dynamic'
+import { ThemeProvider } from 'next-themes';
 const Footer = dynamic(() => import('../components/Footer'))
 
 function MyApp({ Component, pageProps }) {
@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
         <title>DHRI Curriculum</title>
       </Head>
       <CssBaseline />
-      <ThemeProvider theme={theme}>
+      <ThemeProvider>
         <Header props={pageProps} />
         <main className='container'>
           <Component {...pageProps} />
