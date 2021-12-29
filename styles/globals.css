@@ -64,7 +64,9 @@ kbd {
   padding: 2px 4px;
   white-space: nowrap;
  }
-
+strong{
+  color: var(--foreground);
+}
 
 
 main.container{
@@ -346,6 +348,10 @@ header > .topBar{
       position: unset !important;
       min-width: 50%;
 }
+.markdown-image-container span{
+  position: relative !important;
+  max-width: 80%;
+}
 .markdown-image {
       object-fit: contain;
       width: 100% !important;
@@ -392,8 +398,6 @@ header > .topBar{
   max-width: 100%;
 }
 
-.workshop-container tr{
-}
 .workshop-container table{
   table-layout: fixed;
 }
@@ -477,9 +481,12 @@ nav.sidenav > ul > li > ul > li > a:hover {
 .pagination > nav > ul{
   margin: 0;
 }
-
+.MuiPaginationItem-ellipsis{
+  color: var(--foreground) !important;
+} 
 .Mui-selected{
-  background-color: lightgrey !important;
+  background-color: var(--foreground) !important;
+  color: var(--background-page) !important;
 }
 
 footer {

@@ -54,7 +54,8 @@ const Imager = ({ className, ...props }) => {
                     className='markdown-image'
                     src={imageSource}
                     alt={newProps.alt}
-                    layout="fill"
+                    layout='fill'
+                    objectFit='cover'
                 />
             </div>
         </Zoom>
