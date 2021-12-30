@@ -1,16 +1,14 @@
 import ReactDOMServer from 'react-dom/server';
-import { useState } from 'react';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
+import { useState, useEffect } from 'react';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
+import Checkbox from '@mui/material/Checkbox';
+import { Button } from '@mui/material';
 import parse from 'html-react-parser';
 
 // evaluate quiz questions
 export default function Quiz({ className, children }) {
-    // useState 
-    const [isCorrect, setIsCorrect] = useState(false);
 
     // list of lis in children 
     const lis = children.map((child, index) => {
@@ -35,29 +33,55 @@ export default function Quiz({ className, children }) {
             li: parse(li)
         }
     })
+
+
+
+   
+    const onSubmit = (e) => {
+        e.preventDefault();
+        // which checkboxes are checked 
+        const checked = Array.from(e.target.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.value);
+        // check if correct
+        const correct = checked.every(answer => lis[answer].correct);
+        console.log(checked, correct);
+
+      };
+
     // if at least one item is correct, it's a quiz
     const isQuiz = lis.some(li => li.correct);
     if (!isQuiz) {
-        
         return (<ul>{children}</ul>);
     }
     return (
        <div>
+            <form
+                onSubmit={onSubmit}
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                  }}
+    >
        <FormControl component="fieldset">
             <FormLabel component="legend">Quiz</FormLabel>
-            <RadioGroup aria-label="quiz" name="quiz">
                 {lis.map(li => (
                     <FormControlLabel
                         key={li.index}
                         value={li.index}
-                        control={<Radio />}
+                        control={<Checkbox />}
                         label={li.li}
-                        onChange={() => setIsCorrect(li.correct)}
+
                     />
+                        
                 ))}
-            </RadioGroup>
         </FormControl>
-        {isCorrect && <p>Correct!</p>}
+        <Button type="submit" variant="contained" color="primary" className='quizButton'
+       >
+            Submit
+        </Button>
+        </form>
+
+        {/* {isCorrect && <p>Correct!</p>} */}
         </div>
     );
 }

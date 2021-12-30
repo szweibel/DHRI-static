@@ -1,5 +1,7 @@
 const withYAML = require('next-yaml')
 const withPlugins = require('next-compose-plugins')
+const optimizedImages = require('next-optimized-images');
+
 const withMDX = require('@next/mdx')({
     extension: /\.(md|mdx)$/,
 })
@@ -10,17 +12,21 @@ process.env.NEXT_PUBLIC_GITHUB_ACTIONS = process.env.GITHUB_ACTIONS
 const isGitHub = process.env.GITHUB_ACTIONS === "true";
 console.log(`Running in ${isGitHub ? "GitHub Actions" : "local"} mode`);
 
-const imagesConfig = function(build, isGitHub) {
+const imagesConfig = function (build, isGitHub) {
     if (isGitHub) {
         return {
-            loader: 'imgix',
             path: '/' + repoName + '/',
+            disableStaticImages: true,
         }
-    } 
+    }
     else if (build) {
         return {
-            loader: 'imgix',
             path: '/',
+            disableStaticImages: true,
+        }
+    } else {
+        return {
+            disableStaticImages: true,
         }
     }
 }
@@ -32,8 +38,13 @@ const nextConfig = {
     assetPrefix: isGitHub ? '/' + repoName + '/' : '',
     images: imagesConfig(build, isGitHub),
 }
+
 module.exports = withPlugins([
     [withMDX],
     [withYAML],
+    [optimizedImages,
+        {
+        },
+    ],
 ],
     nextConfig)
