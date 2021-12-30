@@ -3,6 +3,7 @@ const withPlugins = require('next-compose-plugins')
 const withMDX = require('@next/mdx')({
     extension: /\.(md|mdx)$/,
 })
+
 const repoName = 'DHRI-static'
 const build = process.env.NODE_ENV === "production";
 console.log(`Running in ${process.env.NODE_ENV} mode`);
@@ -32,6 +33,7 @@ const nextConfig = {
     assetPrefix: isGitHub ? '/' + repoName + '/' : '',
     images: imagesConfig(build, isGitHub),
 }
+
 console.log(nextConfig);
 module.exports = withPlugins([
     [withMDX],

@@ -71,8 +71,6 @@ main.container > div{
   margin-bottom: 30px;
 }
 
-
-
 .headerLink{
   width:fit-content;
   cursor: pointer;
@@ -97,7 +95,7 @@ header {
 }
 
 header a {
-  color: #fff;
+  color: white;
 }
 
 .subtitle{
@@ -447,7 +445,6 @@ margin-left: 10px;
   z-index: 1 !important;
   background-color: var(--background-page) !important;
 }
-
 
 nav.sidenav {
   max-width: 325px;
