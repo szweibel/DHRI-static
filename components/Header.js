@@ -15,13 +15,11 @@ import Image from 'next/image'
 import logo from '../public/images/logo.png';
 import ButtonAppBarCollapse from "./ButtonAppBarCollapse";
 import { useTheme } from 'next-themes'
-import FormControlLabel from '@mui/material/FormControlLabel';
-
-
 import Switch from '@mui/material/Switch';
 
 
-const MaterialUISwitch = styled(Switch)(({ theme }) => ({
+const MaterialUISwitch = styled(Switch)(({ theme }) => (
+    {
     width: 62,
     height: 34,
     padding: 7,

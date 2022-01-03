@@ -10,6 +10,9 @@ import parse from 'html-react-parser';
 // evaluate quiz questions
 export default function Quiz({ className, children }) {
 
+    const [disabled, setDisabled] = useState(false);
+    const [correct, setCorrect] = useState(0);
+
     // list of lis in children 
     const lis = children.map((child, index) => {
         const flattened = ReactDOMServer.renderToString(child);
@@ -35,8 +38,6 @@ export default function Quiz({ className, children }) {
     })
     
     const componentUniqueId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    const [disabled, setDisabled] = useState(false);
-    const [correct, setCorrect] = useState(0);
 
     const onSubmit = (e) => {
         e.preventDefault();
