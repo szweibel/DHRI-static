@@ -96,6 +96,7 @@ export default function Header({ props }) {
     const drawerWidth = 240;
 
     const themeToggle = (e) => {
+        console.log(e.target.checked)
         if (e.target.checked === true) {
             setTheme('dark')
         }

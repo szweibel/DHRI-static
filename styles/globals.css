@@ -103,6 +103,7 @@ header a {
 }
 .secondHeader{
   background-color: var(--background-page);
+  margin-bottom: 20px;
 }
 .title{
   color: var(--foreground);
@@ -369,6 +370,9 @@ header > .topBar{
 }
 .frontpage> h1{
   font-size: 3rem;
+}
+.excerpt{
+  margin-bottom: 20px;
 }
 .dependency li.required{
   border-left: 0.5rem solid #e74c3c50;

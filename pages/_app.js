@@ -20,12 +20,12 @@ function MyApp({ Component, pageProps }) {
         <title>DHRI Curriculum</title>
       </Head>
       <CssBaseline />
-      {/* <ThemeProvider> */}
+      <ThemeProvider>
         <Header props={pageProps} />
         <main className='container'>
           <Component {...pageProps} />
         </main>
-      {/* </ThemeProvider> */}
+      </ThemeProvider>
       <BackToTop />
       <Footer />
     </>
