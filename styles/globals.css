@@ -40,13 +40,17 @@ a {
   color: lightseagreen;
 }
 
-pre {
-  white-space: pre-wrap;       /* css-3 */
-  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;      /* Opera 4-6 */
-  white-space: -o-pre-wrap;    /* Opera 7 */
-  word-wrap: break-word;       /* Internet Explorer 5.5+ */
-}
+pre, code {
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  webkit-box-sizing:border-box;
+  white-space: pre-wrap;  
+  white-space: -moz-pre-wrap; 
+  white-space: -pre-wrap; 
+  white-space: -o-pre-wrap; 
+  word-wrap: break-word; 
+  width:100%; overflow-x:auto;
+ }
 kbd {
   background-color: #eee;
   border-radius: 3px;
@@ -418,6 +422,13 @@ header > .topBar{
 .WorkshopPage-nav-right{
 margin-left: 10px;
 }
+.quiz{
+  background-color: var(--background);
+  padding: 10px;
+}
+.quiz label{
+  padding: 10px;
+}
 .quizButton{
   margin-top: 20px !important;
 }
@@ -445,11 +456,9 @@ margin-left: 10px;
     display: none !important;
   }
 }
-.drawer-left > div{
-  z-index: 1 !important;
+.drawer-left :nth-child(3){
   background-color: var(--background-page) !important;
 }
-
 nav.sidenav {
   max-width: 325px;
   min-width: 300px;

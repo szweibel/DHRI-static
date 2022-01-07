@@ -78,7 +78,7 @@ export default function WorkshopPage({
 
   // set defaults 
   const [currentPage, setCurrentPage] = useState(1);
-  const [pages, setPages] = useState([]);
+  const [pages, setPages] = useState(htmlContent(content));
   const [currentContent, setCurrentContent] = useState([]);
   const [pageTitles, setPageTitles] = useState([]);
 
@@ -96,10 +96,15 @@ export default function WorkshopPage({
 
   const sidebar = Sidebar(getPageTitles, currentPage)
   useEffect(() => {
-    setPages(htmlContent(content));
     setCurrentPage(1);
     setCurrentContent(frontPageContent);
     setPageTitles(getPageTitles);
+    const urlParams = new URLSearchParams(window.location.search);
+    const page = urlParams.get('page');
+    if (page) {
+      setCurrentPage(page);
+      setCurrentContent(pages[page - 1]);
+    }
   }, [content]);
 
   const PaginationComponent = (currentPage) => {
@@ -107,7 +112,7 @@ export default function WorkshopPage({
       <Stack className='pagination'>
         <Pagination
           count={pages.length}
-          page={currentPage}
+          page={Number(currentPage)}
           onChange={handlePageChange}
           siblingCount={2}
           boundaryCount={2}
@@ -118,8 +123,11 @@ export default function WorkshopPage({
 
 
   const handlePageChange = (event, value) => {
-    setCurrentPage(value);
-    setCurrentContent(pages[value - 1]);
+    const valueAsNumber = Number(value);
+    console.log(valueAsNumber);
+    setCurrentPage(valueAsNumber);
+    setCurrentContent(pages[valueAsNumber - 1]);
+    router.push(`/workshops/${slug}/?page=${valueAsNumber}`)
     // scroll smoothly to top of page
     window.scrollTo({
       top: 0,
@@ -131,8 +139,10 @@ export default function WorkshopPage({
   return (
     <Container
       maxWidth="xl"
-      style={{ display: 'flex',
-    marginTop: '1rem', }}
+      style={{
+        display: 'flex',
+        marginTop: '1rem',
+      }}
     >
       <div className='sidebar'
         sx={{ display: { md: 'none' } }}
