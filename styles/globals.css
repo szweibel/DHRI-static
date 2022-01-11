@@ -39,7 +39,10 @@ a {
   text-decoration: none;
   color: lightseagreen;
 }
-
+.content pre{
+  padding: 0 !important;
+  margin-bottom: 1em;
+}
 pre, code {
   box-sizing:border-box;
   -moz-box-sizing:border-box;
@@ -458,6 +461,9 @@ margin-left: 10px;
 }
 .drawer-left :nth-child(3){
   background-color: var(--background-page) !important;
+}
+.drawer-left > div{
+  z-index: 1;
 }
 nav.sidenav {
   max-width: 325px;

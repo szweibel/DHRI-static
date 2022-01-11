@@ -124,7 +124,6 @@ export default function WorkshopPage({
 
   const handlePageChange = (event, value) => {
     const valueAsNumber = Number(value);
-    console.log(valueAsNumber);
     setCurrentPage(valueAsNumber);
     setCurrentContent(pages[valueAsNumber - 1]);
     router.push(`/workshops/${slug}/?page=${valueAsNumber}`)
