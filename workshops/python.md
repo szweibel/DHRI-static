@@ -28,6 +28,8 @@ cheat sheets:
     Digital Fellows’ Python Cheat Sheet: 
         excerpt: See the Digital Fellows’ Python Cheat Sheet for handy commands that we cover in this workshop.
         link: https://curriculum.dhinstitutes.org/shortcuts/workshop/python
+Authors:
+    - Filipa Calado
 Goals:
     - description: 'In this workshop, you will learn to:'
     - Become familiar with core programming concepts, including variables, loops, and conditionals.
