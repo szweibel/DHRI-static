@@ -28,7 +28,7 @@ cheat sheets:
     Digital Fellows’ Python Cheat Sheet: 
         excerpt: See the Digital Fellows’ Python Cheat Sheet for handy commands that we cover in this workshop.
         link: https://curriculum.dhinstitutes.org/shortcuts/workshop/python
-Authors:
+authors:
     - Filipa Calado
 Goals:
     - description: 'In this workshop, you will learn to:'
@@ -119,7 +119,7 @@ What are the characteristics of the REPL? Select all that apply.
 
 Do you remember the glossary terms from this section?
 
-- [REPL](https://github.com/DHRI-Curriculum/glossary/blob/v2.0/terms/repl.md)
+- [REPL](/terms/repl.md)
 
 # Types
 
