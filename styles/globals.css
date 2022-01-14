@@ -145,6 +145,12 @@ header {
     justify-content: space-evenly;
 }
 
+.terminal {
+  --size: 1.5;
+  --color: rgba(0, 128, 0, 0.99);
+  --background: white;
+  --animation: terminal-bar;
+}
 
 header a:hover{
   text-decoration: underline;
