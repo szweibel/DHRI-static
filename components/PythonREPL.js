@@ -100,13 +100,13 @@ export default function PythonREPL() {
     }, []);
     return (
         <div className="PythonREPL">
-            <Script src="https://cdn.jsdelivr.net/npm/jquery"/>
-            <Script src="https://cdn.jsdelivr.net/npm/jquery.terminal@2.27.1/js/jquery.terminal.min.js"/>
+            <Script src="https://cdn.jsdelivr.net/npm/jquery" strategy='beforeInteractive'/>
+            <Script src="https://cdn.jsdelivr.net/npm/jquery.terminal@2.27.1/js/jquery.terminal.min.js" strategy='beforeInteractive'/>
             <link href="https://cdn.jsdelivr.net/npm/jquery.terminal@2.27.1/css/jquery.terminal.css" rel="stylesheet"></link>
 
-            <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.js"/>
+            <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.js" strategy='beforeInteractive'/>
 
-            <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.asm.js"/>
+            <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.asm.js" strategy='beforeInteractive'/>
             <div className="terminal">
             </div>
         </div>
