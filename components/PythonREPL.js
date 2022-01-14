@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Script from 'next/script'
 
 export default function PythonREPL() {
 
@@ -99,16 +100,14 @@ export default function PythonREPL() {
     }, []);
     return (
         <div className="PythonREPL">
-            <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
-            <script src="https://cdn.jsdelivr.net/npm/jquery.terminal@2.27.1/js/jquery.terminal.min.js"></script>
+            <Script src="https://cdn.jsdelivr.net/npm/jquery"/>
+            <Script src="https://cdn.jsdelivr.net/npm/jquery.terminal@2.27.1/js/jquery.terminal.min.js"/>
             <link href="https://cdn.jsdelivr.net/npm/jquery.terminal@2.27.1/css/jquery.terminal.css" rel="stylesheet"></link>
 
-            <script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.js"></script>
+            <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.js"/>
 
-            <script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.asm.js"></script>
-            <div class="terminal">
-                <script>
-                </script>
+            <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.asm.js"/>
+            <div className="terminal">
             </div>
         </div>
     );
