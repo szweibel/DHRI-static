@@ -8,9 +8,10 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/theme-monokai";
 
-export default function CodeEditor() {
+export default function CodeEditor({ defaultCode = "# Write your code here"}) {
 
-  const [code, setCode] = useState("");
+  const originalCode = defaultCode;
+  const [code, setCode] = useState(defaultCode);
   const outputRef = useRef(null);
   const errorRef = useRef(null);
 
@@ -38,24 +39,17 @@ export default function CodeEditor() {
   }
 
 
-   function addToOutput(s) {
+  function addToOutput(s) {
     let output = outputRef.current;
     output.innerText += s + "\n";
     output.scrollTop = output.scrollHeight;
   }
- 
+
   function addToError(s) {
     let error = errorRef.current;
     error.innerText += s + '\n';
     error.scrollTop = error.scrollHeight;
   }
-
-
-  const originalCode = `print("Hello World")`;
-
-  useEffect(() => {
-    setCode(originalCode);
-  }, []);
 
   return (
     <div>
