@@ -1,5 +1,10 @@
 import PythonREPL from '../components/PythonREPL';
-import CodeEditor from '../components/CodeEditor.js';
+import dynamic from 'next/dynamic'
+
+const CodeEditor = dynamic(
+  () => import('../components/CodeEditor.js'),
+  { ssr: false }
+);
 export default function Test() {
 
     return (
@@ -22,7 +27,6 @@ export default function Test() {
                     __html: `
                     <h1>Code Editor</h1>
                     `
-
             }
         }
             >

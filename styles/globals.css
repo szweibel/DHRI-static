@@ -154,6 +154,15 @@ header {
   max-height: 300px;
 }
 
+.editorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
 header a:hover{
   text-decoration: underline;
   color:#23d5ab
