@@ -11,16 +11,11 @@ export default function CodeEditor() {
   }
 
 function addToOutput(s) {
-  console.log('s', s);
   const output = document.getElementById("output").innerHTML;
-  console.log('output', output);
   // console.log('s', s);
   if(output != "") {
-    console.log('why');
     document.getElementById("output").innerHTML = output + "<br>" + s;
   } else {
-    console.log('here');
-    console.log('s', s);
     document.getElementById("output").innerHTML = s;
   }
 }
