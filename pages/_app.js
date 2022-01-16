@@ -9,6 +9,7 @@ import { theme } from '../utils/theme';
 import BackToTop from '../components/ScrollTop'
 import dynamic from 'next/dynamic'
 import { ThemeProvider } from 'next-themes';
+import Script from 'next/script';
 const Footer = dynamic(() => import('../components/Footer'))
 
 function MyApp({ Component, pageProps }) {
@@ -17,8 +18,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        {/* <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" media="screen" /> */}
-        <title>DHRI Curriculum</title>
+       <title>DHRI Curriculum</title>
         {process.env.NEXT_PUBLIC_GITHUB_ACTIONS == false && <><link rel="icon" href={base + "/images/favicon.ico"} sizes="32x32"></link>
         <link rel="icon" href={base + "/images/favicon.ico"} sizes="192x192"></link>
         <link rel="apple-touch-icon" href={base + "/images/favicon.ico" }></link></>}
@@ -27,7 +27,9 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider>
         <Header props={pageProps} />
         <main className='container'>
+
           <Component {...pageProps} />
+
         </main>
       </ThemeProvider>
       <BackToTop />
