@@ -16,7 +16,7 @@ export default function Test() {
         }
             />
             <div>
-                {/* <PythonREPL /> */}
+                <PythonREPL />
             </div>
             <div
             dangerouslySetInnerHTML={
