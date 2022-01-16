@@ -6,6 +6,7 @@ export default function PyodideProvider({ children }) {
   const pyodide = useRef(null)
   const hasLoadPyodideBeenCalled = useRef(false)
   const [isPyodideLoading, setIsPyodideLoading] = useState(true)
+  const [isPyodideReady, setIsPyodideReady] = useState(false)
 
   return (
     <PyodideContext.Provider
@@ -13,7 +14,9 @@ export default function PyodideProvider({ children }) {
         pyodide,
         hasLoadPyodideBeenCalled,
         isPyodideLoading,
-        setIsPyodideLoading
+        setIsPyodideLoading,
+        isPyodideReady,
+        setIsPyodideReady,
       }}
     >
       {children}

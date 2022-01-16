@@ -1,6 +1,5 @@
 // import Editor from "@monaco-editor/react";
-import { useRef, useEffect, useState } from "react";
-
+import { useRef, useEffect, useState, useContext } from "react";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 const EditorComponent = dynamic(
@@ -9,10 +8,10 @@ const EditorComponent = dynamic(
 );
 import Button from '@mui/material/Button';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import { PyodideContext } from './PyodideProvider';
+
 
 export default function CodeEditorComponent({ defaultCode = "# Write your code here" }) {
-
-
   const originalCode = defaultCode;
   const [code, setCode] = useState(defaultCode);
   const [pyodideReady, setPyodideReady] = useState(false);
@@ -21,24 +20,28 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
   const outputRef = useRef(null);
   const errorRef = useRef(null);
 
+  const {
+    hasLoadPyodideBeenCalled,
+    isPyodideLoading,
+    setIsPyodideLoading,
+    isPyodideReady,
+    setIsPyodideReady,
+  } = useContext(PyodideContext)
+
+  useEffect(() => {
+    if (isPyodideReady) {
+      setIsPyodideLoading(false)
+    }
+  }, [hasLoadPyodideBeenCalled, setIsPyodideLoading, isPyodideReady])
 
   const onChange = (newValue) => {
     setCode(newValue);
   };
 
-
-
   const runPyodide = async (code) => {
     // clear output and error
     outputRef.current.innerHTML = "";
     errorRef.current.innerHTML = "";
-
-    try {
-      // await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.17.0/full/' })
-    } catch (error) {
-      console.log(error);
-    }
-
     pyodide.globals.set('print', (s) => {
       addToOutput(s);
     });
@@ -72,22 +75,20 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
 
   return (
     <div>
-      <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.js" id={'another'} />
+      {<><Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.js" id={'another'} />
       <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.asm.js" id={'test'} 
       onLoad={() => {
         async function load() {
           await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.17.0/full/' })
-          
         }
         load().then(() => {
-          setPyodideReady(true);
-          console.log("pyodide loaded");
+          setIsPyodideReady(true)
         })
       }}
-      />
+      /></>}
       <div className="editorContainer">
         <div className="buttonsContainer">
-          {pyodideReady && <Button
+          {!isPyodideLoading && <Button
             onClick={() => {
               showValue();
             }}

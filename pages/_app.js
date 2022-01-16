@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic'
 import { ThemeProvider } from 'next-themes';
 import Script from 'next/script';
 const Footer = dynamic(() => import('../components/Footer'))
+import PyodideProvider from '../components/PyodideProvider'
 
 function MyApp({ Component, pageProps }) {
   const base = '/' + process.env.NEXT_PUBLIC_REPO_NAME
@@ -27,9 +28,9 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider>
         <Header props={pageProps} />
         <main className='container'>
-
+        <PyodideProvider>
           <Component {...pageProps} />
-
+        </PyodideProvider>
         </main>
       </ThemeProvider>
       <BackToTop />
