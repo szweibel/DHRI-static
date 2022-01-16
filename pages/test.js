@@ -30,7 +30,7 @@ export default function Test() {
             </div>
             <div>
                 <CodeEditorComponent 
-                defaultCode='print("Hello mmmm")'
+                defaultCode='print("Hello world")'
                 />
             </div>
         </div>
