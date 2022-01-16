@@ -1,16 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useContext, useState } from "react";
 import Script from 'next/script'
+import { PyodideContext } from './PyodideProvider';
+import CircularProgress from '@mui/material/CircularProgress';
 
-export default function PythonREPL() {
+export default function PythonREPLComponent() {
 
-    useEffect(() => {
-
+        const {
+            hasLoadPyodideBeenCalled,
+            isPyodideLoading,
+            setIsPyodideLoading,
+            isPyodideReady,
+            setIsPyodideReady,
+          } = useContext(PyodideContext)
 
         function sleep(s) {
             return new Promise(resolve => setTimeout(resolve, s));
         }
         async function main() {
-            await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.17.0/full/' });
             let namespace = pyodide.globals.get("dict")();
             pyodide.runPython(`
             import sys
@@ -43,6 +49,9 @@ export default function PythonREPL() {
                 let unlock = await lock();
                 try {
                     term.pause();
+                    pyodide.globals.set('print', (s) => {
+                        term.echo(s, { newline: true });               
+                    });
                     // multiline should be splitted (useful when pasting)
                     for (const c of command.split('\n')) {
                         let run_complete = pyconsole.run_complete;
@@ -96,18 +105,33 @@ export default function PythonREPL() {
                 term.pause();
             };
         }
-        window.console_ready = main();
-    }, []);
+        
+        useEffect(() => {
+            if (isPyodideReady) {
+                setIsPyodideLoading(false)
+                main();
+            }
+          }, [hasLoadPyodideBeenCalled, setIsPyodideLoading, isPyodideReady])
+
+        
     return (
         <div className="PythonREPL">
-            <Script src="https://cdn.jsdelivr.net/npm/jquery" strategy='beforeInteractive'/>
-            <Script src="https://cdn.jsdelivr.net/npm/jquery.terminal@2.27.1/js/jquery.terminal.min.js" strategy='beforeInteractive'/>
+            <Script src="https://cdn.jsdelivr.net/npm/jquery" />
+            <Script src="https://cdn.jsdelivr.net/npm/jquery.terminal@2.27.1/js/jquery.terminal.min.js" />
             <link href="https://cdn.jsdelivr.net/npm/jquery.terminal@2.27.1/css/jquery.terminal.css" rel="stylesheet"></link>
-
-            <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.js" strategy='beforeInteractive'/>
-
-            <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.asm.js" strategy='beforeInteractive'/>
+            <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.js" />
+            <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.asm.js" 
+            onLoad={() => {
+                async function load() {
+                  await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.17.0/full/' })
+                }
+                load().then(() => {
+                  setIsPyodideReady(true)
+                })
+              }}
+            />
             <div className="terminal">
+            {isPyodideLoading && <CircularProgress />}
             </div>
         </div>
     );

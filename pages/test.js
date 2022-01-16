@@ -1,6 +1,4 @@
-import PythonREPL from '../components/PythonREPL';
-
-
+import PythonREPLComponent from '../components/PythonREPLComponent';
 import CodeEditorComponent from '../components/CodeEditorComponent';
 export default function Test() {
 
@@ -16,7 +14,7 @@ export default function Test() {
         }
             />
             <div>
-                <PythonREPL />
+                <PythonREPLComponent />
             </div>
             <div
             dangerouslySetInnerHTML={

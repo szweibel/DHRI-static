@@ -8,6 +8,7 @@ import Zoom from 'react-medium-image-zoom'
 import Script from 'next/script';
 import 'react-medium-image-zoom/dist/styles.css'
 import CodeEditorComponent from './CodeEditorComponent';
+import PythonREPLComponent from './PythonREPLComponent';
 
 const Code = ({ className, children }) => {
     const [isShown, setIsShown] = useState(false);
@@ -73,6 +74,15 @@ const CodeEditor = ({ className, children }) => {
     )
 }
 
+const PythonREPL = ({ className, children }) => {
+    return (
+        <div>
+            <PythonREPLComponent />
+        </div>
+    )
+}
+
+
 export default function ConvertMarkdown(markdown) {
     return (
         compiler(markdown,
@@ -97,6 +107,7 @@ export default function ConvertMarkdown(markdown) {
                         }
                     },
                     CodeEditor,
+                    PythonREPL,
                 }
 
             })

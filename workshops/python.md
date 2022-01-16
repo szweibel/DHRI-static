@@ -150,9 +150,7 @@ Enter these lines as you see them below:
 >>> type([1, 2, 3])
 <class 'list'>
 ```
-<CodeEditor>
-1888
-</CodeEditor>
+
 Each of the responses show how the different types of data registers as different "types" for Python:
 
 **Integers** (like `1` above) are whole numbers.
@@ -166,6 +164,8 @@ Each of the responses show how the different types of data registers as differen
 **Lists**: (like `[1, 2, 3]` above) are ordered collections of values. You can put any of the other types in a list: `["hello", "goodbye", "see ya later"]` is also a valid list.
 
 Don't worry about trying to actively remember these types. We'll be working with each in turn in the following sections.
+
+<PythonREPL/>
 
 ## What's the deal with type()?
 

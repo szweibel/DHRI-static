@@ -9,6 +9,7 @@ const EditorComponent = dynamic(
 import Button from '@mui/material/Button';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import { PyodideContext } from './PyodideProvider';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 export default function CodeEditorComponent({ defaultCode = "# Write your code here" }) {
@@ -42,6 +43,7 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
     // clear output and error
     outputRef.current.innerHTML = "";
     errorRef.current.innerHTML = "";
+    // let namespace = pyodide.globals.get("IDE")();
     pyodide.globals.set('print', (s) => {
       addToOutput(s);
     });
@@ -111,6 +113,12 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
               fontSize: "20px"
             }} />
             Run</Button>}
+          {isPyodideLoading && <CircularProgress
+          style={{
+            marginLeft: "10px",
+            marginTop: "10px"
+          }}
+          />}
           <Button
             variant="text"
             onClick={() => {
