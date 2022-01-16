@@ -42,6 +42,11 @@ Goals:
 
 # Interacting with Python
 
+<CodeEditor>
+print('Hello, world!')
+print("This is a string.")
+14
+</CodeEditor>
 Let's begin by starting an "interactive session" session with Python. This means we will be using Python in the terminal, which is a special space that allows us to run little bits of Python, experimenting and exploring what it can do, without having to save it. Think of this interactive space as a playground. Later on, we will be working with Python in a more robust way, doing what we call saving and executing Python scripts.
 
 For now, though, let's start an interactive session with Python, which is accessed through the terminal.
@@ -145,7 +150,9 @@ Enter these lines as you see them below:
 >>> type([1, 2, 3])
 <class 'list'>
 ```
-
+<CodeEditor>
+1888
+</CodeEditor>
 Each of the responses show how the different types of data registers as different "types" for Python:
 
 **Integers** (like `1` above) are whole numbers.

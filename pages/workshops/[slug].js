@@ -11,6 +11,9 @@ import Sidebar from '../../components/Sidebar'
 import Container from '@mui/material/Container';
 
 
+import CodeEditorComponent from '../../components/CodeEditorComponent';
+
+
 export default function WorkshopPage({
   workshops,
   guides,

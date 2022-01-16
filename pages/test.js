@@ -1,10 +1,7 @@
 import PythonREPL from '../components/PythonREPL';
-import dynamic from 'next/dynamic'
 
-const CodeEditor = dynamic(
-  () => import('../components/CodeEditor.js'),
-  { ssr: false }
-);
+
+import CodeEditorComponent from '../components/CodeEditorComponent';
 export default function Test() {
 
     return (
@@ -19,7 +16,7 @@ export default function Test() {
         }
             />
             <div>
-                <PythonREPL />
+                {/* <PythonREPL /> */}
             </div>
             <div
             dangerouslySetInnerHTML={
@@ -34,7 +31,9 @@ export default function Test() {
                
             </div>
             <div>
-                <CodeEditor />
+                <CodeEditorComponent 
+                defaultCode='print("Hello mmmm")'
+                />
             </div>
         </div>
     )

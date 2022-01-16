@@ -1,17 +1,23 @@
 // import Editor from "@monaco-editor/react";
 import { useRef, useEffect, useState } from "react";
+
 import Script from "next/script";
-import AceEditor from "react-ace";
+import dynamic from "next/dynamic";
+const EditorComponent = dynamic(
+  () => import("./EditorComponent"),
+  { ssr: false }
+);
 import Button from '@mui/material/Button';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
-import "ace-builds/src-noconflict/mode-python";
-import "ace-builds/src-noconflict/theme-monokai";
+export default function CodeEditorComponent({ defaultCode = "# Write your code here" }) {
 
-export default function CodeEditor({ defaultCode = "# Write your code here"}) {
 
   const originalCode = defaultCode;
   const [code, setCode] = useState(defaultCode);
+  const [pyodideReady, setPyodideReady] = useState(false);
+  const [pyodideLoaded, setPyodideLoaded] = useState(false);
+  const [pyodideObject, setPyodideObject] = useState(null);
   const outputRef = useRef(null);
   const errorRef = useRef(null);
 
@@ -21,21 +27,34 @@ export default function CodeEditor({ defaultCode = "# Write your code here"}) {
   };
 
 
-  function showValue() {
+
+  const runPyodide = async (code) => {
     // clear output and error
     outputRef.current.innerHTML = "";
     errorRef.current.innerHTML = "";
+
+    try {
+      // await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.17.0/full/' })
+    } catch (error) {
+      console.log(error);
+    }
+
     pyodide.globals.set('print', (s) => {
       addToOutput(s);
     });
     pyodide.globals.set('input', (s) => {
       prompt(s);
     });
-    pyodide.runPythonAsync(code).then(result => {
+    return await pyodide.runPythonAsync(code).then(result => {
       addToOutput(result);
     }).catch((err) => {
       addToError(err);
     });
+
+  };
+
+  function showValue() {
+    runPyodide(code);
   }
 
 
@@ -53,11 +72,22 @@ export default function CodeEditor({ defaultCode = "# Write your code here"}) {
 
   return (
     <div>
-      <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.js" strategy='beforeInteractive' />
-      <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.asm.js" strategy='beforeInteractive' />
+      <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.js" id={'another'} />
+      <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.asm.js" id={'test'} 
+      onLoad={() => {
+        async function load() {
+          await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.17.0/full/' })
+          
+        }
+        load().then(() => {
+          setPyodideReady(true);
+          console.log("pyodide loaded");
+        })
+      }}
+      />
       <div className="editorContainer">
         <div className="buttonsContainer">
-          <Button
+          {pyodideReady && <Button
             onClick={() => {
               showValue();
             }}
@@ -79,7 +109,7 @@ export default function CodeEditor({ defaultCode = "# Write your code here"}) {
               marginRight: "10px",
               fontSize: "20px"
             }} />
-            Run</Button>
+            Run</Button>}
           <Button
             variant="text"
             onClick={() => {
@@ -98,26 +128,7 @@ export default function CodeEditor({ defaultCode = "# Write your code here"}) {
             Revert Code
           </Button>
         </div>
-        <AceEditor
-          mode="python"
-          theme="monokai"
-          onChange={onChange}
-          name="UNIQUE_ID_OF_DIV"
-          editorProps={{ $blockScrolling: true }}
-          value={code}
-          fontSize={22}
-          width="100%"
-          showPrintMargin={false}
-          showGutter={true}
-          highlightActiveLine={true}
-          setOptions={{
-            enableBasicAutocompletion: true,
-            enableLiveAutocompletion: true,
-            enableSnippets: false,
-            showLineNumbers: true,
-            tabSize: 2,
-          }}
-        />
+        <EditorComponent code={code} onChange={onChange} />
       </div>
       <div id='output'
         ref={outputRef}

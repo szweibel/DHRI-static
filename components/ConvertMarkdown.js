@@ -5,7 +5,9 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-dark.css'
 import Image from 'next/image'
 import Zoom from 'react-medium-image-zoom'
+import Script from 'next/script';
 import 'react-medium-image-zoom/dist/styles.css'
+import CodeEditorComponent from './CodeEditorComponent';
 
 const Code = ({ className, children }) => {
     const [isShown, setIsShown] = useState(false);
@@ -34,7 +36,6 @@ const Code = ({ className, children }) => {
         );
     }
     else {
-        // const highlighted = hljs.highlightAuto(html).value
         return (
             <pre className={className}>
                 <code className={className} dangerouslySetInnerHTML={{ __html: html }}></code>
@@ -48,45 +49,57 @@ const Imager = ({ className, ...props }) => {
     const imageSource = newProps.src
     return (
         <div className="image-container">
-        <Zoom>
-            <div className='markdown-image-container' >
-                <Image
-                    className='markdown-image'
-                    src={imageSource}
-                    alt={newProps.alt}
-                    layout='fill'
-                    objectFit='cover'
-                />
-            </div>
-        </Zoom>
+            <Zoom>
+                <div className='markdown-image-container' >
+                    <Image
+                        className='markdown-image'
+                        src={imageSource}
+                        alt={newProps.alt}
+                        layout='fill'
+                        objectFit='cover'
+                    />
+                </div>
+            </Zoom>
         </div>
     );
 }
 
+const CodeEditor = ({ className, children }) => {
+    const codeText = children.join('');
+    return (
+        <div>
+            <CodeEditorComponent defaultCode={codeText} />
+        </div>
+    )
+}
+
 export default function ConvertMarkdown(markdown) {
     return (
-        compiler(markdown, 
-             {
-            overrides: {
-                pre: {
-                    component: Code,
-                    props: {
-                        className: 'hljs'
-                    }
-                },
-                ul: {
-                    component: Quiz,
-                    props: {
-                        className: 'list-group'
-                    }
-                },
-                img: {
-                    component: Imager,
-                    props: {
-                        className: 'image',
-                    }
-                },
-            }
-        })
+        compiler(markdown,
+            {
+                overrides: {
+                    pre: {
+                        component: Code,
+                        props: {
+                            className: 'hljs'
+                        }
+                    },
+                    ul: {
+                        component: Quiz,
+                        props: {
+                            className: 'list-group'
+                        }
+                    },
+                    img: {
+                        component: Imager,
+                        props: {
+                            className: 'image',
+                        }
+                    },
+                    CodeEditor,
+                }
+
+            })
+
     );
 }
