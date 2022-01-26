@@ -50,6 +50,7 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
     pyodide.globals.set('input', (s) => {
       prompt(s);
     });
+    await pyodide.loadPackagesFromImports(code);
     return await pyodide.runPythonAsync(code).then(result => {
       addToOutput(result);
     }).catch((err) => {
@@ -77,12 +78,12 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
 
   return (
     <div>
-      {<><Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.js" id={'another'} />
-      <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.asm.js" id={'test'} 
+      {<><Script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js"  />
+      <Script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.asm.js" 
       onLoad={() => {
         if (!isPyodideReady) {
         async function load() {
-          await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.17.0/full/' })
+          globalThis.pyodide = await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.19.0/full/' })
         }
         load().then(() => {
           setIsPyodideReady(true)
