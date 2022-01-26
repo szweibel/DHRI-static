@@ -10,10 +10,6 @@ import FrontPage from '../../components/FrontPage'
 import Sidebar from '../../components/Sidebar'
 import Container from '@mui/material/Container';
 
-
-import CodeEditorComponent from '../../components/CodeEditorComponent';
-
-
 export default function WorkshopPage({
   workshops,
   guides,
@@ -126,16 +122,15 @@ export default function WorkshopPage({
 
 
   const handlePageChange = (event, value) => {
-    const valueAsNumber = Number(value);
-    setCurrentPage(valueAsNumber);
-    setCurrentContent(pages[valueAsNumber - 1]);
-    router.push(`/workshops/${slug}/?page=${valueAsNumber}`)
     // scroll smoothly to top of page
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
-
+    const valueAsNumber = Number(value);
+    router.push(`/workshops/${slug}/?page=${valueAsNumber}`, undefined, { shallow: true, scroll: false });
+    setCurrentPage(valueAsNumber);
+    setCurrentContent(pages[valueAsNumber - 1]);
   }
 
   return (
