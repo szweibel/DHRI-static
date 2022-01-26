@@ -2,6 +2,9 @@ import { useEffect, useContext, useState } from "react";
 import Script from 'next/script'
 import { PyodideContext } from './PyodideProvider';
 import CircularProgress from '@mui/material/CircularProgress';
+import * as $ from 'jquery';
+// import * as terminal from 'jquery.terminal';
+require('jquery.terminal');
 
 export default function PythonREPLComponent() {
 
@@ -107,6 +110,7 @@ export default function PythonREPLComponent() {
         }
         
         useEffect(() => {
+            window.jQuery = $;
             if (isPyodideReady) {
                 setIsPyodideLoading(false)
                 main();
@@ -116,18 +120,20 @@ export default function PythonREPLComponent() {
         
     return (
         <div className="PythonREPL">
-            <Script src="https://cdn.jsdelivr.net/npm/jquery" />
-            <Script src="https://cdn.jsdelivr.net/npm/jquery.terminal@2.27.1/js/jquery.terminal.min.js" />
+            {/* <Script src="https://cdn.jsdelivr.net/npm/jquery" />
+            <Script src="https://cdn.jsdelivr.net/npm/jquery.terminal@2.27.1/js/jquery.terminal.min.js" /> */}
             <link href="https://cdn.jsdelivr.net/npm/jquery.terminal@2.27.1/css/jquery.terminal.css" rel="stylesheet"></link>
             <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.js" />
             <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.asm.js" 
             onLoad={() => {
+                if (!isPyodideReady){
                 async function load() {
                   await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.17.0/full/' })
                 }
                 load().then(() => {
                   setIsPyodideReady(true)
                 })
+                }
               }}
             />
             <div className="terminal">

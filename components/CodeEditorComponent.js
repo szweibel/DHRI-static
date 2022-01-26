@@ -80,12 +80,15 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
       {<><Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.js" id={'another'} />
       <Script src="https://cdn.jsdelivr.net/pyodide/v0.17.0/full/pyodide.asm.js" id={'test'} 
       onLoad={() => {
+        if (!isPyodideReady) {
         async function load() {
           await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.17.0/full/' })
         }
         load().then(() => {
           setIsPyodideReady(true)
+          setPyodideLoaded(true);
         })
+      } 
       }}
       /></>}
       <div className="editorContainer">
