@@ -3,7 +3,6 @@ import Script from 'next/script'
 import { PyodideContext } from './PyodideProvider';
 import CircularProgress from '@mui/material/CircularProgress';
 import * as $ from 'jquery';
-// import * as terminal from 'jquery.terminal';
 require('jquery.terminal');
 
 export default function PythonREPLComponent() {
@@ -169,7 +168,6 @@ export default function PythonREPLComponent() {
                     globalThis.pyodide = await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.19.0/full/' })
                 }
                 load().then(() => {
-                    console.log("Pyodide loaded");
                     console.log("Pyodide version: " + pyodide.version);
                   setIsPyodideReady(true)
                 })

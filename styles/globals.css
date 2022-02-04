@@ -28,11 +28,11 @@
 }
 
 body {
-  font-family: 'Lato', sans-serif !important;
+  font-family: 'Lato', sans-serif;
   font-size: 19px;
-  background-color: var(--background) !important;
+  background-color: var(--background);
   position: relative;
-  color: var(--foreground) !important;
+  color: var(--foreground);
 }
 
 a {
@@ -68,6 +68,24 @@ kbd {
  }
 strong{
   color: var(--foreground);
+}
+
+.reveal{
+  position: absolute !important;
+}
+.reveal img{
+  max-width: 50% !important; 
+}
+.masonry {
+ /* display: flex;
+ flex-direction: column;
+  flex-wrap: wrap; */
+  height: 100vh;
+}
+.masonry-brick{
+  /* width: calc(50% - 1em); */
+
+  /* max-height: 2em; a x number of line to show (ex : 2 line)  */
 }
 
 
