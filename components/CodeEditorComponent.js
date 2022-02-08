@@ -1,5 +1,6 @@
 // import Editor from "@monaco-editor/react";
 import { useRef, useEffect, useState, useContext } from "react";
+import AddIcon from '@mui/icons-material/Add';
 import Script from "next/script";
 import dynamic from "next/dynamic";
 const EditorComponent = dynamic(
@@ -13,7 +14,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 
 export default function CodeEditorComponent({ defaultCode = "# Write your code here" }) {
-  const originalCode = defaultCode;
   const [code, setCode] = useState(defaultCode);
   const [pyodideReady, setPyodideReady] = useState(false);
   const [pyodideLoaded, setPyodideLoaded] = useState(false);
@@ -76,6 +76,7 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
     error.scrollTop = error.scrollHeight;
   }
 
+
   return (
     <div>
       {<><Script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js"  />
@@ -126,7 +127,7 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
           <Button
             variant="text"
             onClick={() => {
-              setCode(originalCode);
+              setCode(defaultCode);
             }}
             style={{
               color: "#32c259",

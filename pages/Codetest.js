@@ -1,5 +1,9 @@
 import PythonREPLComponent from '../components/PythonREPLComponent';
 import CodeEditorComponent from '../components/CodeEditorComponent';
+import UploadtoStorage from '../components/UploadtoStorage';
+import FileList from '../components/FileList';
+import EditorWithTabs from '../components/EditorWithTabs';
+
 export default function Test() {
 
     return (
@@ -14,7 +18,7 @@ export default function Test() {
         }
             />
             <div>
-                <PythonREPLComponent />
+                {/* <PythonREPLComponent /> */}
             </div>
             <div
             dangerouslySetInnerHTML={
@@ -29,10 +33,12 @@ export default function Test() {
                
             </div>
             <div>
-                <CodeEditorComponent 
+                {/* <CodeEditorComponent 
                 defaultCode='print("Hello world")'
-                />
+                /> */}
+                <EditorWithTabs />
             </div>
+            {/* <FileList /> */}
         </div>
     )
 
