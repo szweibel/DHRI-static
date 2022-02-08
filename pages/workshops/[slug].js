@@ -39,10 +39,11 @@ export default function WorkshopPage({
     const htmlifiedContent = ConvertMarkdown(content);
     // split react element array into pages
     const allPages = [];
-
+    
     const pages = htmlifiedContent.props.children.reduce((acc, curr) => {
-      // allPages = [[h1, p, p][h1, p, div]]
-      if (curr.type === 'h1') {
+      if (typeof curr === 'string') {
+        return acc;
+      }else if (curr.type === 'h1') {
         allPages.push([curr]);
       } else {
         allPages[allPages.length - 1].push(curr);
