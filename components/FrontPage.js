@@ -1,5 +1,6 @@
 
 import Masonry from '@mui/lab/Masonry';
+import ConvertMarkdown from './ConvertMarkdown'
 
 export default function FrontPage(currentFile, allFiles) {
   const excerpt = currentFile.excerpt
@@ -46,13 +47,15 @@ export default function FrontPage(currentFile, allFiles) {
         <ul>
           {dep.items.map(item => {
             const workshopObject = item.allItems[Object.keys(item.allItems)[0]]
+            // convert workshopObject.excerpt to html 
+            const workshopHtmlExcerpt = ConvertMarkdown(workshopObject.excerpt)
             const required = workshopObject.required
             const recommended = workshopObject.recommended
             const requiredOrRecommended = required ? 'required' : recommended ? 'recommended' : ''
             return (
               <li key={workshopObject} className={requiredOrRecommended}>
                 <a href={workshopObject.link}>{item.title}</a>
-                <p>{workshopObject.excerpt}</p>
+                <p>{workshopHtmlExcerpt}</p>
               </li>
             )
           })}
@@ -85,41 +88,46 @@ export default function FrontPage(currentFile, allFiles) {
               const item = obj.items[key]
               // if there's a description, show it
               if (key === 'description') {
+                const description = ConvertMarkdown(item)
                 return (
                   <li key={key}>
-                    <p>{item}</p>
+                    <p>{description}</p>
                   </li>
                 )
               }
               if (typeof item === 'string') {
+                const itemHtml = ConvertMarkdown(item)
                 return (
                   <li key={key} className='frontpage-list'>
-                    {item}
+                    {itemHtml}
                   </li>
                 )
               }
               if (typeof item === 'object') {
                 if (item.link) {
+                  const itemHtml = ConvertMarkdown(item.excerpt)
                   return (
                     <li key={key}>
                       <a href={item.link}>{key}</a>
-                      {<p>{item.excerpt}</p>}
+                      {<p>{itemHtml}</p>}
                     </li>
                   )
                 }
                 if (item.excerpt) {
+                  const itemHtml = ConvertMarkdown(item.excerpt)
                   return (
                     <li key={key}>
                       {key}
-                      <p>{item.excerpt}</p>
+                      <p>{itemHtml}</p>
                     </li>
                   )
                 }
                 return (
                   <div>
                     {Object.keys(item).map(key => {
+                      const term = ConvertMarkdown(item[key])
                       return (
-                        <p key={key} className='list-description'>{item[key]}</p>
+                        <p key={key} className='list-description'>{term}</p>
                       )})}
                   </div>
                 )

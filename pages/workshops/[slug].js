@@ -41,6 +41,7 @@ export default function WorkshopPage({
     const allPages = [];
     
     const pages = htmlifiedContent.props.children.reduce((acc, curr) => {
+      // allPages = [[h1, p, p][h1, p, div]]
       if (typeof curr === 'string') {
         return acc;
       }else if (curr.type === 'h1') {
