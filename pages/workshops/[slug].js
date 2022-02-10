@@ -9,6 +9,8 @@ import Stack from '@mui/material/Stack';
 import FrontPage from '../../components/FrontPage'
 import Sidebar from '../../components/Sidebar'
 import Container from '@mui/material/Container';
+import Presentation from '../../components/Presentation';
+
 
 export default function WorkshopPage({
   workshops,
@@ -21,9 +23,6 @@ export default function WorkshopPage({
   const currentFile = workshops.find((workshop) => workshop.slug === slug)
 
   const content = currentFile.content
-  const cover_image_location = currentFile.cover_image
-
-  const title = currentFile.title
 
   // get front page content
   const frontPageContent = FrontPage(
@@ -39,12 +38,12 @@ export default function WorkshopPage({
     const htmlifiedContent = ConvertMarkdown(content);
     // split react element array into pages
     const allPages = [];
-    
+
     const pages = htmlifiedContent.props.children.reduce((acc, curr) => {
       // allPages = [[h1, p, p][h1, p, div]]
       if (typeof curr === 'string') {
         return acc;
-      }else if (curr.type === 'h1') {
+      } else if (curr.type === 'h1') {
         allPages.push([curr]);
       } else {
         allPages[allPages.length - 1].push(curr);
@@ -149,6 +148,11 @@ export default function WorkshopPage({
         {sidebar}
       </div>
       <div className="content card-page">
+        <div className='presentation'>
+          <Presentation
+            content={content}
+          />
+        </div>
         <div className="workshop-container">
           <div>{PaginationComponent(currentPage)}</div>
           {currentContent}

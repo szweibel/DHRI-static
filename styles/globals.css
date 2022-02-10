@@ -70,9 +70,9 @@ strong{
   color: var(--foreground);
 }
 
-.reveal{
+/* .reveal{
   position: absolute !important;
-}
+} */
 .reveal img{
   max-width: 50% !important; 
 }

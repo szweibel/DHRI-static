@@ -128,7 +128,7 @@ export default function EditorWithTabs({ defaultCode = "# Write your code here" 
             <Tab
                 key={index}
                 label={name}
-                uniqueId={id}
+                uniqueid={id}
                 onClick={() => {
                     setCurrentTab(index);
                     setCode(tabCode);

@@ -3,6 +3,7 @@ import CodeEditorComponent from '../components/CodeEditorComponent';
 import UploadtoStorage from '../components/UploadtoStorage';
 import FileList from '../components/FileList';
 import EditorWithTabs from '../components/EditorWithTabs';
+import JSInterpreter from '../components/JSInterpreter';
 
 export default function Test() {
 
@@ -39,6 +40,9 @@ export default function Test() {
                 <EditorWithTabs />
             </div>
             {/* <FileList /> */}
+            <div>
+                <JSInterpreter />
+            </div>
         </div>
     )
 
