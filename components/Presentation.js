@@ -32,7 +32,9 @@ export default function Presentation(props) {
 
         const pages = htmlifiedContent.props.children.reduce((acc, curr) => {
             // allPages = [[h1, p, p][h1, p, div]]
-            if (curr.type === 'h1') {
+            if (typeof curr === 'string') {
+                return acc;
+              } else if (curr.type === 'h1') {
                 allPages.push([curr]);
             }
             else if (curr.type === 'h2') {
