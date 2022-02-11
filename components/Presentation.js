@@ -7,10 +7,13 @@ import SlideshowIcon from '@mui/icons-material/Slideshow';
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 
 export default function Presentation(props) {
-
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const content = props.content.content;
+    const title = props.content.title;
+    const authors = props.content.authors;
 
     useEffect(() => {
         // press escape to close modal 
@@ -22,7 +25,6 @@ export default function Presentation(props) {
         window.addEventListener('keydown', handleKeyDown);
     }, [handleClose]);
 
-    const content = props.content;
 
     // convert markdown to html and split into pages
     const htmlContent = function (content) {
@@ -34,7 +36,7 @@ export default function Presentation(props) {
             // allPages = [[h1, p, p][h1, p, div]]
             if (typeof curr === 'string') {
                 return acc;
-              } else if (curr.type === 'h1') {
+            } else if (curr.type === 'h1') {
                 allPages.push([curr]);
             }
             else if (curr.type === 'h2') {
@@ -57,8 +59,26 @@ export default function Presentation(props) {
         const Slide = Spectacle.Slide;
         const Heading = Spectacle.Heading;
         const CodePane = Spectacle.CodePane;
+
         return (
             <Deck>
+                <Slide>
+                    <Button
+                        onClick={handleClose}
+                        style={{
+                            position: 'absolute',
+                            width: '50px',
+                        }}
+                    >
+                        <CancelPresentationIcon />
+                    </Button>
+                    <Heading size={1}>
+                        {title}
+                    </Heading>
+                    <Heading size={3}>
+                        By {authors}
+                        </Heading>
+                </Slide>
                 {slideContent.map((page, index) => {
                     return (
                         <Slide key={index}>

@@ -21,7 +21,7 @@ export default function WorkshopPage({
   const router = useRouter()
   const { slug } = router.query
   const currentFile = workshops.find((workshop) => workshop.slug === slug)
-
+  const title = currentFile.title
   const content = currentFile.content
 
   // get front page content
@@ -150,7 +150,8 @@ export default function WorkshopPage({
       <div className="content card-page">
         <div className='presentation'>
           <Presentation
-            content={content}
+            content={currentFile}
+            title={title}
           />
         </div>
         <div className="workshop-container">
