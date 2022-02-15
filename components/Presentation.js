@@ -5,6 +5,7 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import SlideshowIcon from '@mui/icons-material/Slideshow';
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
+import * as jQuery from 'jquery';
 
 export default function Presentation(props) {
     const [open, setOpen] = React.useState(false);
@@ -16,6 +17,7 @@ export default function Presentation(props) {
     const authors = props.content.authors;
 
     useEffect(() => {
+        globalThis.jQuery = jQuery;
         // press escape to close modal 
         const handleKeyDown = (e) => {
             if (e.key === 'Escape') {
@@ -61,7 +63,13 @@ export default function Presentation(props) {
         const CodePane = Spectacle.CodePane;
 
         return (
-            <Deck>
+            <Deck
+            style={{
+                height:'100%',
+                width:'100%',
+                backgroundColor:'#fff',
+            }}
+            >
                 <Slide>
                     <Button
                         onClick={handleClose}
@@ -77,11 +85,12 @@ export default function Presentation(props) {
                     </Heading>
                     <Heading size={3}>
                         By {authors}
-                        </Heading>
+                    </Heading>
                 </Slide>
                 {slideContent.map((page, index) => {
                     return (
-                        <Slide key={index}>
+                        <Slide
+                            key={index}>
                             <Button
                                 onClick={handleClose}
                                 style={{
@@ -91,6 +100,12 @@ export default function Presentation(props) {
                             >
                                 <CancelPresentationIcon />
                             </Button>
+                            <div className="slides"
+                            style={{
+                                overflow: 'auto',
+                                height: '100%',
+                            }}
+                            >
                             {page.map((item, index) => {
                                 if (item.type === 'h1' || item.type === 'h2') {
                                     return (
@@ -117,12 +132,15 @@ export default function Presentation(props) {
                                 //                                 }
                                 else {
                                     return (
-                                        <div key={index}>
+                                        <div 
+
+                                        key={index}>
                                             {item}
                                         </div>
                                     )
                                 }
                             })}
+                            </div>
                         </Slide>
                     )
                 })}

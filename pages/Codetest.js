@@ -3,46 +3,55 @@ import CodeEditorComponent from '../components/CodeEditorComponent';
 import UploadtoStorage from '../components/UploadtoStorage';
 import FileList from '../components/FileList';
 import EditorWithTabs from '../components/EditorWithTabs';
-import JSInterpreter from '../components/JSInterpreter';
+import JSInterpreter from '../components/JSInterpreterComponent';
+import { height } from '@mui/system';
+import TerminalComponent from '../components/TerminalComponent';
+import HTMLEd from '../components/HTMLEd';
 
 export default function Test() {
-
+      
     return (
         <div>
             <div
-             dangerouslySetInnerHTML={
-                {
-                    __html: `
+                dangerouslySetInnerHTML={
+                    {
+                        __html: `
                     <h1>REPL</h1>
                     `
-            }
-        }
+                    }
+                }
             />
             <div>
                 {/* <PythonREPLComponent /> */}
             </div>
             <div
-            dangerouslySetInnerHTML={
-                {
-                    __html: `
+                dangerouslySetInnerHTML={
+                    {
+                        __html: `
                     <h1>Code Editor</h1>
                     `
-            }
-        }
+                    }
+                }
             >
 
-               
+
             </div>
             <div>
                 {/* <CodeEditorComponent 
                 defaultCode='print("Hello world")'
                 /> */}
-                <EditorWithTabs />
+                {/* <EditorWithTabs /> */}
             </div>
             {/* <FileList /> */}
             <div>
-                <JSInterpreter />
+                {/* <JSInterpreter /> */}
             </div>
+            <div>
+                {/* <TerminalComponent /> */}
+            </div>
+            <div>
+                <HTMLEd />
+                    </div>
         </div>
     )
 

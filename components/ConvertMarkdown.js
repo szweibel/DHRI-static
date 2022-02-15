@@ -5,10 +5,12 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-dark.css'
 import Image from 'next/image'
 import Zoom from 'react-medium-image-zoom'
-import Script from 'next/script';
+
 import 'react-medium-image-zoom/dist/styles.css'
 import CodeEditorComponent from './CodeEditorComponent';
 import PythonREPLComponent from './PythonREPLComponent';
+import JSInterpreterComponent from './JSInterpreterComponent';
+import TerminalComponent from './TerminalComponent';
 
 const Code = ({ className, children }) => {
     const [isShown, setIsShown] = useState(false);
@@ -82,6 +84,21 @@ const PythonREPL = ({ className, children }) => {
     )
 }
 
+const Terminal = ({ className, children }) => {
+    return (
+        <div>
+            <TerminalComponent />
+        </div>
+    )
+}
+
+const JSInterpreter = ({ className, children }) => {
+    return (
+        <div>
+            <JSInterpreterComponent />
+        </div>
+    )
+}
 
 export default function ConvertMarkdown(markdown) {
     return (
@@ -108,6 +125,8 @@ export default function ConvertMarkdown(markdown) {
                     },
                     CodeEditor,
                     PythonREPL,
+                    Terminal,
+                    JSInterpreter
                 }
 
             })
