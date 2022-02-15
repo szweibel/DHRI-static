@@ -6,7 +6,7 @@ import EditorWithTabs from '../components/EditorWithTabs';
 import JSInterpreter from '../components/JSInterpreterComponent';
 import { height } from '@mui/system';
 import TerminalComponent from '../components/TerminalComponent';
-import HTMLEd from '../components/HTMLEd';
+import HTMLEditor from '../components/HTMLEditor';
 
 export default function Test() {
       
@@ -50,7 +50,7 @@ export default function Test() {
                 {/* <TerminalComponent /> */}
             </div>
             <div>
-                <HTMLEd />
+                <HTMLEditor />
                     </div>
         </div>
     )

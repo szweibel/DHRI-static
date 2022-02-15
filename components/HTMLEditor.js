@@ -10,16 +10,15 @@ const Frame = dynamic(
     () => import('react-frame-component'),
     { ssr: false }
 );
+import { Resizable } from "re-resizable";
 import { FrameContextConsumer } from "react-frame-component";
-import Box from '@mui/material/Box';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
+import "allotment/dist/style.css";
+
 
 export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here -->" }) {
     const [code, setCode] = useState(defaultCode);
     const [css, setCss] = useState('/* Write CSS Here */');
-    const [javascript, setJavascript] = useState('');
+    const [javascript, setJavascript] = useState('// Write Javascript Here');
     const [output, setOutput] = useState([]);
     const [frameKey, setFrameKey] = useState(Math.random());
     const [frameReady, setFrameReady] = useState(false);
@@ -27,17 +26,39 @@ export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here --
     const [frameWindow, setFrameWindow] = useState(null);
     const [consoleOutput, setConsoleOutput] = useState([]);
 
+    // all this below can be wrapped into useAllotment hook or smth like that
+    const isMountedRef = useRef(false);
+    const [Allotment, setAllotment] = useState(null);
+    useEffect(() => {
+        isMountedRef.current = true;
+        import("allotment")
+            .then((mod) => {
+                if (!isMountedRef.current) {
+                    return;
+                }
+                setAllotment(mod.Allotment);
+            })
+            .catch((err) =>
+                console.error(err, `could not import allotment ${err.message}`)
+            );
+        return () => {
+            isMountedRef.current = false;
+        };
+    }, []);
+    if (!Allotment) {
+        return <div>loading...</div>;
+    }
+    // end of hook
+
     const doParsing = (code) => {
         const result = ReactHtmlParser(code);
         setOutput(result);
     };
 
-
-    const onChange = (newValue) => {
+    const onChangeHTML = (newValue) => {
         setCode(newValue);
         doParsing(newValue);
     };
-
 
     const outputComponent = (output) => {
         return (
@@ -68,17 +89,6 @@ export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here --
     const onChangeJavascript = (newValue) => {
         setJavascript(newValue);
         frameEval(newValue);
-
-        // if (doc.getElementById('script')) {
-        //     // remove it
-        //     doc.getElementById('script').remove();
-        // }
-        // var script = doc.createElement("script");
-        // // add the script tag to the document head
-        // doc.head.appendChild(script);
-        // script.id = 'script';
-        // // set the script contents
-        // script.innerHTML = newValue;
     };
 
     const iFrameStyle = <style>
@@ -87,11 +97,11 @@ export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here --
 
     const frameHead = [iFrameStyle];
 
-    const frameBody = () => {
+    const FramePane = () => {
         return (
             <div
                 style={{
-                    width: "50%",
+                    width: "100%",
                     height: "100%",
                 }}>
                 <Frame
@@ -131,154 +141,101 @@ export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here --
         )
     }
 
-    const frameConsole = () => {
+    const ConsolePane = () => {
         const info = consoleOutput;
         return (
+            <>
+            <p>Console</p>
             <div
                 style={{
-                    width: "50%",
+                    width: "100%",
                     height: "100%",
+                    background: "lightgray",
                 }}
                 dangerouslySetInnerHTML={{ __html: info }}
             >
             </div>
+            </>
         )
     }
 
-    const HtmlTab = () => {
+    const HtmlPane = () => {
         return (
-            <EditorComponent code={code} onChange={onChange} language={'html'} />)
+            <EditorComponent code={code} onChange={onChangeHTML} language={'html'} />)
     }
-    const CssTab = () => {
+    const CssPane = () => {
         return (<EditorComponent code={css} onChange={onChangeCss} language={'css'} />)
     }
-    const JavascriptTab = () => {
+    const JavascriptPane = () => {
         return (<EditorComponent code={javascript} onChange={onChangeJavascript} language={'javascript'} debounce={1000} />)
     }
 
-    const [tab, setTab] = useState(0);
-    const handleChange = (event, newValue) => {
-        setTab(newValue);
-    };
+    const panes = [HtmlPane, CssPane, JavascriptPane, FramePane, ConsolePane];
 
 
-    function TabPanel(props) {
-        const { children, value, index, ...other } = props;
-
-        return (
-            <div
-                role="tabpanel"
-                aria-labelledby={`html-editor-${index}`}
-            >
-                 {value === index && (
-                    <div
-                        style={{
-                            height: '500px',
-                        }}
-                    >
-                        {children}
-                    </div>
-                )} 
-            </div>
-        );
-    }
-
-
-    const tabStructure = () =>{
-        return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'row',
-                height: '100%',
-            }}
-        >
-            <div
-                style={{ width: '100%', }}>
-                <div style={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <Tabs value={tab} onChange={handleChange}>
-                        <Tab label="HTML" />
-                        <Tab label="CSS" />
-                        <Tab label="JavaScript" />
-                    </Tabs>
-                </div>
-                <TabPanel value={tab} index={0}>
-                    {HtmlTab()}
-                </TabPanel>
-                <TabPanel value={tab} index={1}>
-                    {CssTab()}
-                </TabPanel>
-                <TabPanel value={tab} index={2}>
-                    {JavascriptTab()}
-                </TabPanel>
-            </div>
-            <div sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <div
-                style={{
-                    width: '100%',}}
-                >
-                    frame
-                    {frameBody()}
-                </div>
-                <div style={{
-                    width: '100%',
-                    height: '100px',
-                    background: 'white',
-                    }}>
-                        console
-                    {frameConsole()}
-                </div>
-            </div>
-        </div>
-        )
-    }
-
-    return (
-        <div>
-            {tabStructure()}
-        </div>
-    )
-}
 
 //     return (
 //         <div>
-//             <div>
-//                 <div
-//                     style={{
-//                         display: "flex",
-//                         flexDirection: "row",
-//                         height: '50vh'
-//                     }}
-//                 >
-//                     <div
-//                         style={{
-//                             width: "50%",
-//                             height: "100%",
-//                         }}
-//                     >
-//                         <EditorComponent code={code} onChange={onChange} language={'html'} />
-//                     </div>
-//                     {frameBody()}
-//                 </div>
-//                 <div
-//                     style={{
-//                         display: "flex",
-//                         flexDirection: "row",
-//                         height: '50vh'
-//                     }}>
-//                     <EditorComponent code={css} onChange={onChangeCss} language={'css'} />
-//                 </div>
-//                 <div
-//                     style={{
-//                         display: "flex",
-//                         flexDirection: "row",
-//                         height: '50vh'
-//                     }}>
-//                     <EditorComponent code={javascript} onChange={onChangeJavascript} language={'javascript'} debounce={1000} />
-//                 </div>
-//                 {frameConsole()}
+//         <Resizable
+//             defaultSize={{
+//                 width: "50%",
+//                 height: "100%",
+//             }}
+//             minWidth={200}
+//             maxWidth={600}
+//             minHeight={200}
+//             maxHeight={600}
+//         >
+//             {HtmlPane()}
+//         </Resizable>
+//         <Resizable
+//             defaultSize={{
+//                 width: "50%",
+//                 height: "100%",
+//             }}
+//             minWidth={200}
+//             maxWidth={600}
+//             minHeight={200}
+//             maxHeight={600}
+//             >
+//             {CssPane()}
+//             </Resizable>
 //             </div>
-//         </div>
-//     );
+//     )
 // }
+
+    return (
+        <div style={{ height: '80vh', width: '50vw' }}>
+            <Allotment minSize={90} vertical >
+                <Allotment.Pane minSize={100}>
+                    <Allotment>
+                        <Allotment.Pane minSize={40}>
+                           {HtmlPane()}
+                        </Allotment.Pane>
+                        <Allotment.Pane>
+                            {CssPane()}
+                        </Allotment.Pane>
+                    </Allotment>
+                </Allotment.Pane>
+                <Allotment.Pane>
+                    <Allotment>
+                        <Allotment.Pane minSize={20}>
+                           {JavascriptPane()}
+                            </Allotment.Pane>
+                        <Allotment vertical>
+                        <Allotment.Pane>
+                            {FramePane()}
+                            </Allotment.Pane>
+                        <Allotment.Pane>
+                            {ConsolePane()}
+                            </Allotment.Pane>
+                            </Allotment>
+                    </Allotment>
+                </Allotment.Pane>
+            </Allotment>
+        </div>
+    );
+};
+
+
 

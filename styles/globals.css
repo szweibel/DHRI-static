@@ -180,6 +180,9 @@ header {
   height: 100%;
   background-color: black;
 }
+.CodeMirror-wrap pre {
+  word-break: break-word;
+}
 
 header a:hover{
   text-decoration: underline;
