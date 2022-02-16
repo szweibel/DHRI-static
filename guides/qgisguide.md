@@ -1,5 +1,5 @@
 ---
-title: 'Installing qgis'
+title: 'Installing QGIS'
 excerpt: 'QGIS!'
 cover_image: '/images/img4.jpg'
 ---
@@ -56,4 +56,4 @@ Download the latest version of QGIS from the [QGIS download page](https://qgis.o
 
 Follow the instructions provided by the installer you downloaded.  
 
-<!-- TODO: We might need more detailed installation instructions for Windows here? -->
+

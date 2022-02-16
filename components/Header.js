@@ -164,7 +164,9 @@ export default function Header({ props }) {
                             {propsAvailable ? <Drawer files={allGuides} category='guides' /> : null}
                         </li>
                         <li>
-                            Insights
+                        <li>
+                            {propsAvailable ? <Drawer files={allInsights} category='insights' /> : null}
+                        </li>
                         </li>
                         <li>
                             Resources
