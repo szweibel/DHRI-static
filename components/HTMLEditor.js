@@ -15,10 +15,11 @@ import { FrameContextConsumer } from "react-frame-component";
 import "allotment/dist/style.css";
 
 
-export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here -->" }) {
+export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here -->", defaultCSS="/* Write CSS Here */", 
+defaultJS='// Write Javascript Here' }) {
     const [code, setCode] = useState(defaultCode);
-    const [css, setCss] = useState('/* Write CSS Here */');
-    const [javascript, setJavascript] = useState('// Write Javascript Here');
+    const [css, setCss] = useState(defaultCSS);
+    const [javascript, setJavascript] = useState(defaultJS);
     const [output, setOutput] = useState([]);
     const [frameKey, setFrameKey] = useState(Math.random());
     const [frameReady, setFrameReady] = useState(false);
@@ -145,16 +146,16 @@ export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here --
         const info = consoleOutput;
         return (
             <>
-            <p>Console</p>
-            <div
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    background: "lightgray",
-                }}
-                dangerouslySetInnerHTML={{ __html: info }}
-            >
-            </div>
+                <p>Console</p>
+                <div
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        background: "lightgray",
+                    }}
+                    dangerouslySetInnerHTML={{ __html: info }}
+                >
+                </div>
             </>
         )
     }
@@ -174,35 +175,35 @@ export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here --
 
 
 
-//     return (
-//         <div>
-//         <Resizable
-//             defaultSize={{
-//                 width: "50%",
-//                 height: "100%",
-//             }}
-//             minWidth={200}
-//             maxWidth={600}
-//             minHeight={200}
-//             maxHeight={600}
-//         >
-//             {HtmlPane()}
-//         </Resizable>
-//         <Resizable
-//             defaultSize={{
-//                 width: "50%",
-//                 height: "100%",
-//             }}
-//             minWidth={200}
-//             maxWidth={600}
-//             minHeight={200}
-//             maxHeight={600}
-//             >
-//             {CssPane()}
-//             </Resizable>
-//             </div>
-//     )
-// }
+    //     return (
+    //         <div>
+    //         <Resizable
+    //             defaultSize={{
+    //                 width: "50%",
+    //                 height: "100%",
+    //             }}
+    //             minWidth={200}
+    //             maxWidth={600}
+    //             minHeight={200}
+    //             maxHeight={600}
+    //         >
+    //             {HtmlPane()}
+    //         </Resizable>
+    //         <Resizable
+    //             defaultSize={{
+    //                 width: "50%",
+    //                 height: "100%",
+    //             }}
+    //             minWidth={200}
+    //             maxWidth={600}
+    //             minHeight={200}
+    //             maxHeight={600}
+    //             >
+    //             {CssPane()}
+    //             </Resizable>
+    //             </div>
+    //     )
+    // }
 
     return (
         <div style={{ height: '80vh', width: '50vw' }}>
@@ -210,7 +211,7 @@ export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here --
                 <Allotment.Pane minSize={100}>
                     <Allotment>
                         <Allotment.Pane minSize={40}>
-                           {HtmlPane()}
+                            {HtmlPane()}
                         </Allotment.Pane>
                         <Allotment.Pane>
                             {CssPane()}
@@ -220,16 +221,16 @@ export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here --
                 <Allotment.Pane>
                     <Allotment>
                         <Allotment.Pane minSize={20}>
-                           {JavascriptPane()}
-                            </Allotment.Pane>
+                            {JavascriptPane()}
+                        </Allotment.Pane>
                         <Allotment vertical>
-                        <Allotment.Pane>
-                            {FramePane()}
+                            <Allotment.Pane>
+                                {FramePane()}
                             </Allotment.Pane>
-                        <Allotment.Pane>
-                            {ConsolePane()}
+                            <Allotment.Pane>
+                                {ConsolePane()}
                             </Allotment.Pane>
-                            </Allotment>
+                        </Allotment>
                     </Allotment>
                 </Allotment.Pane>
             </Allotment>
