@@ -1,4 +1,6 @@
-export default function JSInterpreter() {
+import ReactDOM from 'react-dom';
+
+export default function JSInterpreterComponent() {
     var JSoutput = function(a) {
         var str = "["
         if (typeof(a)=="object" && a.length) {
@@ -39,16 +41,57 @@ export default function JSInterpreter() {
       if (event.which==77 && event.ctrlKey) JSrun();
     }
 
+    // a live html window that can be edited and run
+    const htmlWindow = () => {
+        return (
+        <div className="HTMLWindow">
+            <div className="HTMLWindow-header">
+                <h3>HTML Window</h3>
+            </div>
+            <div className="HTMLWindow-body">
+                <textarea id="HTMLprogram" className="HTMLWindow-textarea" placeholder="HTML code here"></textarea>
+            </div>
+            <div className="HTMLWindow-footer">
+                <button className="HTMLWindow-button" onClick={() => {
+                    var str;
+                    var outnode = document.getElementById("HTMLoutput");
+                    var htmlText = document.getElementById("HTMLprogram").value;
+                    
+                    outnode.value = "";
+                //    render html as HTML
+                    try {
+                        ReactDOM.render(htmlText, document.getElementById("HTMLoutput"));
+                    } catch(e) {
+                        writeln(e);
+                    }
+                }}>Run</button>
+            </div>
+
+        </div>
+        )
+    }
+
+    const htmlOutput = () => {
+        return (
+        <div className="HTMLOutput">
+            <div className="HTMLOutput-header">
+                <h3>HTML Output</h3>
+            </div>
+            <div className="HTMLOutput-body">
+                <div id="HTMLoutput" className="HTMLOutput-textarea" placeholder="HTML output here"></div>
+            </div>
+        </div>
+        )
+    }
+
+
     return (
         <div className="JSInterpreter">
             <div className="JSInterpreter-header">
                 <h1>JS Interpreter</h1>
-                <p>
-                    This is a simple JavaScript interpreter.
-                    <br/>
-                    It is not meant to be a full-featured interpreter, but rather a way to learn JavaScript.
-                </p>
             </div>
+            {htmlWindow()}
+            {htmlOutput()}
             <div className="JSInterpreter-content">
                 <div className="JSInterpreter-sidebar">
                     <div className="JSInterpreter-sidebar-content">
@@ -61,9 +104,6 @@ export default function JSInterpreter() {
                 <div className="JSInterpreter-output">
                     <div className="JSInterpreter-output-header">
                         <h2>Output</h2>
-                        <p>
-                            <span id="JStiming">0</span> seconds
-                        </p>
                     </div>
                     <div className="JSInterpreter-output-content">
                         <textarea id="JSoutput" readOnly></textarea>

@@ -142,7 +142,7 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
             Revert Code
           </Button>
         </div>
-        <EditorComponent code={code} onChange={onChange} />
+        <EditorComponent code={code} onChange={onChange} maxLines='Infinity' />
       </div>
       <div id='output'
         ref={outputRef}
@@ -154,12 +154,15 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
           backgroundColor: "#f5f5f5",
           color: "#32c259",
           fontSize: "20px",
-          overflow: "auto"
+          overflow: "auto",
+          font: "1.3rem Inconsolata, monospace"
         }}>
       </div>
+
       <div id="error"
         ref={errorRef}
         style={{
+          font: "1.3rem Inconsolata, monospace",
           margin: "10px",
           padding: "10px",
           border: "1px solid red",
