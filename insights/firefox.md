@@ -4,8 +4,6 @@ excerpt: 'Firefox!'
 cover_image: '/images/img3.jpg'
 ---
 
-![](https://raw.githubusercontent.com/DHRI-Curriculum/install/v2.0/_django-meta/header-images/firefox%403x.png)
-
 # Firefox
 
 ## What it is

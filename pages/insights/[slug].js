@@ -18,7 +18,7 @@ import Image from 'next/image'
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
-export default function WorkshopPage({
+export default function InsightPage({
     workshops,
     guides,
     insights

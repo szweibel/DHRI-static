@@ -78,6 +78,7 @@ export default function WorkshopPage({
 
   // set defaults 
   const [currentPage, setCurrentPage] = useState(1);
+  const [markdownContent, setMarkdownContent] = useState(content);
   const [pages, setPages] = useState(htmlContent(content));
   const [currentContent, setCurrentContent] = useState([]);
   const [pageTitles, setPageTitles] = useState([]);
@@ -94,8 +95,8 @@ export default function WorkshopPage({
     )
   })
 
-  const sidebar = Sidebar(getPageTitles, currentPage)
   useEffect(() => {
+    setPages(htmlContent(content));
     setCurrentPage(1);
     setCurrentContent(frontPageContent);
     setPageTitles(getPageTitles);
@@ -105,8 +106,9 @@ export default function WorkshopPage({
       setCurrentPage(page);
       setCurrentContent(pages[page - 1]);
     }
-  }, [content]);
+  }, [slug]);
 
+  const sidebar = Sidebar(getPageTitles, currentPage)
   const PaginationComponent = (currentPage) => {
     return (
       <Stack className='pagination'>

@@ -4,9 +4,6 @@ excerpt: 'Jupyter Notebooks!'
 cover_image: '/images/img3.jpg'
 ---
 
-
-![Header image for Choosing a text editor](images/guides/header-jupyter-notebooks.png)
-
 # Short Introduction to Jupyter Notebooks
 
 In some of our workshops we use Jupyter Notebooks. Whether you want to test short code snippets or document your computational output and complement it with text and multimedia resources in a single document, Jupyter Notebooks is a great tool to use. Here are our short introduction to how to use Notebooks.
