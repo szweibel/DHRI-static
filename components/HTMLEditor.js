@@ -13,10 +13,12 @@ const Frame = dynamic(
 import { Resizable } from "re-resizable";
 import { FrameContextConsumer } from "react-frame-component";
 import "allotment/dist/style.css";
+import { Console, Hook, Unhook } from 'console-feed'
+import Button from '@mui/material/Button';
 
 
-export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here -->", defaultCSS="/* Write CSS Here */", 
-defaultJS='// Write Javascript Here' }) {
+export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here -->", defaultCSS = "/* Write CSS Here */",
+    defaultJS = '// Write Javascript Here' }) {
     const [code, setCode] = useState(defaultCode);
     const [css, setCss] = useState(defaultCSS);
     const [javascript, setJavascript] = useState(defaultJS);
@@ -26,6 +28,25 @@ defaultJS='// Write Javascript Here' }) {
     const [frameDoc, setFrameDoc] = useState(null);
     const [frameWindow, setFrameWindow] = useState(null);
     const [consoleOutput, setConsoleOutput] = useState([]);
+    const [logs, setLogs] = useState([]);
+    const [contentRef, setContentRef] = useState(null);
+    const [toShow, setToShow] = useState(false);
+
+    const consoleRef = useRef(null);
+    
+    useEffect(() => {
+        if (frameReady) {
+            setTimeout(() => {
+                setToShow(true);}, 20);
+            Hook(
+                consoleRef.current,
+                (log) => setLogs((currLogs) => [...currLogs, log]),
+                false
+            )
+            return () => Unhook(consoleRef.current);
+        }
+    }, [frameReady])
+
 
     // all this below can be wrapped into useAllotment hook or smth like that
     const isMountedRef = useRef(false);
@@ -76,14 +97,17 @@ defaultJS='// Write Javascript Here' }) {
         )
     }
 
-
     const onChangeCss = (newValue) => {
         setCss(newValue);
     };
 
     const frameEval = (allCode) => {
         if (frameWindow) {
-            frameWindow.eval(allCode);
+            try {
+                frameWindow.eval(allCode);
+            }catch(e){
+                frameWindow.console.error(e);
+            }
         }
     }
 
@@ -106,6 +130,7 @@ defaultJS='// Write Javascript Here' }) {
                     height: "100%",
                 }}>
                 <Frame
+                    ref={contentRef}
                     key={frameKey}
                     head={frameHead}
                     initialContent='<!DOCTYPE html><html><head></head><body><div id="mountHere"></div></body></html>'
@@ -120,15 +145,25 @@ defaultJS='// Write Javascript Here' }) {
                         {
                             // Callback is invoked with iframe's window and document instances
                             ({ document, window }) => {
+                                setFrameWindow(window);
                                 setFrameReady(true);
                                 setFrameDoc(document);
-                                window.console = {
-                                    log: (...args) => {
-                                        setConsoleOutput(args);
-                                        console.log('args', args);
-                                    }
-                                };
-                                setFrameWindow(window);
+
+                                consoleRef.current = window.console;
+
+                                // window.console = {
+                                    // log: (...args) => {
+                                    //     setConsoleOutput(args);
+                                    // }
+                                //     error: (...args) => {
+                                //         console.log(args);
+                                // }}}
+                                // window.console.error = (...args) => {
+                                //     window.console.log(...args);
+                                // }
+
+
+
                                 return (
                                     <>
                                         {outputComponent(output)}
@@ -143,22 +178,20 @@ defaultJS='// Write Javascript Here' }) {
     }
 
     const ConsolePane = () => {
-        const info = consoleOutput;
+        console.log(logs);
         return (
-            <>
-                <p>Console</p>
-                <div
-                    style={{
-                        width: "100%",
-                        height: "100%",
-                        background: "lightgray",
-                    }}
-                    dangerouslySetInnerHTML={{ __html: info }}
-                >
-                </div>
-            </>
+            <div
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    background: "rgba(0, 0, 0, 0.87)",
+                }}
+            >
+                {toShow && <Console logs={logs} variant="dark" />}
+            </div>
         )
     }
+
 
     const HtmlPane = () => {
         return (
@@ -172,38 +205,6 @@ defaultJS='// Write Javascript Here' }) {
     }
 
     const panes = [HtmlPane, CssPane, JavascriptPane, FramePane, ConsolePane];
-
-
-
-    //     return (
-    //         <div>
-    //         <Resizable
-    //             defaultSize={{
-    //                 width: "50%",
-    //                 height: "100%",
-    //             }}
-    //             minWidth={200}
-    //             maxWidth={600}
-    //             minHeight={200}
-    //             maxHeight={600}
-    //         >
-    //             {HtmlPane()}
-    //         </Resizable>
-    //         <Resizable
-    //             defaultSize={{
-    //                 width: "50%",
-    //                 height: "100%",
-    //             }}
-    //             minWidth={200}
-    //             maxWidth={600}
-    //             minHeight={200}
-    //             maxHeight={600}
-    //             >
-    //             {CssPane()}
-    //             </Resizable>
-    //             </div>
-    //     )
-    // }
 
     return (
         <div style={{ height: '80vh', width: '50vw' }}>
@@ -237,6 +238,3 @@ defaultJS='// Write Javascript Here' }) {
         </div>
     );
 };
-
-
-
