@@ -103,7 +103,9 @@ const JSInterpreter = ({ className, children }) => {
 const Quiz = ({ className, children }) => {
     return (
         <div>
-            <QuizComponent children={children} />
+            <QuizComponent>
+                {children}
+            </QuizComponent>
         </div>
     )
 }
