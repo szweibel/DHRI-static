@@ -78,7 +78,6 @@ export default function WorkshopPage({
 
   // set defaults 
   const [currentPage, setCurrentPage] = useState(1);
-  const [markdownContent, setMarkdownContent] = useState(content);
   const [pages, setPages] = useState(htmlContent(content));
   const [currentContent, setCurrentContent] = useState([]);
   const [pageTitles, setPageTitles] = useState([]);

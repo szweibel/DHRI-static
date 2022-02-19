@@ -146,8 +146,8 @@ export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here --
                             // Callback is invoked with iframe's window and document instances
                             ({ document, window }) => {
                                 setFrameWindow(window);
-                                setFrameReady(true);
                                 setFrameDoc(document);
+                                setFrameReady(true);
 
                                 consoleRef.current = window.console;
 
@@ -178,7 +178,6 @@ export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here --
     }
 
     const ConsolePane = () => {
-        console.log(logs);
         return (
             <div
                 style={{
@@ -228,7 +227,7 @@ export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here --
                             <Allotment.Pane>
                                 {FramePane()}
                             </Allotment.Pane>
-                            <Allotment.Pane>
+                            <Allotment.Pane className={'console'}>
                                 {ConsolePane()}
                             </Allotment.Pane>
                         </Allotment>

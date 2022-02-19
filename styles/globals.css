@@ -180,8 +180,12 @@ header {
   height: 100%;
   background-color: black;
 }
-.CodeMirror-wrap pre {
-  word-break: break-word;
+
+.console{
+  overflow-y: scroll;
+}
+.console div{
+  background-color: rgba(0, 0, 0, 0.87);
 }
 
 header a:hover{

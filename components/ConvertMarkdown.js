@@ -1,6 +1,6 @@
 import Markdown, { compiler } from 'markdown-to-jsx';
 import { useState, useEffect } from 'react';
-import Quiz from './Quiz';
+import QuizComponent from './QuizComponent';
 import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-dark.css'
 import Image from 'next/image'
@@ -100,6 +100,14 @@ const JSInterpreter = ({ className, children }) => {
     )
 }
 
+const Quiz = ({ className, children }) => {
+    return (
+        <div>
+            <QuizComponent children={children} />
+        </div>
+    )
+}
+
 export default function ConvertMarkdown(markdown) {
     return (
         compiler(markdown,
@@ -111,18 +119,19 @@ export default function ConvertMarkdown(markdown) {
                             className: 'hljs'
                         }
                     },
-                    ul: {
-                        component: Quiz,
-                        props: {
-                            className: 'list-group'
-                        }
-                    },
+                    // ul: {
+                    //     component: Quiz,
+                    //     props: {
+                    //         className: 'list-group'
+                    //     }
+                    // },
                     img: {
                         component: Imager,
                         props: {
                             className: 'image',
                         }
                     },
+                    Quiz,
                     CodeEditor,
                     PythonREPL,
                     Terminal,
