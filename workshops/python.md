@@ -67,6 +67,12 @@ print('Hello, world!')
 print("This is a string.")
 14
 </CodeEditor>
+
+<EditorWithTabs>
+print('hi')
+33
+</EditorWithTabs>
+
 Let's begin by starting an "interactive session" session with Python. This means we will be using Python in the terminal, which is a special space that allows us to run little bits of Python, experimenting and exploring what it can do, without having to save it. Think of this interactive space as a playground. Later on, we will be working with Python in a more robust way, doing what we call saving and executing Python scripts.
 
 For now, though, let's start an interactive session with Python, which is accessed through the terminal.
@@ -301,7 +307,7 @@ Do you remember the glossary terms from this section?
 
 # Running Scripts
 
-So far, you've interacted with Python one line at a time in the REPL. This is what we call the Interactive Mode, which is like a playground for experimenting and exploring different Python expressions, like `2 + 2` or `type("some stuff")`. The code that we write in the REPL is not saved after you exit, which means that this space is for running Python expressions and *not* for writing longer programs.
+So far, you've interacted with Python one line at a time in the REPL. This is what we call the Interactive Mode, which is, as we mentioned, like a playground for experimenting and exploring different Python expressions, such `2 + 2` or `type("some stuff")`. The code that we write in the REPL is not saved after you exit, which means that this space is for running Python expressions and *not* for writing longer programs.
 
 For the rest of this session, we're going to expand beyond the REPL to write and execute longer programs. To do this, we will begin to work with a text editor, where we write out Python scripts, and run those scripts from the terminal.
 
@@ -310,6 +316,7 @@ This is a big move, so let's take it slow. To reiterate, the major change is tha
 ## Your First Script
 
 First, let's begin with the text editor. Open your text editor of choice (such as Visual Studio Code) and create a new file with this line:
+
 
 ```python
 print("Hello world!")
@@ -321,7 +328,7 @@ Save it with the name `hello.py` to a known location, such as your desktop. Open
 $ cd Desktop
 ```
 
-Once you're in the folder with your `hello.py` file, move to the terminal. Do *not* enter the Python Interactive Mode (the REPL), which is unecessary to run python scripts. Instead, lookout for the `$` symbol that lets you know you're in the terminal. (If you find yourself in the Interactive mode (`>>>`), then try exiting it with <kbd>control</kbd> + <kbd>d</kbd>. You should see the `$` symbol, letting you know you're back in the terminal. If you still do not see the `$` symbol, type `exit()` followed by <kbd>enter</kbd> after the Python prompt, `>>>`.)
+Once you're in the folder with your `hello.py` file, move to the terminal. Do *not* enter the Python Interactive Mode (the REPL), which is unnecessary to run python scripts. Instead, lookout for the `$` symbol that lets you know you're in the terminal. (If you find yourself in the Interactive mode (`>>>`), then try exiting it with <kbd>control</kbd> + <kbd>d</kbd>. You should see the `$` symbol, letting you know you're back in the terminal. If you still do not see the `$` symbol, type `exit()` followed by <kbd>enter</kbd> after the Python prompt, `>>>`.)
 
 Now that you're in the terminal, type the following, and press enter:
 
@@ -344,7 +351,7 @@ Fundamentally, Python programs are just text files. You can write them in any te
 
 ## Challenge
 
-1. Rewrite your program so that you assign the message to a variable, then print the variable. This will make your program two lines instead of one. There's a fancy programmer word for rewriting your code without changing it's behavior—"refactoring."
+1. Rewrite your program so that you assign the message to a variable, then print the variable. This will make your program two lines instead of one. There's a fancy programmer word for rewriting your code without changing its behavior—"refactoring."
 
 2. (optional) Are you already getting sick of typing `python hello.py` again and again? Try typing `!!` in the command line (the `$`). This will run your last line of code again. Additionally, you can press the <kbd>up arrow</kbd> at the terminal prompt, and keep pressing it to scroll through the most recent commands.
 
@@ -574,7 +581,7 @@ Remember, we also need to call the function if we want it to run. So, add the fo
 greet()
 ```
 
-Save the file as `greet.py`, and call it from your terminal. You might have noticed that this time, we didn't pass in an argument! Note that a function doesn't have to take an input (or argument), or it can take several arguments! There is a lot of flexbility involved in writing your own functions, which you can craft carefully to do exactly what you want them to! Read more about some of the many things you can do with functions on the online web tutorial [W3Schools](https://www.w3schools.com/python/python_functions.asp).
+Save the file as `greet.py`, and call it from your terminal. You might have noticed that this time, we didn't pass in an argument! Note that a function doesn't have to take an input (or argument), or it can take several arguments! There is a lot of flexibility involved in writing your own functions, which you can craft carefully to do exactly what you want them to! Read more about some of the many things you can do with functions on the online web tutorial [W3Schools](https://www.w3schools.com/python/python_functions.asp).
 
 ## Challenge
 
@@ -1284,7 +1291,7 @@ motivational_phrases = [
     ]
 ```
 
-You're still using the same list format. Remember lists open with a square bracket `[`, have items seperated with commas, and end with a square bracket `]`, like this:
+You're still using the same list format. Remember lists open with a square bracket `[`, have items separated with commas, and end with a square bracket `]`, like this:
 
 ```python
 [1, 2, 3, 4, 5]

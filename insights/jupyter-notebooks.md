@@ -5,8 +5,6 @@ cover_image: '/images/img3.jpg'
 ---
 
 
-![Header image for Choosing a text editor](images/guides/header-jupyter-notebooks.png)
-
 # Short Introduction to Jupyter Notebooks
 
 In some of our workshops we use Jupyter Notebooks. Whether you want to test short code snippets or document your computational output and complement it with text and multimedia resources in a single document, Jupyter Notebooks is a great tool to use. Here are our short introduction to how to use Notebooks.
@@ -23,7 +21,7 @@ If you have not already installed Anaconda, please do so. Jupyter Notebook comes
 
 Find and open the Anaconda Navigator on your computer (you should be able to find it in the folder with your other applications). From Anaconda Navigator's interface, launch a Jupyter Notebook.
 
-![jupyter](images/guides/jupyter.png)
+![jupyter](/images/guides/jupyter.png)
 
 Jupyter Notebook will open as a tab in your default browser, which is where you will be working. All of the directories (folders) in your `home` directory will appear. (This may vary depending on what operating system—macOS, Windows, etc.—you are using, as the file structure can be different)
 
@@ -31,11 +29,11 @@ We will now open a new file. It is very important that you make sure to open the
 
 Once you are in the right place, select `New` >> `Python3` in the upper right corner.
 
-![jupyter notebook "open new file" screen](images/guides/jupyter1.png)
+![jupyter notebook "open new file" screen](/images/guides/jupyter1.png)
 
 A blank page with an empty box should appear.
 
-![empty box on jupyter notebook new file](images/guides/jupyter2.png)
+![empty box on jupyter notebook new file](/images/guides/jupyter2.png)
 
 ## Running a cell
 

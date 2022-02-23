@@ -21,7 +21,7 @@ import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import SaveIcon from '@mui/icons-material/Save';
 
-export default function EditorWithTabs({ defaultCode = "# Write your code here" }) {
+export default function EditorWithTabsComponent({ defaultCode = "# Write your code here" }) {
     const [currentTab, setCurrentTab] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const [tabs, setTabs] = useState([]);

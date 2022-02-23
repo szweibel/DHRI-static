@@ -11,6 +11,7 @@ import CodeEditorComponent from './CodeEditorComponent';
 import PythonREPLComponent from './PythonREPLComponent';
 import JSInterpreterComponent from './JSInterpreterComponent';
 import TerminalComponent from './TerminalComponent';
+import EditorWithTabsComponent from './EditorWithTabs';
 
 const Code = ({ className, children }) => {
     const [isShown, setIsShown] = useState(false);
@@ -76,6 +77,15 @@ const CodeEditor = ({ className, children }) => {
     )
 }
 
+const EditorWithTabs = ({ className, children }) => {
+    const codeText = children.join('');
+    return (
+        <div>
+            <EditorWithTabsComponent defaultCode={codeText} />
+        </div>
+    )
+}
+
 const PythonREPL = ({ className, children }) => {
     return (
         <div>
@@ -126,7 +136,8 @@ export default function ConvertMarkdown(markdown) {
                     CodeEditor,
                     PythonREPL,
                     Terminal,
-                    JSInterpreter
+                    JSInterpreter,
+                    EditorWithTabs
                 }
 
             })
