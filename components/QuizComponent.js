@@ -8,13 +8,15 @@ import { Button } from '@mui/material';
 import parse from 'html-react-parser';
 
 // evaluate quiz questions
-export default function Quiz({ className, children }) {
+export default function QuizComponent({ className, children }) {
+
 
     const [disabled, setDisabled] = useState(false);
     const [correct, setCorrect] = useState(0);
 
+    console.log(children);
     // list of lis in children 
-    const lis = children.map((child, index) => {
+    const lis = children[0].props.children.map((child, index) => {
         const flattened = ReactDOMServer.renderToString(child);
         // remove <li data-reactroot="">
         // strip last 5 characters '</li>'

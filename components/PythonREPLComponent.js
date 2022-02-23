@@ -113,6 +113,7 @@ export default function PythonREPLComponent() {
             let term = $(".terminal").terminal(interpreter, {
               greetings: banner,
               prompt: ps1,
+              enabled: false,
               completionEscape: false,
               completion: function (command, callback) {
                 callback(pyconsole.complete(command).toJs()[0]);
@@ -127,6 +128,7 @@ export default function PythonREPLComponent() {
                 },
               },
             });
+            term.focus(false)
             window.term = term;
             pyconsole.stdout_callback = (s) => term.echo(s, { newline: false });
             pyconsole.stderr_callback = (s) => {
@@ -154,6 +156,9 @@ export default function PythonREPLComponent() {
                 setIsPyodideLoading(false)
                 main();
             }
+            window.addEventListener('focus', () => {
+                console.log('focus');
+            });
           }, [hasLoadPyodideBeenCalled, setIsPyodideLoading, isPyodideReady])
 
         

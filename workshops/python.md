@@ -47,7 +47,7 @@ resources:
         excerpt: See the Digital Fellows’ Python Cheat Sheet for handy commands that we cover in this workshop.
         link: https://curriculum.dhinstitutes.org/shortcuts/workshop/python
 authors:
-    - Current author: Filipa Calado (https://github.com/gofilipa)
+    - current author: Filipa Calado (https://github.com/gofilipa)
 
 goals:
     - description: 'In this workshop, you will learn to:'
@@ -140,11 +140,12 @@ The REPL is useful for quick tests and, later, can be used for exploring and deb
 ## Evaluation
 
 What are the characteristics of the REPL? Select all that apply.
-
+<Quiz>
 - The REPL has a prompt that begins with `$`.
 - The REPL has a prompt that begins with `>>>`.*
 - The REPL and the terminal are the same thing.
 - The REPL can be used to evaluate mathematical expressions like `2 + 2`.*
+</Quiz>
 
 ## Keywords
 

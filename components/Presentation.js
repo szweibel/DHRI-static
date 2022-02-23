@@ -14,7 +14,7 @@ export default function Presentation(props) {
 
     const content = props.content.content;
     const title = props.content.title;
-    const authors = props.content.authors;
+    // const authors = props.content.authors;
 
     useEffect(() => {
         globalThis.jQuery = jQuery;
@@ -83,9 +83,9 @@ export default function Presentation(props) {
                     <Heading size={1}>
                         {title}
                     </Heading>
-                    <Heading size={3}>
+                    {/* <Heading size={3}>
                         By {authors}
-                    </Heading>
+                    </Heading> */}
                 </Slide>
                 {slideContent.map((page, index) => {
                     return (

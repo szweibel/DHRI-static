@@ -25,6 +25,7 @@
     "caniuse-lite": "^1.0.30001283",
     "codemirror": "^5.65.1",
     "compose": "^0.1.2",
+    "console-feed": "^3.3.0",
     "gray-matter": "^4.0.3",
     "hero-patterns": "^2.1.0",
     "highlight.js": "^11.3.1",
