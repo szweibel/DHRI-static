@@ -12,7 +12,6 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import { PyodideContext } from './PyodideProvider';
 import CircularProgress from '@mui/material/CircularProgress';
 
-
 export default function CodeEditorComponent({ defaultCode = "# Write your code here" }) {
   const [code, setCode] = useState(defaultCode);
   const [pyodideReady, setPyodideReady] = useState(false);
@@ -35,6 +34,13 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
     }
   }, [hasLoadPyodideBeenCalled, setIsPyodideLoading, isPyodideReady])
 
+  /*useEffect(() => {
+    nltoolkit = await fetch('https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt.zip')
+      .then(nltoolkit =>
+        if nltoolkit.)
+
+  }, [])
+  */
   const onChange = (newValue) => {
     setCode(newValue);
   };
@@ -50,13 +56,14 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
     pyodide.globals.set('input', (s) => {
       prompt(s);
     });
+    await pyodide.loadPackage("nltk");
     await pyodide.loadPackagesFromImports(code);
     return await pyodide.runPythonAsync(code).then(result => {
       addToOutput(result);
     }).catch((err) => {
       addToError(err);
     });
-
+    
   };
 
   function showValue() {

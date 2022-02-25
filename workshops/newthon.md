@@ -123,10 +123,12 @@ The exponent operator is two asterisks (`**`). For example, the number `3` to th
 
 What are the characteristics of the REPL? Select all that apply.
 
+<Quiz>
 - The REPL has a prompt that begins with `$`.
 - The REPL has a prompt that begins with `>>>`.*
 - The REPL and the terminal are the same thing.
 - The REPL can be used to evaluate mathematical expressions like `2 + 2`.*
+</Quiz>
 
 ## Keywords
 
@@ -196,10 +198,12 @@ When you google "python function," you may see some phrases that look unfamiliar
 
 Select all the following that accurately describe the data type categories.
 
+<Quiz>
 - Booleans represent only `True` or `False` values.*
 - Integers can be expressed with numbers like `1` or letters `one`.
 - Strings can contain numbers within quotations, like `"1"`.*
 - Lists can contain strings, like `['banana, 'coffee', 'eggs']`.*
+</Quiz>
 
 ## Keywords
 
@@ -263,10 +267,12 @@ Second, you might also notice that variable syntax requires you to write the var
 
 Select all the variable expressions that are allowed in Python.
 
+<Quiz>
 - `1 = one`
 - `one = 1`*
 - `$$$ = "dollar_signs"`
 - `first_book = "Orlando"`*
+</Quiz>
 
 ## Keywords
 
@@ -347,9 +353,11 @@ Hello world!
 
 What are the differences between the terminal, REPL, and text editor? Select the correct statement from the below options.
 
+<Quiz>
 - You can run scripts from the **terminal** that were written on the text editor. *
 - The **REPL** allows you to save scripts for later use.
 - The **text editor** allows you to test code on the fly.
+</Quiz>
 
 ## Keywords
 
@@ -472,10 +480,12 @@ False
 
 If you get an error, what can you do to debug it? Select all that apply:
 
+<Quiz>
 - If it's a _syntax error_, look for the caret as a starting point.*
 - If it's a _traceback error_, make sure all your variables are defined.*
 - Copy the error message into a Google search.*
 - Run spell check on your code.*
+</Quiz>
 
 ## Keywords
 
@@ -486,11 +496,11 @@ Do you remember the glossary terms from this section?
 
 # Functions
 
-Broadly defined, a function is a block of reusable code that performs a specific task. Often, a function takes an input, transforms the input, and returns an output. Imagine, for instance, a [penny press](https://en.wikipedia.org/wiki/Elongated_coin) at a popular tourist attraction that accepts a penny (the input), flattens and embosses the penny (the transformation), and spits out an elongated coin with a new design, perhaps an image of the Statue of Liberty (the output)! Or, for those of you who remember high school algebra, the function `f(x) = x + 1` means that given an input `x`, the function will return `x + 1`. For example, if I substituted `2` for `x`, my function would read `f(2) = 2 + 1`, or `f(2) = 3`. In this case, my input was `2`, the transformation was to add `1`, and the output was `3`. These are the basic concepts that make up a function in Python as well! 
+Broadly defined, a function is a block of reusable code that performs a specific task. Often, a function takes an input, transforms the input, and returns an output. For instance, a function `get_user_name()` might prompt the user for their name (taking input), add their name to a list of users (transforming that input), and return that list to be used elsewhere in the program (providing an output). This functionality would allow us to reuse the function every time we want to ask a new user for their name and add it to our list of users.
 
 ## Writing Your First Function
 
-Let's write a Python function that prints the output from our alegebraic equation `f(x) = x + 1` above. 
+Let's write a Python function that allows us to add one to a given number, and then print the results of the operation.
 
 Try running the code in the editor below. (If you accidentally modify the code, you can hit the `REVERT` button to reset it.)
 
@@ -530,7 +540,7 @@ add_one(-1)
 
 <CodeEditor>
 def add_one(x):
-  print(x + 1)  
+  print(x + 1) 
 </CodeEditor>
 
 Do you notice how the function printed the sum of each of these numbers plus one? Writing this function helped us to automate this simple process of addition for each given input! Granted, creating a whole function just to add "one" to something may seem unnecessarily complicated, but once you have learned the basics of function-writing, the possibilities are powerful and limitless!
@@ -579,10 +589,12 @@ As you can see, the result of calling this function prints `"Hello Sarah! How ar
 
 Which of the following are not true about a function?:
 
+<Quiz>
 - A function can be reused
 - A function can take any number of arguments (including no arguments)
 - A function needs to be called in order to run
 - A function can only perform mathematical operations*
+</Quiz>
 
 ## Keywords
 - [argument](https://www.w3schools.com/python/python_functions.asp)
@@ -701,10 +713,12 @@ In the REPL below, create a new list of books with at least 5 books in your list
 
 How would you get Python to print the length of the last book in the list? Hint: this number reflects the length of the _string_ which is the last item in the list. Choose the correct expression from the options below.
 
+<Quiz>
 - `len(books)`
 - `print(books[-1])`
 - `print(len[-1])`
 - `print(len(books[-1]))`*
+</Quiz>
 
 ## Keywords
 
@@ -807,10 +821,12 @@ for num in prime_numbers:
 
 What are different ways for describing what a "for loop" can do?
 
+<Quiz>
 - for each item in a list, multiply it against itself.*
 - print the contents of a list.*
 - add a new item to a list.
 - loop through characters in a string.
+</Quiz>
 
 ## Keywords
 
@@ -896,10 +912,12 @@ else:
 
 What is the difference between the double equals (`==`) and single equals (`=`)?
 
+<Quiz>
 - The double equals checks to see if one value is equivalent to the other, as in `2 == 2`.*
 - The double equals assigns the value on the right to the variable on the left, as in `x == 2`.
 - The single equals checks to see if one value is equivalent to the other, as in `2 = 2`.
 - The single equals assigns the value on the right to the variable on the left, as in `x = 2`.*
+</Quiz>
 
 ## Keywords
 
@@ -994,10 +1012,12 @@ else:
 
 If we wanted to calculate the length of an input using `len()`, how would we write that expression?
 
+<Quiz>
 - `input() = len()`
 - `response = len().input()`
 - `len(input()) = length_of_response`
 - `length_of_response = len(input())`*
+</Quiz>
 
 ## Keywords
 
@@ -1070,7 +1090,7 @@ Then, add an input statement that will save the user's response to a variable, l
 response = input("What do you want to do with your books today? ")
 ```
 
-Now, create a conditional statement that matches the user's response to series of options for doing things to the `library` list. You can include `sort()`, `append()`, and `pop()`. I'll do the first one, `sort()`, for you:
+Now, create a conditional statement that matches the user's response to series of options for doing things to the `library` list. We'll let them sort the library (`sort()`), add new items (`append()`), and remove the last item (`pop()`). I'll do the first one, `sort()`, for you:
 
 <CodeEditor>
 library = ["Orlando", "Confessions of the Fox", "These Waves of Girls"]
@@ -1110,10 +1130,14 @@ else:
 
 Select the following statements that truly describe `sort()`, `append()`, and `pop()`.
 
+<Quiz>
 - methods are like functions which are attached to objects.*
 - `sort()`, `append()`, and `pop()` are functions.
 - `append()` always takes an argument.*
 - `pop()` can be applied to a string.
+</Quiz>
+
+&nbsp;
 
 __Advanced question:__ If you `sort()` the library in between adding and popping a book, you'll end up with a different list than if you didn't run `sort()` in between `append()` and `pop()`. Can you guess why?
 
@@ -1124,4 +1148,347 @@ Do you remember the glossary terms from this section?
 - [append](https://github.com/DHRI-Curriculum/glossary/blob/v2.0/terms/append.md)
 - [sort()](https://github.com/DHRI-Curriculum/glossary/blob/v2.0/terms/sort.md)
 - [pop()](https://github.com/DHRI-Curriculum/glossary/blob/v2.0/terms/pop.md)
+
+# Finding Answers with Google
+
+Our library app is working pretty well, but you may have noticed that it's case sensitive:
+
+```
+What do you want to do with your books today?
+Sort
+I don't know what you want me to do!
+```
+
+How could we fix our program to handle cases like this? We could add a bunch of new `elif` statements, like this:
+
+```python
+...
+elif response == "Sort":
+    library.sort()
+    print(library)
+elif response == "SORT":
+    library.sort()
+    print(library)
+...
+```
+
+But this is a lot of work, and it's a pretty ugly solution. If we wanted to add more cases to our program, we would have to write them in twice every time, and it still wouldn't fix inputs like `SorT`. The best way to improve our program would be to convert the input to lower case before we send it to our `if/else` block.
+
+Even if you're a super rad Python programmer, you're not going to remember every function name or how to do things you might not have touched in awhile. One thing programmers get very good at is googling for answers. In fact, this is arguably the most important skill in modern-day programming. So, let's use Google to find out how to convert strings to lower case.
+
+Let's try the search term [make string lowercase](http://lmgtfy.com/?q=make+string+lowercase+Python):
+
+![make string lower case Python Google search](/images/python/google_search.png)
+
+While Google searches change over time, some of your results likely come from a site called Stack Overflow. This is a questions and answers site for programmers that usually has strong answers to questions about Python.
+
+![Google search results with stack overflow answer on top](/images/python/google_result.png)
+
+On [this _Stack Overflow_ page](https://stackoverflow.com/questions/6797984/how-do-i-lowercase-a-string-in-python), take a quick look at the question to make sure it's relevant to your problem. Then scroll down to the answers to find what we're looking for. You may also notice snarky debates—another "feature" of _Stack Overflow_.
+
+## Implementing Our Answer
+
+According to this answer, we can make a string lowercase by adding `.lower()` to the end of it, like this:
+
+```pycon
+>>> "SORT".lower()
+'sort'
+```
+
+Let's incorporate this transformation into our library app:
+
+<CodeEditor>
+library = ["Orlando", "Confessions of the Fox", "These Waves of Girls"]
+response = input("What do you want to do with your books today? ")
+response = response.lower()
+if response == "sort":
+    library.sort()
+    print(library)
+elif response == "add":
+    library.append("La Frontera")
+    print(library)
+elif response == "remove":
+    library.pop()
+    print(library)
+else:
+    print("I don't know what you want me to do!")
+</CodeEditor>
+
+This new script should handle any combination of upper or lowercase characters. The new second line sets the response variable to a new value, `response.lower()`, which is a lowercase version of the original input.
+
+There's no shame in googling for answers! Error messages are especially useful to google when you run into them. Keep an eye out for _Stack Overflow_ answers, as they tend to have useful examples. The [official Python documentation](https://docs.python.org/3/) will also frequently come up, but I would recommend avoiding it as a resource until you have more programming experience. It's a great resource, but the way information is presented can be confusing until you get the hang of reading documentation.
+
+Before moving on to the next section, complete the first challenge below. This challenge will teach the skills necessary to complete write more advanced scripts in this workshop.
+
+## Challenge
+
+__Note:__ the first challenge is "required" in order to complete further sections.
+
+1. We are going to use `while` loops to get Python to repeat loops over and over again. This involves adding a `while` statement to your library app. The code should look like this, and it goes right after the `library` list and before your `input` statement.
+
+    ```python
+    while True:
+        ...
+    ```
+
+    Make sure that everything under `while True:` is indented (this creates a "code block," or a group of lines that will be executed together)
+
+    TODO: fix up the wording below
+    To stop the loop, you can press <kbd>control</kbd> + <kbd>c</kbd> in the terminal. This stops the program from being run, what we call "interrupting" the program. You can also add a `break` statement somewhere in your code which will automatically exit the program. For example:
+
+    ```python
+        if response == "sort":
+            library.sort()
+            print(library)
+            break
+        ...
+        else:
+            print("I don't know what you want me to do!")
+    ```
+
+    Try adding the `while` loop to the program below:
+
+
+<CodeEditor>
+library = ["Orlando", "Confessions of the Fox", "These Waves of Girls"]
+response = input("What do you want to do with your books today? ")
+response = response.lower()
+if response == "sort":
+    library.sort()
+    print(library)
+elif response == "add":
+    library.append("La Frontera")
+    print(library)
+elif response == "remove":
+    library.pop()
+    print(library)
+else:
+    print("I don't know what you want me to do!")
+</CodeEditor>
+
+Once you get the loop to work, you can add more `elif` statements to add more books to the list. Then, run the program, adding books, sorting them and removing them. You can read more about `while` loops [here](https://www.w3schools.com/python/python_while_loops.asp).
+
+2. (optional) OK, I told you not to look at the Python documentation. But doesn't that make you really want to go look at the Python documentation? How bad could this "documentation" really be? What terrible secrets might it hold?
+
+    Fine. Have a look at the [Python documentation on built-in functions](https://docs.python.org/3/library/functions.html). Don't say I didn't warn you.
+
+## Solution
+
+1. Here's how you would include a `while` statement in our library application:
+
+    ```python
+    library = ["Orlando", "Confessions of the Fox", "These Waves of Girls"]
+    while True:
+        response = input("What do you want to do with your books today? ")
+        response = response.lower()
+        if response == "sort":
+            library.sort()
+            print(library)
+        elif response == "add":
+            library.append("La Frontera")
+            print(library)
+        elif response == "add again":
+            library.append("In the Dreamhouse")
+            print(library)
+        elif response == "more books":
+            library.append("Giovanni's Room")
+            print(library)
+        elif response == "moar":
+            library.append("Nightwood")
+            print(library)
+            break
+        elif response == "remove":
+            library.pop()
+            print(library)
+        else:
+            print("I don't know what you want me to do!")
+    ```
+
+## Evaluation
+
+If we wanted to make a string like `'hello'` uppercase, we would use the method `upper()`, in the following way:
+
+<Quiz>
+- `upper('hello')`
+- `upper().'hello'`
+- `'hello'.upper()`*
+- `'hello'(upper)`
+</Quiz>
+
+## Keywords
+
+Do you remember the glossary terms from this section?
+
+- [lower()](https://github.com/DHRI-Curriculum/glossary/blob/v2.0/terms/lower.md)
+- [Method](https://github.com/DHRI-Curriculum/glossary/blob/v2.0/terms/method.md)
+
+# A Little Motivation
+
+Early on, we learned a bit about lists, which look like this:
+
+```python
+["Gender Trouble", "Cruising Utopia", "Living a Feminist Life"]
+```
+
+We're going to create a small application that will print a random motivational saying every time a user presses <kbd>enter</kbd>. Our first step will be to create a list of positive sayings:
+
+```python
+motivational_phrases = [
+        "Importing modules is easy!",
+        "Programming! Yay!",
+        "You write lists like a pro!",
+    ]
+```
+
+You're still using the same list format. Remember lists open with a square bracket `[`, have items separated with commas, and end with a square bracket `]`, like this:
+
+```python
+[1, 2, 3, 4, 5]
+```
+
+However, our positivity list above spreads the list out over multiple lines for greater readability, which is allowed in Python. Remember that you can change the strings in the list to whatever phrases you choose.
+
+## Importing a module
+
+Now that we have our sayings, let's use it in conjunction with some functionality from a module that's built into Python: the `random` module.
+
+First we need to __import__ the module.  In the code editor below, write the following line of code _above_ our motivational phrases...
+
+`import random`
+
+...and the following line of code _below_ our motivational phrases:
+
+`print(random.choice(motivational_phrases))`
+
+<CodeEditor>
+motivational_phrases = [
+        "Importing modules is easy!",
+        "Programming! Yay!",
+        "You write lists like a pro!",
+    ]
+</CodeEditor>
+
+Now, each time you run the code, you should see a different motivational phrase as output. The `random.choice` function chooses a random item from a list and returns it. The `.` syntax indicates that the function is coming from the `random` library.
+
+## Challenge
+
+1. As with our library app, this positive saying generator could be improved by making it so the program doesn't have to run again every time to get new output. Add a while loop for the final version. Remember to include a `break` statement or another way for the loop to end (so you are not creating an infinite loop). You can read more [about while loops here](https://www.w3schools.com/python/python_while_loops.asp).
+
+2. The real point of this section is to learn `import`, which is where Python really starts to get interesting. Python comes with many libraries (importable collections of code), written by others that can be pulled into your program, allowing you to use that functionality. In this challenge, do a little research on Python libraries that might solve a problem for you or address a domain that you're interested in.
+
+Think of something you're interested in doing (statistics, text analysis, web scraping, quantitative analysis, processing Excel/PDF/image files) and search google "<_thing you are interested in_> python library". You're almost certain to find some useful results. For example, if you wanted to find Python libraries for dealing with cleaning up HTML files, you might search one of these:
+
+> working with html python library
+
+> html parser python library
+
+In your research, you may also want to look at the libraries that come with Python. You can find a list of libraries in these libraries [here](https://docs.python.org/3/py-modindex.html).
+
+## Solution
+
+1. Here's how you could add a `while` loop to our positive saying generator:
+
+<CodeEditor>
+import random
+while True:
+    motivational_phrases = [
+        "Importing modules is easy!",
+        "Programming! Yay!",
+        "You write lists like a pro!",
+        ]
+    # Because this is input, the user will need to hit enter to see a new phrase
+    input(random.choice(motivational_phrases))
+</CodeEditor>
+
+## Evaluation
+
+What is a module? Select all that apply:
+
+<Quiz>
+- A module is a file of code.*
+- Applications can incorporate many different modules.*
+- A module needs to be downloaded and installed.
+- A module needs to be imported with an `import` statement.*
+</Quiz>
+
+## Keywords
+
+Do you remember the glossary terms from this section?
+
+- [Modules](https://github.com/DHRI-Curriculum/glossary/blob/v2.0/terms/module.md)
+- [Random](https://github.com/DHRI-Curriculum/glossary/blob/v2.0/terms/random.md)
+- [while loops](https://github.com/DHRI-Curriculum/glossary/blob/v2.0/terms/while_loop.md)
+
+# Objects in Python
+
+Objects in Python (and other programming languages) are basically containers that can hold data and/or functions inside them. When a function is inside an object, we usually call the function a "method." When data is inside an object, we usually call it an "attribute." The terminology isn't that important, though. What we do need to know is that you can access these "methods" and "attributes" with a `.` (a dot or period).
+
+When we added `sort()`, `append()`, `pop()`, and `lower()` to our library app, we briefly saw how some methods contained inside certain objects in Python, like Lists (for sort, append, and pop), and String objects, like lower.
+
+```pycon
+>>> loud_greeting = "HELLO!"
+
+>>> loud_greeting.lower()
+'hello!'
+```
+
+Many, or most, objects in Python have methods that allow you to use them in different ways. As you move into using more advanced Python, you'll find that understanding what methods are available becomes more important.
+
+## Examining Objects
+
+When you encounter an object, how can you learn its methods and attributes so you can use them? There are two main ways. The first, and likely the most practical, is to read the documentation of the library you're using.
+
+However, you can also use the `dir()` function, which will tell you which methods and attributes are available in an object.
+
+Let's use the REPL for a moment. First, type the following line:
+
+`>>> s = 'Hello, world!'`
+
+Then, use the `dir()` function on `s`:
+
+`>>> dir(s)`
+
+<PythonREPL/>
+
+You should get output like this:
+
+```pycon
+['__add__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__',
+...
+'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']
+```
+
+The above output shows some of the methods and attributes for Python strings that can be accessed using the dot (`.`) syntax. Also, be aware that Python doesn't print all the possible methods and attributes, just what it considers to be most important. Also, when using `dir()`, you'll mostly want to ignore the methods and attributes that have underscores around them. They mainly have to do with the internals of the Python language. For now, ignore the information within underscores (like `__add__`) and focus on the stuff surrouned by single quotes (like `startswith`).
+
+You can also use `dir()` to see what functions are available from Python libraries that you import. Try importing the `random` library again and see what you get when you enter `dir(random)` in the REPL.
+
+<PythonREPL/>
+
+You should see something like this:
+
+```pycon
+>>> import random
+
+>>> dir(random)
+['BPF', 'LOG4', 'NV_MAGICCONST', 'RECIP_BPF', 'Random', 'SG_MAGICCONST', 'SystemRandom', 'TWOPI', '_BuiltinMethodType', '_MethodType', '_Sequence', '_Set', '__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '_acos', '_bisect', '_ceil', '_cos', '_e', '_exp', '_inst', '_itertools', '_log', '_os', '_pi', '_random', '_sha512', '_sin', '_sqrt', '_test', '_test_generator', '_urandom', '_warn', 'betavariate', 'choice', 'choices', 'expovariate', 'gammavariate', 'gauss', 'getrandbits', 'getstate', 'lognormvariate', 'normalvariate', 'paretovariate', 'randint', 'random', 'randrange', 'sample', 'seed', 'setstate', 'shuffle', 'triangular', 'uniform', 'vonmisesvariate', 'weibullvariate']
+```
+
+Try entering other objects based on Python types we've already learned to the `dir()` function. For example, you might try `dir([1, 2, 3])` to see what methods are available when using lists.
+
+## Challenge
+
+*Advanced Final Challenge*:
+
+In this final challenge, we will work more with modules and imports. Let's work through a basic example using the NLTK (Natural Language Toolkit) library, which allows us to perform various kinds of textual analysis. This will be a fairly introductory example, so if you would like to learn more about NLTK and text analysis you can [visit our workshop devoted entirely to it!](https://szweibel.github.io/DHRI-static/workshops/text-analysis/)
+
+Take a look at the following code:
+
+<CodeEditor>
+import nltk
+nltk.download("book")
+from nltk.book import *
+text1
+</CodeEditor>
+
+First, we `import` the NLTK library into our program:
 
