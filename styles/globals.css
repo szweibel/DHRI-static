@@ -276,6 +276,7 @@ header > .topBar{
   transition: .5s ease;
   font-size: 20px;
   text-align: center;
+  cursor: pointer;
 }
 .drawer-over{
   position: relative;
@@ -491,7 +492,8 @@ margin-left: 10px;
   /* border-radius: 30px !important; */
   top: 50% !important;
   position: fixed !important;
-  left:-15px
+  left:0;
+  width: 150px;
 }
 .sidebar-button svg{
   margin-left: 15px;

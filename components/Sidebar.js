@@ -29,6 +29,7 @@ export default function SidebarDrawer(pages, currentPage) {
                 aria-label="open drawer"
                 className={'sidebar-button'}
                 onClick={toggleDrawer('left', true)}>
+                    Table of Contents
                 <ChevronRightIcon />
             </Fab>
             <Drawer

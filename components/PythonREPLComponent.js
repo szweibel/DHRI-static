@@ -18,6 +18,13 @@ export default function PythonREPLComponent() {
         function sleep(s) {
             return new Promise(resolve => setTimeout(resolve, s));
         }
+
+         // make random id 
+         let id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        // jquery select the div with id of id
+        let terminalLocation = '#' + id;
+        console.log(terminalLocation);
+
         async function main() {
             let namespace = pyodide.globals.get("dict")();
             pyodide.runPython(
@@ -110,7 +117,7 @@ export default function PythonREPLComponent() {
               unlock();
             }
     
-            let term = $(".terminal").terminal(interpreter, {
+            let term = $(terminalLocation).terminal(interpreter, {
               greetings: banner,
               prompt: ps1,
               enabled: false,
@@ -129,7 +136,7 @@ export default function PythonREPLComponent() {
               },
             });
             term.focus(false)
-            window.term = term;
+            // window.term = term;
             pyconsole.stdout_callback = (s) => term.echo(s, { newline: false });
             pyconsole.stderr_callback = (s) => {
               term.error(s.trimEnd());
@@ -161,7 +168,7 @@ export default function PythonREPLComponent() {
             });
           }, [hasLoadPyodideBeenCalled, setIsPyodideLoading, isPyodideReady])
 
-        
+       
     return (
         <div className="PythonREPL">
             <link href="https://cdn.jsdelivr.net/npm/jquery.terminal@2.27.1/css/jquery.terminal.css" rel="stylesheet"></link>
@@ -179,7 +186,7 @@ export default function PythonREPLComponent() {
                 }
               }}
             />
-            <div className="terminal">
+            <div className="terminal" id={id}>
             {isPyodideLoading && <CircularProgress />}
             </div>
         </div>

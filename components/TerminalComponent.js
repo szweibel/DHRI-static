@@ -14,6 +14,7 @@ export default function TerminalComponent() {
           '/home/nested/directory/file': {content: 'End of nested directory!'}
         })
       });
+
       return(
           <ReactTerminal
           theme={{
