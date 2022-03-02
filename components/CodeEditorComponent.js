@@ -1,5 +1,5 @@
 // import Editor from "@monaco-editor/react";
-import { useRef, useEffect, useState, useContext } from "react";
+import { useRef, useEffect, useState, useContext, useReducer } from "react";
 import AddIcon from '@mui/icons-material/Add';
 import Script from "next/script";
 import dynamic from "next/dynamic";
@@ -17,8 +17,12 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
   const [pyodideReady, setPyodideReady] = useState(false);
   const [pyodideLoaded, setPyodideLoaded] = useState(false);
   const [pyodideObject, setPyodideObject] = useState(null);
+  const [isoutput, setIsoutput] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState(null);
   const outputRef = useRef(null);
-  const errorRef = useRef(null);
+  const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+
 
   const {
     hasLoadPyodideBeenCalled,
@@ -46,12 +50,13 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
   };
 
   const runPyodide = async (code) => {
-    // clear output and error
-    outputRef.current.innerHTML = "";
-    errorRef.current.innerHTML = "";
-    // let namespace = pyodide.globals.get("IDE")();
+    setIsoutput(false);
+    setIsError(false);
+    setError(null);
+    outputRef.current = "";
     pyodide.globals.set('print', (s) => {
-      addToOutput(s);
+      console.log(String(s));
+      outputRef.current = outputRef.current + String(s) + "\n";
     });
     pyodide.globals.set('input', (s) => {
       prompt(s);
@@ -59,9 +64,12 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
     await pyodide.loadPackage("nltk");
     await pyodide.loadPackagesFromImports(code);
     return await pyodide.runPythonAsync(code).then(result => {
-      addToOutput(result);
+      setIsoutput(true);
+      outputRef.current = outputRef.current + '\n' + result;
+      forceUpdate();
     }).catch((err) => {
-      addToError(err);
+      setIsError(true);
+      setError(err);
     });
     
   };
@@ -70,18 +78,6 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
     runPyodide(code);
   }
 
-
-  function addToOutput(s) {
-    let output = outputRef.current;
-    output.innerText += s + "\n";
-    output.scrollTop = output.scrollHeight;
-  }
-
-  function addToError(s) {
-    let error = errorRef.current;
-    error.innerText += s + '\n';
-    error.scrollTop = error.scrollHeight;
-  }
 
 
   return (
@@ -151,8 +147,9 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
         </div>
         <EditorComponent code={code} onChange={onChange} maxLines='Infinity' />
       </div>
-      <div id='output'
-        ref={outputRef}
+     
+        { isoutput && <div id='output'
+        // ref={outputRef}
         style={{
           margin: "10px",
           padding: "10px",
@@ -162,12 +159,13 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
           color: "#32c259",
           fontSize: "20px",
           overflow: "auto",
-          font: "1.3rem Inconsolata, monospace"
+          font: "1.3rem Inconsolata, monospace",
+          whiteSpace: "pre-wrap",
         }}>
-      </div>
+          {outputRef.current}
+      </div>}
 
-      <div id="error"
-        ref={errorRef}
+      {isError && <div id="error"
         style={{
           font: "1.3rem Inconsolata, monospace",
           margin: "10px",
@@ -177,9 +175,11 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
           backgroundColor: "#f5f5f5",
           color: "red",
           fontSize: "20px",
-          overflow: "auto"
+          overflow: "auto",
+          whiteSpace: "pre-wrap"
         }}>
-      </div>
+        {String(error)}
+      </div>}
     </div>
   )
 }

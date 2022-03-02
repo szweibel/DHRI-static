@@ -5,7 +5,6 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-dark.css'
 import Image from 'next/image'
 import Zoom from 'react-medium-image-zoom'
-
 import 'react-medium-image-zoom/dist/styles.css'
 import CodeEditorComponent from './CodeEditorComponent';
 import PythonREPLComponent from './PythonREPLComponent';

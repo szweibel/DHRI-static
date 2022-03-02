@@ -23,8 +23,6 @@ export default function PythonREPLComponent() {
          let id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         // jquery select the div with id of id
         let terminalLocation = '#' + id;
-        console.log(terminalLocation);
-
         async function main() {
             let namespace = pyodide.globals.get("dict")();
             pyodide.runPython(
@@ -135,7 +133,7 @@ export default function PythonREPLComponent() {
                 },
               },
             });
-            term.focus(false)
+            // term.enable(false)
             // window.term = term;
             pyconsole.stdout_callback = (s) => term.echo(s, { newline: false });
             pyconsole.stderr_callback = (s) => {

@@ -14,7 +14,6 @@ export default function QuizComponent({ className, children }) {
     const [disabled, setDisabled] = useState(false);
     const [correct, setCorrect] = useState(0);
 
-    console.log(children);
     // list of lis in children 
     const lis = children[0].props.children.map((child, index) => {
         const flattened = ReactDOMServer.renderToString(child);
