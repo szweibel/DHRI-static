@@ -9,6 +9,7 @@ import Stack from '@mui/material/Stack';
 import FrontPage from '../../components/FrontPage'
 import Sidebar from '../../components/Sidebar'
 import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
 import Presentation from '../../components/Presentation';
 
 
@@ -60,7 +61,7 @@ export default function WorkshopPage({
           )
         }
         return (
-          <div key={index}>
+          <div key={index} className='page-content'>
             {page.map((element, index) => {
               return (
                 <React.Fragment key={index}>
@@ -110,15 +111,23 @@ export default function WorkshopPage({
   const sidebar = Sidebar(getPageTitles, currentPage)
   const PaginationComponent = (currentPage) => {
     return (
-      <Stack className='pagination'>
-        <Pagination
-          count={pages.length}
-          page={Number(currentPage)}
-          onChange={handlePageChange}
-          siblingCount={2}
-          boundaryCount={2}
-        />
-      </Stack>
+      <div className='pagination'>
+        <Button
+          className='previous-page'
+          onClick={() => handlePageChange(event, currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </Button>
+        {sidebar}
+        <Button
+          className='next-page'
+          onClick={() => handlePageChange(event, currentPage + 1)}
+          disabled={currentPage === pages.length}
+        >
+          Next
+        </Button>
+      </div>
     )
   }
 
@@ -143,11 +152,6 @@ export default function WorkshopPage({
         marginTop: '1rem',
       }}
     >
-      <div className='sidebar'
-        sx={{ display: { md: 'none' } }}
-      >
-        {sidebar}
-      </div>
       <div className="content card-page">
         <div className='presentation'>
           <Presentation
@@ -156,9 +160,9 @@ export default function WorkshopPage({
           />
         </div>
         <div className="workshop-container">
-          <div>{PaginationComponent(currentPage)}</div>
+          {PaginationComponent(currentPage)}
           {currentContent}
-          <div>{PaginationComponent(currentPage)}</div>
+          {PaginationComponent(currentPage)}
         </div>
       </div>
     </Container>

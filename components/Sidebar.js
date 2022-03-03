@@ -2,8 +2,7 @@ import * as React from 'react';
 import Drawer from '@mui/material/Drawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Button } from '@mui/material';
-import Fab from '@mui/material/Fab';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import TocIcon from '@mui/icons-material/Toc';
 
 export default function SidebarDrawer(pages, currentPage) {
 
@@ -25,13 +24,13 @@ export default function SidebarDrawer(pages, currentPage) {
         // icon and button to open top drawer 
         <React.Fragment>
 
-            <Fab color="primary"
+            <Button color="primary"
                 aria-label="open drawer"
                 className={'sidebar-button'}
                 onClick={toggleDrawer('left', true)}>
+                <TocIcon />
                     Table of Contents
-                <ChevronRightIcon />
-            </Fab>
+            </Button>
             <Drawer
                 variant="temporary"
                 open={state['left']}

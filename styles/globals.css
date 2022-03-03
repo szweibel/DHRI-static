@@ -395,6 +395,10 @@ header > .topBar{
   background-color: var(--background) !important;
 }
 
+.page-content{
+  margin-bottom: 30px;
+}
+
 .image-container{
   text-align: center;
 }
@@ -486,23 +490,10 @@ margin-left: 10px;
   }
 }
 
-.sidebar-button{
-  background-color: rgb(102, 104, 107) !important;
-  color: white !important;
-  /* border-radius: 30px !important; */
-  top: 50% !important;
-  position: fixed !important;
-  left:0;
-  width: 150px !important;
+.pagination{
+  width: 100%;
 }
-.sidebar-button svg{
-  margin-left: 15px;
-}
-@media(min-width: 2099px) {
-  .sidebar-button{
-    display: none !important;
-  }
-}
+
 .drawer-left :nth-child(3){
   background-color: var(--background-page) !important;
 }
