@@ -11,6 +11,8 @@ import Sidebar from '../../components/Sidebar'
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Presentation from '../../components/Presentation';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
 export default function WorkshopPage({
@@ -117,15 +119,21 @@ export default function WorkshopPage({
           onClick={() => handlePageChange(event, currentPage - 1)}
           disabled={currentPage === 1}
         >
+          <ArrowBackIcon />
           Previous
         </Button>
         {sidebar}
+        <Presentation
+            content={currentFile}
+            title={title}
+          />
         <Button
           className='next-page'
           onClick={() => handlePageChange(event, currentPage + 1)}
           disabled={currentPage === pages.length}
         >
           Next
+          <ArrowForwardIcon />
         </Button>
       </div>
     )
@@ -153,12 +161,12 @@ export default function WorkshopPage({
       }}
     >
       <div className="content card-page">
-        <div className='presentation'>
+        {/* <div className='presentation'>
           <Presentation
             content={currentFile}
             title={title}
           />
-        </div>
+        </div> */}
         <div className="workshop-container">
           {PaginationComponent(currentPage)}
           {currentContent}

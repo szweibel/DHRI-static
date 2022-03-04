@@ -154,6 +154,7 @@ export default function Presentation(props) {
                     <SlideshowIcon
                         fontSize="large"
                     />
+                    Presentation Mode
                 </Button>
                 <Modal
                     open={open}
