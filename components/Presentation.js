@@ -6,10 +6,24 @@ import Button from '@mui/material/Button';
 import SlideshowIcon from '@mui/icons-material/Slideshow';
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 import * as jQuery from 'jquery';
+import { useRouter } from 'next/router'
 
 export default function Presentation(props) {
+    const [HOnesandHTwos, setHOnesandHTwos] = useState([]);
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+    const router = useRouter()
+    const currentHeader = props.currentHeader;
+    const handleOpen = function () {
+        const HeaderToFind = currentHeader.children[0].props.children.props.children[0];
+        const HeaderToFindIndex = HOnesandHTwos.findIndex(function (element) {
+            return element.props.children[0] === HeaderToFind;
+        });
+        const correctSlide = HeaderToFindIndex + 1;
+        router.push(`/workshops/${router.query.slug}/?page=${router.query.page}&slideIndex=${correctSlide}`, undefined, { shallow: true, scroll: false });
+        setOpen(true);
+    }
+
+
     const handleClose = () => setOpen(false);
 
     const content = props.content.content;
@@ -33,16 +47,17 @@ export default function Presentation(props) {
         const htmlifiedContent = compiler(content);
         // split react element array into pages
         const allPages = [];
-
         const pages = htmlifiedContent.props.children.reduce((acc, curr) => {
             // allPages = [[h1, p, p][h1, p, div]]
             if (typeof curr === 'string') {
                 return acc;
             } else if (curr.type === 'h1') {
                 allPages.push([curr]);
+                HOnesandHTwos.push(curr);
             }
             else if (curr.type === 'h2') {
                 allPages.push([curr]);
+                HOnesandHTwos.push(curr);
             }
             else {
                 allPages[allPages.length - 1].push(curr);
@@ -64,11 +79,11 @@ export default function Presentation(props) {
 
         return (
             <Deck
-            style={{
-                height:'100%',
-                width:'100%',
-                backgroundColor:'#fff',
-            }}
+                style={{
+                    height: '100%',
+                    width: '100%',
+                    backgroundColor: '#fff',
+                }}
             >
                 <Slide>
                     <Button
@@ -101,45 +116,45 @@ export default function Presentation(props) {
                                 <CancelPresentationIcon />
                             </Button>
                             <div className="slides"
-                            style={{
-                                overflow: 'auto',
-                                height: '100%',
-                            }}
+                                style={{
+                                    overflow: 'auto',
+                                    height: '100%',
+                                }}
                             >
-                            {page.map((item, index) => {
-                                if (item.type === 'h1' || item.type === 'h2') {
-                                    return (
-                                        <Heading key={index}>
-                                            {item.props.children}
-                                        </Heading>
-                                    )
-                                } else if (item.type === 'CodeEditor') {
-                                    return
-                                }
+                                {page.map((item, index) => {
+                                    if (item.type === 'h1' || item.type === 'h2') {
+                                        return (
+                                            <Heading key={index}>
+                                                {item.props.children}
+                                            </Heading>
+                                        )
+                                    } else if (item.type === 'CodeEditor') {
+                                        return
+                                    }
 
-                                //                                 else if(item.type=== 'pre') {
-                                //                                     return (
-                                //                                         <CodePane 
-                                //                                         key={index}
-                                //                                         showLineNumbers={false}
-                                //                                         language={item.props.className}
+                                    //                                 else if(item.type=== 'pre') {
+                                    //                                     return (
+                                    //                                         <CodePane 
+                                    //                                         key={index}
+                                    //                                         showLineNumbers={false}
+                                    //                                         language={item.props.className}
 
-                                //                                         >
-                                // {item.props.children.props.children}
-                                //                                         </CodePane>
-                                //                                     )
+                                    //                                         >
+                                    // {item.props.children.props.children}
+                                    //                                         </CodePane>
+                                    //                                     )
 
-                                //                                 }
-                                else {
-                                    return (
-                                        <div 
+                                    //                                 }
+                                    else {
+                                        return (
+                                            <div
 
-                                        key={index}>
-                                            {item}
-                                        </div>
-                                    )
-                                }
-                            })}
+                                                key={index}>
+                                                {item}
+                                            </div>
+                                        )
+                                    }
+                                })}
                             </div>
                         </Slide>
                     )
@@ -151,9 +166,7 @@ export default function Presentation(props) {
         <>
             <div>
                 <Button onClick={handleOpen}>
-                    <SlideshowIcon
-                        fontSize="large"
-                    />
+                    <SlideshowIcon />
                     Presentation Mode
                 </Button>
                 <Modal
