@@ -20,6 +20,10 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
        <title>DHRI Curriculum</title>
+       <link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+/>
         {process.env.NEXT_PUBLIC_GITHUB_ACTIONS == false && <><link rel="icon" href={base + "/images/favicon.ico"} sizes="32x32"></link>
         <link rel="icon" href={base + "/images/favicon.ico"} sizes="192x192"></link>
         <link rel="apple-touch-icon" href={base + "/images/favicon.ico" }></link></>}

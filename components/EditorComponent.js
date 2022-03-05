@@ -22,6 +22,7 @@ export default function CodeEditorComponent({code, onChange, maxLines=null, lang
           fontSize={22}
           width="auto"
           height="100%"
+          minLines={4}
           maxLines={maxLines}
           showPrintMargin={false}
           showGutter={true}

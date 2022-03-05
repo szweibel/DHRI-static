@@ -55,7 +55,6 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
     setError(null);
     outputRef.current = "";
     pyodide.globals.set('print', (s) => {
-      console.log(String(s));
       outputRef.current = outputRef.current + String(s) + "\n";
     });
     pyodide.globals.set('input', (s) => {

@@ -161,9 +161,6 @@ export default function PythonREPLComponent() {
                 setIsPyodideLoading(false)
                 main();
             }
-            window.addEventListener('focus', () => {
-                console.log('focus');
-            });
           }, [hasLoadPyodideBeenCalled, setIsPyodideLoading, isPyodideReady])
 
        

@@ -41,7 +41,6 @@ export default function WorkshopPage({
     const htmlifiedContent = ConvertMarkdown(content);
     // split react element array into pages
     const allPages = [];
-
     const pages = htmlifiedContent.props.children.reduce((acc, curr) => {
       // allPages = [[h1, p, p][h1, p, div]]
       if (typeof curr === 'string') {
@@ -84,6 +83,7 @@ export default function WorkshopPage({
   const [pages, setPages] = useState(htmlContent(content));
   const [currentContent, setCurrentContent] = useState([]);
   const [pageTitles, setPageTitles] = useState([]);
+  const [currentHeader, setCurrentHeader] = useState(null);
 
   // list of page titles and highlight current page
   const getPageTitles = pages.map((page, index) => {
@@ -110,13 +110,21 @@ export default function WorkshopPage({
     }
   }, [slug]);
 
+  useEffect(() => {
+    // check if current content has changed and get the current h1
+    if (currentContent && currentContent != undefined) {
+      setCurrentHeader(currentContent.props);
+    }
+  }, [currentContent]) 
+
+
   const sidebar = Sidebar(getPageTitles, currentPage)
   const PaginationComponent = (currentPage) => {
     return (
       <div className='pagination'>
         <Button
           className='previous-page'
-          onClick={() => handlePageChange(event, currentPage - 1)}
+          onClick={() => handlePageChange(event, Number(currentPage) - 1)}
           disabled={currentPage === 1}
         >
           <ArrowBackIcon />
@@ -124,12 +132,13 @@ export default function WorkshopPage({
         </Button>
         {sidebar}
         <Presentation
+            currentHeader={currentHeader}
             content={currentFile}
             title={title}
           />
         <Button
           className='next-page'
-          onClick={() => handlePageChange(event, currentPage + 1)}
+          onClick={() => handlePageChange(event, Number(currentPage) + 1)}
           disabled={currentPage === pages.length}
         >
           Next
@@ -161,12 +170,6 @@ export default function WorkshopPage({
       }}
     >
       <div className="content card-page">
-        {/* <div className='presentation'>
-          <Presentation
-            content={currentFile}
-            title={title}
-          />
-        </div> */}
         <div className="workshop-container">
           {PaginationComponent(currentPage)}
           {currentContent}
@@ -209,10 +212,9 @@ export async function getStaticProps() {
       )
       const itemPath = path.join(dir, filename).replace('.md', '')
 
-      // replace '+' with '&#43;' 
-      const replaced = markdownWithMeta.replace(/\+/g, String.fromCharCode(65291))
-      const matterResult = matter(replaced)
+      const matterResult = matter(markdownWithMeta)
       const content = matterResult.content
+
       return {
         slug,
         itemPath,

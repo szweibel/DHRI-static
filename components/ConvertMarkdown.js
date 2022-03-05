@@ -68,9 +68,28 @@ const Imager = ({ className, ...props }) => {
 }
 
 const CodeEditor = ({ className, children }) => {
+    
+    if (children.length > 0) {
+        if (typeof children[0] === 'object') {
+            const codeText = children[0].props.children.join('');
+            return (
+                <div>
+                    <CodeEditorComponent defaultCode={codeText} />
+                </div>
+            )
+        }
+    }   
     const codeText = children.join('');
     return (
         <div>
+            <CodeEditorComponent defaultCode={codeText} />
+        </div>
+    );
+
+
+
+    return (
+        <div className='code-editor-container'>
             <CodeEditorComponent defaultCode={codeText} />
         </div>
     )
