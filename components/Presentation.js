@@ -14,7 +14,6 @@ export default function Presentation(props) {
     const router = useRouter()
     const currentHeader = props.currentHeader;
     const handleOpen = function () {
-        console.log(currentHeader);
         if (currentHeader.className === 'frontpage') {
             setOpen(true);
         }else{
@@ -27,7 +26,6 @@ export default function Presentation(props) {
         setOpen(true);
         }
     }
-
 
     const handleClose = () => setOpen(false);
 

@@ -10,7 +10,6 @@ export default function FrontPage(currentFile, allFiles) {
   const installGuides = allFiles.guides
   const insights = allFiles.insights
 
-
   const formattedDependencies = Object.keys(dependencies).map(key => {
     const items = dependencies[key]
     const addLinktoItems = Object.keys(items).map(key => {
