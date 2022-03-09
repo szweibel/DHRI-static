@@ -83,12 +83,12 @@ export default function WorkshopPage({
   const [currentHeader, setCurrentHeader] = useState(null);
 
   // list of page titles and highlight current page
-useEffect(() => {
+  useEffect(() => {
     const pageTitlesGet = pages.map((page, index) => {
-    let header = undefined;
-    // if it's the frontpage vs not
-    index === 0 ? header = "Introduction" : header = page.props.children[0].props.children.props.children[0]
-    return ( header )
+      let header = undefined;
+      // if it's the frontpage vs not
+      index === 0 ? header = "Introduction" : header = page.props.children[0].props.children.props.children[0]
+      return (header)
     })
     setPageTitles(pageTitlesGet)
   }, [currentPage]);
@@ -111,7 +111,7 @@ useEffect(() => {
     if (currentContent && currentContent != undefined) {
       setCurrentHeader(currentContent.props);
     }
-  }, [currentContent]) 
+  }, [currentContent])
 
 
   const PaginationComponent = (currentPage) => {
@@ -126,17 +126,16 @@ useEffect(() => {
           Previous
         </Button>
         <Sidebar
-        pages = {pageTitles}
-        currentPage = {currentPage}
-        handlePageChange = {handlePageChange}
+          pages={pageTitles}
+          currentPage={currentPage}
+          handlePageChange={handlePageChange}
 
         />
-
         <Presentation
-            currentHeader={currentHeader}
-            content={currentFile}
-            title={title}
-          />
+          currentHeader={currentHeader}
+          content={currentFile}
+          title={title}
+        />
         <Button
           className='next-page'
           onClick={() => handlePageChange(event, Number(currentPage) + 1)}
