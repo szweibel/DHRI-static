@@ -4,8 +4,6 @@ import matter from 'gray-matter'
 import React, { useEffect, useState } from 'react'
 import ConvertMarkdown from '../../components/ConvertMarkdown'
 import { useRouter } from 'next/router'
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 import FrontPage from '../../components/FrontPage'
 import Sidebar from '../../components/Sidebar'
 import Container from '@mui/material/Container';
@@ -13,7 +11,6 @@ import Button from '@mui/material/Button';
 import Presentation from '../../components/Presentation';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
 
 export default function WorkshopPage({
   workshops,
@@ -86,29 +83,28 @@ export default function WorkshopPage({
   const [currentHeader, setCurrentHeader] = useState(null);
 
   // list of page titles and highlight current page
-  const getPageTitles = pages.map((page, index) => {
+useEffect(() => {
+    const pageTitlesGet = pages.map((page, index) => {
     let header = undefined;
     // if it's the frontpage vs not
-    index === 0 ? header = page.props.children[0].props.children : header = page.props.children[0].props.children.props.children[0]
-    return (
-      <li key={index}>
-        <a className={currentPage === index + 1 ? 'active' : ''} onClick={() => handlePageChange(event, index + 1)}>{header}</a>
-      </li>
-    )
-  })
+    index === 0 ? header = "Introduction" : header = page.props.children[0].props.children.props.children[0]
+    return ( header )
+    })
+    setPageTitles(pageTitlesGet)
+  }, [currentPage]);
 
   useEffect(() => {
     setPages(htmlContent(content));
     setCurrentPage(1);
     setCurrentContent(frontPageContent);
-    setPageTitles(getPageTitles);
     const urlParams = new URLSearchParams(window.location.search);
-    const page = urlParams.get('page');
+    const page = Number(urlParams.get('page'));
     if (page) {
-      setCurrentPage(page);
+      setCurrentPage((page));
       setCurrentContent(pages[page - 1]);
     }
   }, [slug]);
+
 
   useEffect(() => {
     // check if current content has changed and get the current h1
@@ -118,7 +114,6 @@ export default function WorkshopPage({
   }, [currentContent]) 
 
 
-  const sidebar = Sidebar(getPageTitles, currentPage)
   const PaginationComponent = (currentPage) => {
     return (
       <div className='pagination'>
@@ -130,7 +125,13 @@ export default function WorkshopPage({
           <ArrowBackIcon />
           Previous
         </Button>
-        {sidebar}
+        <Sidebar
+        pages = {pageTitles}
+        currentPage = {currentPage}
+        handlePageChange = {handlePageChange}
+
+        />
+
         <Presentation
             currentHeader={currentHeader}
             content={currentFile}

@@ -116,6 +116,7 @@ export default function PythonREPLComponent() {
             }
     
             let term = $(terminalLocation).terminal(interpreter, {
+              // height: 50,
               greetings: banner,
               prompt: ps1,
               enabled: false,
@@ -133,8 +134,6 @@ export default function PythonREPLComponent() {
                 },
               },
             });
-            // term.enable(false)
-            // window.term = term;
             pyconsole.stdout_callback = (s) => term.echo(s, { newline: false });
             pyconsole.stderr_callback = (s) => {
               term.error(s.trimEnd());
