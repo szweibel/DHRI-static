@@ -96,7 +96,7 @@ export default function SidebarDrawer({ pages, currentPage, handlePageChange }) 
                             <ListItem key={index}>
                                 <ListItemText
                                     style={{
-                                        color: currentPage === index + 1 ? '#000' : 'lightseaGreen',
+                                        color: currentPage === index + 1 ? 'var(--foreground)' : 'lightseaGreen',
                                         fontSize: '1rem',
                                         fontWeight: 'bold',
                                         cursor: currentPage === index + 1 ? 'default' : 'pointer'
