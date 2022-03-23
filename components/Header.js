@@ -5,8 +5,6 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import { useState, useEffect } from "react";
 import CssBaseline from '@mui/material/CssBaseline';
 import { styled } from '@mui/material/styles';
@@ -175,8 +173,9 @@ export default function Header({ props }) {
                     </ul>
 
                     <MaterialUISwitch
+                        // value could be 'dark' or 'light'
+                        checked={theme == 'dark'}
                         onClick={(e) => themeToggle(e)}
-                        value="light"
                     />
                     <Button color="inherit">Login</Button>
                 </Toolbar>
