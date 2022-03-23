@@ -24,14 +24,13 @@
 #__next {
   min-height: 100vh;
   position: relative;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 body {
   font-family: 'Lato', sans-serif;
   font-size: 19px;
-  background-color: var(--background);
-  position: relative;
-  color: var(--foreground);
 }
 
 a {
