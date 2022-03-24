@@ -14,6 +14,9 @@ import logo from '../public/images/logo.png';
 import ButtonAppBarCollapse from "./ButtonAppBarCollapse";
 import { useTheme } from 'next-themes'
 import Switch from '@mui/material/Switch';
+import IconButton from '@mui/material/IconButton';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => (
@@ -90,7 +93,7 @@ export default function Header({ props }) {
     const drawerWidth = 240;
 
     const themeToggle = (e) => {
-        if (e.target.checked === true) {
+        if (theme === 'light') {
             setTheme('dark')
         }
         else {
@@ -171,12 +174,17 @@ export default function Header({ props }) {
                             <Link href='/Glossary' passHref>Glossary</Link>
                         </li>
                     </ul>
-
+{/* 
                     <MaterialUISwitch
                         // value could be 'dark' or 'light'
                         checked={theme == 'dark'}
                         onClick={(e) => themeToggle(e)}
-                    />
+                    /> */}
+                    <IconButton sx={{ ml: 1 }} 
+                    onClick={(e) => themeToggle(e)}
+                    color="inherit">
+        {theme === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+      </IconButton>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
