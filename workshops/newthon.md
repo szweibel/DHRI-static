@@ -26,19 +26,13 @@ dependencies:
         visual-studio-code: 
             excerpt: (Recommended) You can use any plain text editor, but for our purposes Visual Studio Code ("VS Code") will be used.
             recommended: true
-    authors:
-        filipa_calado:
-            excerpt: (Current Author)
-        patrick_smyth:
-            excerpt: (Past Author)
-        param_ajmera:
-            excerpt: (Past Reviewer)
-        rafael_davis_portela:
-            excerpt: (Past Reviewer)
-        lisa_rhody:
-            excerpt: (Editor)
-        kalle_westerling:
-            excerpt: (Editor)
+
+authors:
+    current: 'Kalle Westerling'
+    past: 'Filipa Calado'
+editors:
+    current: 'Di Yoong'
+    past: 'Stephen Zweibel'
 readings:
     - Want to learn programming, but not convinced that the Python language is the right language? Check out [Five Reasons Why Learning Python Is The Best Decision](https://medium.com/datadriveninvestor/)
     - "Some concrete ideas for how to use Python: [What Can I Do With Python?](https://realpython.com/what-can-i-do-with-python/)"
@@ -68,17 +62,7 @@ goals:
     - Learn how to find and import code from external sources to solve more complex problems.
     - Run Python programs, both by interacting directly with the interpreter and by preparing and running scripts.
     - Understand what Python is and, in general terms, what it can do.
-authors:
-    no one:
-        excerpt: "bleep blorp"
-    someone else:
-        excerpt: "foo"
-    another person:
-        excerpt: "chirp"
-    random:
-        excerpt: "burp"
-    anon:
-        excerpt: "bloop"
+
 ---
 
 # Interacting With Python
