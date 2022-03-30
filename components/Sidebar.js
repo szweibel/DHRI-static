@@ -48,6 +48,7 @@ export default function SidebarDrawer({ pages, currentPage, handlePageChange }) 
                 <nav
                     className='sidenav'>
                     <List
+
                         // dense={true}
                         onClick={toggleDrawer('left', false)}
                         onKeyDown={toggleDrawer('left', false)}>
