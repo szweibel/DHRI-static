@@ -44,9 +44,9 @@ export default function FrontPage(currentFile, allFiles) {
     }
   })
 
-  // const authorDeps = formattedDependencies.find(dep => dep.title === 'authors')
+  //const authorDeps = formattedDependencies.find(dep => dep.title === 'authors')
   // console.log( authorDeps)
-  // const formattedAuthors = authorDeps.items ? authorDeps.items : []
+  //const formattedAuthors = authorDeps.items ? authorDeps.items : []
   // // console.log( formattedAuthors)
   // const formedAuthor = formattedAuthors.map(dep => {
   //   // console.log(dep)
@@ -117,7 +117,7 @@ export default function FrontPage(currentFile, allFiles) {
 
   const formattedObjects = allObjects.
     filter(item => item !== null).map(obj => {
-      console.log(obj);
+      //console.log(obj);
       return (
         <div className="frontpage-item" key={obj.title}>
           <h2>{obj.title}</h2>
@@ -134,12 +134,22 @@ export default function FrontPage(currentFile, allFiles) {
                 )
                 }
               if (obj.title === 'authors') {
-                // const author = authors.find(author => author.slug === key)
-                console.log(obj.author)
-                //const authors = ConvertMarkdown(item)
+                let authorPath = `/authors/${(item.toLowerCase()).replaceAll(' ', '_')}`
+                let authorStatus = key.charAt(0).toUpperCase() + key.slice(1)
                 return (
                   <li key={key} className='authors-list'>
-                    <a href={`/${obj.itemPath}`}>hello</a>
+                    <a href={authorPath}>{item}</a>
+                    <li>{authorStatus}</li>
+                  </li>
+                )
+              }
+              if (obj.title === 'editors') {
+                let editorPath = `/authors/${(item.toLowerCase()).replaceAll(' ', '_')}`
+                let editorStatus = key.charAt(0).toUpperCase() + key.slice(1)
+                return (
+                  <li key={key} className='authors-list'>
+                    <a href={editorPath}>{item}</a>
+                    <li>{editorStatus}</li>
                   </li>
                 )
               }
@@ -170,17 +180,6 @@ export default function FrontPage(currentFile, allFiles) {
                     </li>
                   )
                 }
-                /*
-                if (item.authors) {
-                  const itemHtml = ConvertMarkdown(item)
-                  return (
-                    <div>
-                      <li key={key} className='authors-list'>
-                      <p>{itemHtml}</p>
-                  </li>
-                  </div>
-                )
-                }*/
                 return (
                   <div>
                     {Object.keys(item).map(key => {
