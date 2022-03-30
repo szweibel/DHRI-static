@@ -227,7 +227,7 @@ export default function HTMLEditor({ defaultCode = "<!-- Write your HTML here --
                             <Allotment.Pane>
                                 {FramePane()}
                             </Allotment.Pane>
-                            <Allotment.Pane className={'console'}>
+                            <Allotment.Pane className={'JS-console'}>
                                 {ConsolePane()}
                             </Allotment.Pane>
                         </Allotment>

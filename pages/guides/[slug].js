@@ -80,7 +80,7 @@ export default function WorkshopPage({
     )
   })
 
-  const sidebar = Sidebar(getPageTitles, currentPage)
+  // const sidebar = Sidebar(getPageTitles, currentPage)
 
 
   useEffect(() => {
@@ -124,7 +124,7 @@ export default function WorkshopPage({
       <div className='sidebar'
         sx={{ display: { md: 'none' } }}
       >
-        {sidebar}
+        {/* {sidebar} */}
       </div>
       <div className="content card-page">
         <div className="workshop-container">

@@ -14,6 +14,9 @@ export default function Presentation(props) {
     const router = useRouter()
     const currentHeader = props.currentHeader;
     const handleOpen = function () {
+        if (currentHeader.className === 'frontpage') {
+            setOpen(true);
+        }else{
         const HeaderToFind = currentHeader.children[0].props.children.props.children[0];
         const HeaderToFindIndex = HOnesandHTwos.findIndex(function (element) {
             return element.props.children[0] === HeaderToFind;
@@ -21,8 +24,8 @@ export default function Presentation(props) {
         const correctSlide = HeaderToFindIndex + 1;
         router.push(`/workshops/${router.query.slug}/?page=${router.query.page}&slideIndex=${correctSlide}`, undefined, { shallow: true, scroll: false });
         setOpen(true);
+        }
     }
-
 
     const handleClose = () => setOpen(false);
 

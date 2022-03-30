@@ -3,8 +3,12 @@ import Drawer from '@mui/material/Drawer';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Button } from '@mui/material';
 import TocIcon from '@mui/icons-material/Toc';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 
-export default function SidebarDrawer(pages, currentPage) {
+
+export default function SidebarDrawer({ pages, currentPage, handlePageChange }) {
 
     const [state, setState] = React.useState({
         top: false,
@@ -12,7 +16,6 @@ export default function SidebarDrawer(pages, currentPage) {
         bottom: false,
         right: false,
     });
-
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -27,9 +30,10 @@ export default function SidebarDrawer(pages, currentPage) {
             <Button color="primary"
                 aria-label="open drawer"
                 className={'sidebar-button'}
+
                 onClick={toggleDrawer('left', true)}>
                 <TocIcon />
-                    Table of Contents
+                Table of Contents
             </Button>
             <Drawer
                 variant="temporary"
@@ -43,11 +47,25 @@ export default function SidebarDrawer(pages, currentPage) {
             >
                 <nav
                     className='sidenav'>
-                    <ul
+                    <List
+
+                        // dense={true}
                         onClick={toggleDrawer('left', false)}
                         onKeyDown={toggleDrawer('left', false)}>
-                        {pages}
-                    </ul>
+                        {pages.map((page, index) => (
+                            <ListItem key={index}>
+                                <ListItemText
+                                    style={{
+                                        color: currentPage === index + 1 ? '#000' : 'lightseaGreen',
+                                        fontSize: '1rem',
+                                        fontWeight: 'bold',
+                                        cursor: currentPage === index + 1 ? 'default' : 'pointer'
+                                    }}
+                                    onClick={() => handlePageChange(event, index + 1)}
+                                    primary={page} />
+                            </ListItem>
+                        ))}
+                    </List>
                 </nav>
             </Drawer>
             <Drawer variant="permanent"
@@ -62,14 +80,33 @@ export default function SidebarDrawer(pages, currentPage) {
                         xs: 'none',
                         sm: 'none',
                         md: 'none',
-                        lg: 'block'
+                        xl: 'block'
                     },
                 }}
             >
-                <nav className='sidenav'>
-                    <ul>
-                        {pages}
-                    </ul>
+                <nav
+                    style={{
+                        marginTop: '8rem',
+                    }}
+                    className='sidenav'>
+                    <List
+                        // dense={true}
+                        onClick={toggleDrawer('left', false)}
+                        onKeyDown={toggleDrawer('left', false)}>
+                        {pages.map((page, index) => (
+                            <ListItem key={index}>
+                                <ListItemText
+                                    style={{
+                                        color: currentPage === index + 1 ? 'var(--foreground)' : 'lightseaGreen',
+                                        fontSize: '1rem',
+                                        fontWeight: 'bold',
+                                        cursor: currentPage === index + 1 ? 'default' : 'pointer'
+                                    }}
+                                    onClick={() => handlePageChange(event, index + 1)}
+                                    primary={page} />
+                            </ListItem>
+                        ))}
+                    </List>
                 </nav>
             </Drawer>
         </React.Fragment>
