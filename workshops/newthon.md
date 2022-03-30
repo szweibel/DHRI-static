@@ -26,6 +26,19 @@ dependencies:
         visual-studio-code: 
             excerpt: (Recommended) You can use any plain text editor, but for our purposes Visual Studio Code ("VS Code") will be used.
             recommended: true
+    authors:
+        filipa_calado:
+            excerpt: (Current Author)
+        patrick_smyth:
+            excerpt: (Past Author)
+        param_ajmera:
+            excerpt: (Past Reviewer)
+        rafael_davis_portela:
+            excerpt: (Past Reviewer)
+        lisa_rhody:
+            excerpt: (Editor)
+        kalle_westerling:
+            excerpt: (Editor)
 readings:
     - Want to learn programming, but not convinced that the Python language is the right language? Check out [Five Reasons Why Learning Python Is The Best Decision](https://medium.com/datadriveninvestor/)
     - "Some concrete ideas for how to use Python: [What Can I Do With Python?](https://realpython.com/what-can-i-do-with-python/)"
@@ -46,8 +59,6 @@ resources:
     Digital Fellows’ Python Cheat Sheet: 
         excerpt: See the Digital Fellows’ Python Cheat Sheet for handy commands that we cover in this workshop.
         link: https://curriculum.dhinstitutes.org/shortcuts/workshop/python
-authors:
-    - Current author: Filipa Calado (https://github.com/gofilipa)
 
 goals:
     - description: 'In this workshop, you will learn to:'
@@ -57,6 +68,17 @@ goals:
     - Learn how to find and import code from external sources to solve more complex problems.
     - Run Python programs, both by interacting directly with the interpreter and by preparing and running scripts.
     - Understand what Python is and, in general terms, what it can do.
+authors:
+    no one:
+        excerpt: "bleep blorp"
+    someone else:
+        excerpt: "foo"
+    another person:
+        excerpt: "chirp"
+    random:
+        excerpt: "burp"
+    anon:
+        excerpt: "bloop"
 ---
 
 # Interacting With Python
@@ -496,13 +518,11 @@ Do you remember the glossary terms from this section?
 
 # Functions
 
-Broadly defined, a function is a block of reusable code that performs a specific task. Often, a function takes an input, transforms the input, and returns an output. For instance, a function `get_user_name()` might prompt the user for their name (taking input), add their name to a list of users (transforming that input), and return that list to be used elsewhere in the program (providing an output). This functionality would allow us to reuse the function every time we want to ask a new user for their name and add it to our list of users.
+Broadly defined, a function is a block of reusable code that performs a specific task. Often, a function takes an input, transforms the input, and returns an output. Imagine, for instance, a [penny press](https://en.wikipedia.org/wiki/Elongated_coin) at a popular tourist attraction that accepts a penny (the input), flattens and embosses the penny (the transformation), and spits out an elongated coin with a new design, perhaps an image of the Statue of Liberty (the output)! Or, for those of you who remember high school algebra, the function `f(x) = x + 1` means that given an input `x`, the function will return `x + 1`. For example, if I substituted `2` for `x`, my function would read `f(2) = 2 + 1`, or `f(2) = 3`. In this case, my input was `2`, the transformation was to add `1`, and the output was `3`. These are the basic concepts that make up a function in Python as well! 
 
-## Writing Your First Function
+## Writing your first function
 
-Let's write a Python function that allows us to add one to a given number, and then print the results of the operation.
-
-Try running the code in the editor below. (If you accidentally modify the code, you can hit the `REVERT` button to reset it.)
+Let's write a Python function that prints the output from our algebraic equation `f(x) = x + 1` above. Try running the code in the editor below. (If you accidentally modify the code, you can hit the `REVERT` button to reset it.)
 
 <CodeEditor>
 def add_one(x):
@@ -530,6 +550,7 @@ add_one(2)
 Here, we are telling the computer to pass in `2` to see if we get our expected output of `3`.
 
 ### Optional 
+
 To see the magic of the function in action, try adding extra lines of code that call the function with different arguments in the code editor, like the following:
 
 ```python

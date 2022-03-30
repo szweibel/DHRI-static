@@ -9,17 +9,19 @@ export default function FrontPage(currentFile, allFiles) {
   const workshops = allFiles.workshops
   const installGuides = allFiles.guides
   const insights = allFiles.insights
+  const authors = allFiles.authors
 
 
   const formattedDependencies = Object.keys(dependencies).map(key => {
     const items = dependencies[key]
     const addLinktoItems = Object.keys(items).map(key => {
       const item = items[key]
-      // check if item is in workshops or insights or installGuides
+      // check if item is in workshops or insights or installGuides or authors
       const workshop = workshops.find(workshop => workshop.slug === key)
       const insight = insights.find(insight => insight.slug === key)
       const guide = installGuides.find(guide => guide.slug === key)
-      const which = workshop ? workshop : ((insight ? insight : (guide ? guide : null)))
+      const author = authors.find(author => author.slug === key)
+      const which = workshop ? workshop : ((insight ? insight : (guide ? guide : (author ? author : null))))
 
       const allItems = {
         [key]: {
@@ -40,6 +42,39 @@ export default function FrontPage(currentFile, allFiles) {
       items: addLinktoItems
     }
   })
+
+  const authorDeps = formattedDependencies.find(dep => dep.title === 'authors')
+  console.log(typeof authorDeps)
+  const formattedAuthors = authorDeps.items ? authorDeps.items : []
+  console.log(typeof formattedAuthors)
+  const formedAuthor = formattedAuthors.map(dep => {
+    return (
+      <div className='authors-list dependency' key={dep.title}>
+        <h2>Authors</h2>
+        <h5>{dep.title}</h5>
+        <ul>
+        {/*}
+          {dep.items.map(item => {
+            const workshopObject = item.allItems[Object.keys(item.allItems)[0]]
+            // convert workshopObject.excerpt to html 
+            const workshopHtmlExcerpt = ConvertMarkdown(workshopObject.excerpt)
+            const required = workshopObject.required
+            const recommended = workshopObject.recommended
+            const requiredOrRecommended = required ? 'required' : recommended ? 'recommended' : ''
+            return (
+              <li key={workshopObject} className={requiredOrRecommended}>
+                <a href={workshopObject.link}>{item.title}</a>
+                <p>{workshopHtmlExcerpt}</p>
+              </li>
+            )  
+          })}
+        */}
+          <li>{dep.allItems.excerpt}</li>
+        </ul>
+      </div>
+    )
+  })
+  
   const formedDeps = formattedDependencies.map(dep => {
     return (
       <div className='frontpage-item dependency' key={dep.title}>
@@ -69,7 +104,7 @@ export default function FrontPage(currentFile, allFiles) {
     const item = currentFile[key]
     // if object name is 'dependencies' or 'workshops' or 'insights' or 'installations' or 'excerpt' or 'title' or 'cover_image', don't add to list
     if (key === 'dependencies' || key === 'workshops' || key === 'insights' || key === 'installations' || key === 'excerpt' || key === 'title' || key === 'cover_image' || key === 'content' || key === 'slug'
-      || key === 'path' || key === 'itemPath' || key === 'authors') {
+      || key === 'path' || key === 'itemPath' /*|| key === 'authors'*/) {
       return null
     }
     return {
@@ -94,7 +129,17 @@ export default function FrontPage(currentFile, allFiles) {
                     <p>{description}</p>
                   </li>
                 )
-              }
+                }
+              /*if (obj.title === 'Authors') {
+                const author = authors.find(author => author.slug === key)
+                //const authors = ConvertMarkdown(item)
+                console.log(author)
+                return (
+                  <li key={key} className='authors-list'>
+                    <a href={`/${author.itemPath}`}>{item}</a>
+                  </li>
+                )
+              }*/
               if (typeof item === 'string') {
                 const itemHtml = ConvertMarkdown(item)
                 return (
@@ -116,18 +161,29 @@ export default function FrontPage(currentFile, allFiles) {
                 if (item.excerpt) {
                   const itemHtml = ConvertMarkdown(item.excerpt)
                   return (
-                    <li key={key}>
+                    <li key={key} className='authors-list'>
                       {key}
                       <p>{itemHtml}</p>
                     </li>
                   )
                 }
+                /*
+                if (item.authors) {
+                  const itemHtml = ConvertMarkdown(item)
+                  return (
+                    <div>
+                      <li key={key} className='authors-list'>
+                      <p>{itemHtml}</p>
+                  </li>
+                  </div>
+                )
+                }*/
                 return (
                   <div>
                     {Object.keys(item).map(key => {
                       const term = ConvertMarkdown(item[key])
                       return (
-                        <p key={key} className='list-description'>{term}</p>
+                        <p key={key} className='frontpage-list'>{term}</p>
                       )})}
                   </div>
                 )
@@ -147,6 +203,7 @@ export default function FrontPage(currentFile, allFiles) {
         <p>{excerpt}</p></div>}
       {!formatted && <Masonry columns={{ sm: 1, md: 2 }} spacing={2}>
         {formedDeps}
+        {formedAuthor}
         {formattedObjects}
       </Masonry>}
     </div>

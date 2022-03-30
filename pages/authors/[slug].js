@@ -9,12 +9,11 @@ import { useRouter } from 'next/router'
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import hljs from 'highlight.js';
-import Sidebar from '../../components/Sidebar'
 import Image from 'next/image'
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
-export default function InsightPage({
+export default function AuthorPage({
     workshops,
     guides,
     insights,
@@ -23,7 +22,7 @@ export default function InsightPage({
 
     const router = useRouter()
     const { slug } = router.query
-    const currentFile = insights.find((insight) => insight.slug === slug)
+    const currentFile = authors.find((author) => author.slug === slug)
     const content = currentFile.content
 
    // convert markdown to html and split into pages
@@ -80,40 +79,11 @@ export default function InsightPage({
     )
   })
 
-  const sidebar = Sidebar(getPageTitles, currentPage)
-
-
   useEffect(() => {
     setPages(htmlContent(content));
     setCurrentContent(htmlContent(content)[0]);
     setPageTitles(getPageTitles);
   }, [content]);
-
-  const PaginationComponent = (currentPage) => {
-    return (
-      <Stack className='pagination'>
-        <Pagination
-          count={pages.length}
-          page={currentPage}
-          onChange={handlePageChange}
-          siblingCount={2}
-          boundaryCount={2}
-        />
-      </Stack>
-    )
-  }
-
-
-  const handlePageChange = (event, value) => {
-    setCurrentPage(value);
-    setCurrentContent(pages[value - 1]);
-    // scroll smoothly to top of page
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-
-  }
 
   return (
     <Container
@@ -121,16 +91,9 @@ export default function InsightPage({
       style={{ display: 'flex',
     marginTop: '1rem', }}
     >
-      <div className='sidebar'
-        sx={{ display: { md: 'none' } }}
-      >
-        {sidebar}
-      </div>
       <div className="content card-page">
         <div className="workshop-container">
-          <div>{PaginationComponent(currentPage)}</div>
           {currentContent}
-          <div>{PaginationComponent(currentPage)}</div>
         </div>
       </div>
     </Container>
@@ -138,7 +101,7 @@ export default function InsightPage({
 }
 
 export async function getStaticPaths() {
-    const files = fs.readdirSync(path.join('insights'))
+    const files = fs.readdirSync(path.join('authors'))
     const paths = files.map((filename) => ({
         params: {
             slug: filename.replace('.md', ''),
@@ -151,13 +114,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps() {
-    // Get files from the workshops dir
+    // Get files from the authors dir
     const getFilesandProcess = (dir) => {
         const dirents = fs.readdirSync(path.join(dir), { withFileTypes: true })
         const dirFiles = dirents
             .filter((file) => file.isFile())
             .map((file) => file.name);
-        // Get slug and frontmatter from workshop
+        // Get slug and frontmatter from author
         const markdownFiles = dirFiles.map((filename) => {
             // Create slug
             const slug = filename.replace('.md', '')

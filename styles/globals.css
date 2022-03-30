@@ -454,6 +454,10 @@ header > .topBar{
   list-style-type: disc;
   margin-left: 20px;
 }
+.authors-list{
+  float: left;
+  width: 50%
+}
 .workshop-content{
   max-width: 100%;
 }

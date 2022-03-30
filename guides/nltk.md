@@ -10,7 +10,7 @@ cover_image: '/images/img4.jpg'
 
 [NLTK](http://www.nltk.org/) stands for Natural Language Tool Kit, and it is an open source Python library for analyzing language data. It is used for Python programs that work with text in statistical natural language processing (NLP). In plain terms, NLTK allows users to work with collections of text to clean, categorize, and analyze that text. As such, it is an excellent tool for text analysis.
 
-ATTENTION: NLTK comes installed with the [conda](conda.md) package managment system and may already be installed in your environment.
+ATTENTION: NLTK comes installed with the [conda](conda.md) package management system and may already be installed in your environment.
 
 ## Why we use it
 
@@ -18,7 +18,7 @@ For the Digital Humanities Research Institute, we use NLTK because it is a rich 
 
 ## Installation instructions: macOS Catalina
 
-Before getting startied, there are some things to note about software versions. First, these installation instructions work with recent versions of Mac OS X, like Catalina, Mojave, High Sierra, and they *should* work with older versions as well. 
+Before getting started, there are some things to note about software versions. First, these installation instructions work with recent versions of Mac OS X, like Catalina, Mojave, High Sierra, and they *should* work with older versions as well. 
 
 Second, if you have completed the Python workshop, you have probably downloaded the Anaconda package. Therefore, you may already have NLTK installed on your computer. The below instructions begin with an NLTK check and, in the case that you do not have NLTK installed, walk you through the installation.
 

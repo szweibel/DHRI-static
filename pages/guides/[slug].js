@@ -17,7 +17,8 @@ import Box from '@mui/material/Box';
 export default function WorkshopPage({
     workshops,
     guides,
-    insights
+    insights,
+    authors
 }) {
 
     const router = useRouter()
@@ -183,12 +184,14 @@ export async function getStaticProps() {
     const workshopFiles = getFilesandProcess('workshops')
     const installFiles = getFilesandProcess('guides')
     const insightsFiles = getFilesandProcess('insights')
+    const authorFiles = getFilesandProcess('authors')
 
     return {
         props: {
             workshops: workshopFiles.sort(),
             guides: installFiles.sort(),
             insights: insightsFiles.sort(),
+            authors: authorFiles.sort(),
         },
     }
 }
