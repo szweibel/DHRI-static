@@ -1,4 +1,4 @@
-
+import Link from 'next/link'
 import Masonry from '@mui/lab/Masonry';
 import ConvertMarkdown from './ConvertMarkdown'
 
@@ -57,7 +57,7 @@ export default function FrontPage(currentFile, allFiles) {
             const requiredOrRecommended = required ? 'required' : recommended ? 'recommended' : ''
             return (
               <li key={workshopObject} className={requiredOrRecommended}>
-                <a href={workshopObject.link}>{item.title}</a>
+                <Link href={workshopObject.link}>{item.title}</Link>
                 <p>{workshopHtmlExcerpt}</p>
               </li>
             )
@@ -105,7 +105,7 @@ export default function FrontPage(currentFile, allFiles) {
                 let authorStatus = key.charAt(0).toUpperCase() + key.slice(1)
                 return (
                   <li key={key} className='authors-list'>
-                    <a href={authorPath}>{item}</a>
+                    <Link href={authorPath}>{item}</Link>
                     <li>{authorStatus}</li>
                   </li>
                 )
@@ -116,7 +116,7 @@ export default function FrontPage(currentFile, allFiles) {
                 let editorStatus = key.charAt(0).toUpperCase() + key.slice(1)
                 return (
                   <li key={key} className='authors-list'>
-                    <a href={editorPath}>{item}</a>
+                    <Link href={editorPath}>{item}</Link>
                     <li>{editorStatus}</li>
                   </li>
                 )
