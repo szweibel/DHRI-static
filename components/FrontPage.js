@@ -100,6 +100,7 @@ export default function FrontPage(currentFile, allFiles) {
                 )
                 }
               if (obj.title === 'authors') {
+                console.log(item)
                 let authorPath = `/authors/${(item.toLowerCase()).replaceAll(' ', '_')}`
                 let authorStatus = key.charAt(0).toUpperCase() + key.slice(1)
                 return (
