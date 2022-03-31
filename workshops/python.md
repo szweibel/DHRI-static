@@ -46,8 +46,6 @@ resources:
     Digital Fellows’ Python Cheat Sheet: 
         excerpt: See the Digital Fellows’ Python Cheat Sheet for handy commands that we cover in this workshop.
         link: https://curriculum.dhinstitutes.org/shortcuts/workshop/python
-authors:
-    - current author: Filipa Calado (https://github.com/gofilipa)
 
 goals:
     - description: 'In this workshop, you will learn to:'

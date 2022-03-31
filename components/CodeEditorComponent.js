@@ -1,6 +1,5 @@
 // import Editor from "@monaco-editor/react";
 import { useRef, useEffect, useState, useContext, useReducer } from "react";
-import AddIcon from '@mui/icons-material/Add';
 import Script from "next/script";
 import dynamic from "next/dynamic";
 const EditorComponent = dynamic(

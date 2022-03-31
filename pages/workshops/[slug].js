@@ -229,7 +229,7 @@ export async function getStaticProps() {
     return markdownFiles
   }
   const workshopFiles = getFilesandProcess('workshops')
-  const snippetsFiles = getFilesandProcess('workshops/snippets')
+  const snippetsFiles = getFilesandProcess('snippets')
   const installFiles = getFilesandProcess('guides')
   const insightsFiles = getFilesandProcess('insights')
   const authorFiles = getFilesandProcess('authors')
