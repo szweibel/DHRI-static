@@ -42,39 +42,6 @@ export default function FrontPage(currentFile, allFiles) {
       items: addLinktoItems
     }
   })
-
-  // const authorDeps = formattedDependencies.find(dep => dep.title === 'authors')
-  // console.log( authorDeps)
-  // const formattedAuthors = authorDeps.items ? authorDeps.items : []
-  // // console.log( formattedAuthors)
-  // const formedAuthor = formattedAuthors.map(dep => {
-  //   // console.log(dep)
-  //   return (
-  //     <div className='authors-list dependency' key={dep.title}>
-       
-  //       <h5>{dep.title}</h5>
-  //       <ul>
-  //       {/*}
-  //         {dep.items.map(item => {
-  //           const workshopObject = item.allItems[Object.keys(item.allItems)[0]]
-  //           // convert workshopObject.excerpt to html 
-  //           const workshopHtmlExcerpt = ConvertMarkdown(workshopObject.excerpt)
-  //           const required = workshopObject.required
-  //           const recommended = workshopObject.recommended
-  //           const requiredOrRecommended = required ? 'required' : recommended ? 'recommended' : ''
-  //           return (
-  //             <li key={workshopObject} className={requiredOrRecommended}>
-  //               <a href={workshopObject.link}>{item.title}</a>
-  //               <p>{workshopHtmlExcerpt}</p>
-  //             </li>
-  //           )  
-  //         })}
-  //       */}
-  //         <li>{dep.allItems.excerpt}</li>
-  //       </ul>
-  //     </div>
-  //   )
-  // })
   
   const formedDeps = formattedDependencies.map(dep => {
     return (
@@ -116,6 +83,7 @@ export default function FrontPage(currentFile, allFiles) {
 
   const formattedObjects = allObjects.
     filter(item => item !== null).map(obj => {
+
       return (
         <div className="frontpage-item" key={obj.title}>
           <h2>{obj.title}</h2>
@@ -132,11 +100,22 @@ export default function FrontPage(currentFile, allFiles) {
                 )
                 }
               if (obj.title === 'authors') {
-                // const author = authors.find(author => author.slug === key)
-                //const authors = ConvertMarkdown(item)
+                let authorPath = `/authors/${(item.toLowerCase()).replaceAll(' ', '_')}`
+                let authorStatus = key.charAt(0).toUpperCase() + key.slice(1)
                 return (
                   <li key={key} className='authors-list'>
-                    <a href={`/${obj.itemPath}`}>hello</a>
+                    <a href={authorPath}>{item}</a>
+                    <li>{authorStatus}</li>
+                  </li>
+                )
+              }
+              if (obj.title === 'editors') {
+                let editorPath = `/authors/${(item.toLowerCase()).replaceAll(' ', '_')}`
+                let editorStatus = key.charAt(0).toUpperCase() + key.slice(1)
+                return (
+                  <li key={key} className='authors-list'>
+                    <a href={editorPath}>{item}</a>
+                    <li>{editorStatus}</li>
                   </li>
                 )
               }
@@ -167,17 +146,6 @@ export default function FrontPage(currentFile, allFiles) {
                     </li>
                   )
                 }
-                /*
-                if (item.authors) {
-                  const itemHtml = ConvertMarkdown(item)
-                  return (
-                    <div>
-                      <li key={key} className='authors-list'>
-                      <p>{itemHtml}</p>
-                  </li>
-                  </div>
-                )
-                }*/
                 return (
                   <div>
                     {Object.keys(item).map(key => {
