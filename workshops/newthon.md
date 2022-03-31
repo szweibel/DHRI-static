@@ -27,13 +27,13 @@ dependencies:
             excerpt: (Recommended) You can use any plain text editor, but for our purposes Visual Studio Code ("VS Code") will be used.
             recommended: true
 
-# authors:
-#     current: 'Kalle Westerling'
-#     past: 'Filipa Calado'
+authors:
+    current: 'Kalle Westerling'
+    past: 'Filipa Calado'
 
-# editors:
-#     current: 'Di Yoong'
-#     past: 'Stephen Zweibel'
+editors:
+    current: 'Di Yoong'
+    past: 'Stephen Zweibel'
 
 readings:
     - Want to learn programming, but not convinced that the Python language is the right language? Check out [Five Reasons Why Learning Python Is The Best Decision](https://medium.com/datadriveninvestor/)

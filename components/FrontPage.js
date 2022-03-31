@@ -20,7 +20,7 @@ export default function FrontPage(currentFile, allFiles) {
       const workshop = workshops.find(workshop => workshop.slug === key)
       const insight = insights.find(insight => insight.slug === key)
       const guide = installGuides.find(guide => guide.slug === key)
-      const author = authors.find(author => author.slug === key)
+      // const author = authors.find(author => author.slug === key)
       const which = workshop ? workshop : ((insight ? insight : (guide ? guide : (author ? author : null))))
 
       const allItems = {
@@ -100,8 +100,8 @@ export default function FrontPage(currentFile, allFiles) {
                 )
                 }
               if (obj.title === 'authors') {
-                console.log(item)
-                let authorPath = `/authors/${(item.toLowerCase()).replaceAll(' ', '_')}`
+                const author = authors.find(author => author.title === item)
+                let authorPath = `/authors/${author.slug}`
                 let authorStatus = key.charAt(0).toUpperCase() + key.slice(1)
                 return (
                   <li key={key} className='authors-list'>
@@ -111,7 +111,8 @@ export default function FrontPage(currentFile, allFiles) {
                 )
               }
               if (obj.title === 'editors') {
-                let editorPath = `/authors/${(item.toLowerCase()).replaceAll(' ', '_')}`
+                const editor = authors.find(author => author.title === item)
+                let editorPath = `/authors/${editor.slug}`
                 let editorStatus = key.charAt(0).toUpperCase() + key.slice(1)
                 return (
                   <li key={key} className='authors-list'>

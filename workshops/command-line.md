@@ -19,21 +19,7 @@ dependencies:
                 excerpt: (Recommended) You can use any plain text editor, but for our purposes Visual Studio Code ("VS Code") will be used.
             gitguide:
                 excerpt: (Required) If you're using Windows, you will need to follow the instructions to install so that we can work in the cross-platform Unix command line for this session. If you're using macOS, however, you do not need to take any action. The built-in Terminal application has all the functionality we need.
-    authors:
-        stefano_morello:
-            excerpt: (Current Author)
-        kelsey_chatlosh:
-            excerpt: (Contributing Author)
-        jojo_karlin:
-            excerpt: (Contributing Author)
-        patrick_smyth:
-            excerpt: (Contributing Author)
-        di_yoong:
-            excerpt: (Reviewer)
-        lisa_rhody:
-            excerpt: (Editor)
-        kalle_westerling:
-            excerpt: (Editor)
+
         
 readings:
     - See [Julia Evans's Bite Size Command Line here](https://jvns.ca/blog/2018/08/05/new-zine--bite-size-command-line/) (recommended). Julia Evans's comics explain in detail (while being fun!) some of the most central Unix command line tools. It's a great zine to have on your desk next to you for this workshop, and long after.
