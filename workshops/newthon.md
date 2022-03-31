@@ -298,7 +298,8 @@ In the code editor below, write the following line and click `RUN` to execute th
 
 - `print("Hello World!")`
 
-<CodeEditor></CodeEditor>
+<CodeEditor>
+</CodeEditor>
 
 You should see the text `Hello World!` appear in the output below the code editor.
 
@@ -569,7 +570,7 @@ Our functions do not have to be "mathematical" in nature. Let's say that I wante
 
 `greet()`
 
-<CodeEditor></CodeEditor>
+<CodeEditor snippets='mobydick.txt'></CodeEditor>
 
 First we define our `greet()` function, and add a line to print to the screen. Lastly, we call the function so it will run. You might have noticed that this time, we didn't pass in an argument! Note that a function doesn't have to take an input (or argument), or it can take several arguments! There is a lot of flexibility involved in writing your own functions, which you can craft carefully to do exactly what you want them to! Read more about some of the many things you can do with functions on the online web tutorial [W3Schools](https://www.w3schools.com/python/python_functions.asp).
 

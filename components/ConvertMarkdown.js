@@ -67,14 +67,13 @@ const Imager = ({ className, ...props }) => {
     );
 }
 
-const CodeEditor = ({ className, children }) => {
-    
+const CodeEditor = ({ children, ...props }) => {
     if (children.length > 0) {
         if (typeof children[0] === 'object') {
             const codeText = children[0].props.children.join('');
             return (
                 <div>
-                    <CodeEditorComponent defaultCode={codeText} />
+                    <CodeEditorComponent defaultCode={codeText} {...props}/>
                 </div>
             )
         }
@@ -82,17 +81,9 @@ const CodeEditor = ({ className, children }) => {
     const codeText = children.join('');
     return (
         <div>
-            <CodeEditorComponent defaultCode={codeText} />
+            <CodeEditorComponent defaultCode={codeText} {...props}/>
         </div>
     );
-
-
-
-    return (
-        <div className='code-editor-container'>
-            <CodeEditorComponent defaultCode={codeText} />
-        </div>
-    )
 }
 
 const EditorWithTabs = ({ className, children }) => {
@@ -138,7 +129,7 @@ const Quiz = ({ className, children }) => {
     )
 }
 
-export default function ConvertMarkdown(markdown) {
+export default function ConvertMarkdown(markdown, snippets) {
     return (
         compiler(markdown,
             {
@@ -149,20 +140,19 @@ export default function ConvertMarkdown(markdown) {
                             className: 'hljs'
                         }
                     },
-                    // ul: {
-                    //     component: Quiz,
-                    //     props: {
-                    //         className: 'list-group'
-                    //     }
-                    // },
                     img: {
                         component: Imager,
                         props: {
                             className: 'image',
                         }
                     },
+                    CodeEditor:{
+                        component: CodeEditor,
+                        props: {
+                            allSnippets: snippets,
+                        }
+                    },
                     Quiz,
-                    CodeEditor,
                     PythonREPL,
                     Terminal,
                     JSInterpreter,

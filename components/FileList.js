@@ -15,8 +15,9 @@ import DownloadIcon from '@mui/icons-material/Download';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState, useEffect } from 'react';
+import { stringify } from 'gray-matter';
 
-export default function FileList() {
+export default function FileList(...props) {
     const [files, setFiles] = useState([]);
     const [open, setOpen] = useState(false);
     const [file, setFile] = useState(null);
@@ -42,7 +43,22 @@ export default function FileList() {
     //     setUserFiles(fileList);
     // }
 
+    const allSnippets = props[0].allSnippets;
+    // if chosenSnippets is a string, make it an array with one element in it
+    const chosenSnippets = typeof props[0].snippets === 'string' ? [props[0].snippets] : props[0].snippets;
 
+    var filteredSnippets = [];
+
+    // for item in chosenSnippets
+    // if item in slug of item in allSnippets
+    // add item to filteredSnippets
+    if (chosenSnippets != undefined) {
+        chosenSnippets.forEach(snippet => {
+            const currentFile = allSnippets.find(file => file.slug === snippet);
+            if (currentFile != undefined) {
+                filteredSnippets.push(currentFile);
+            }})
+    }
     useEffect(() => {
         if (!localStorage.getItem('filenames')) {
             localStorage.setItem('filenames', JSON.stringify([]));
@@ -150,50 +166,69 @@ export default function FileList() {
     );
 
     return (
-        <div>
-            <Box>
-                <List>
-                    {/* {userFiles.map((file, index) => {
-                        return (
-                            <ListItem key={index}>
-                                <ListItemIcon>
-                                    <ListItemButton onClick={() => handleDownload(file)}>
-                                        <DownloadIcon />
-                                    </ListItemButton>
-                                </ListItemIcon>
-                                <ListItemText primary={file} />
-                                <ListItemIcon>
-                                    <ListItemButton onClick={() => handleEdit(file)}>
-                                        <EditIcon />
-                                    </ListItemButton>
-                                </ListItemIcon>
-                                <ListItemIcon>
-                                    <ListItemButton onClick={() => handleDelete(file)}>
-                                        <DeleteIcon />
-                                    </ListItemButton>
-                                </ListItemIcon>
-                            </ListItem>
-                        )
-                    }
-                    ) || <ListItem>
-                            <ListItemText primary="No files found" />
-                        </ListItem>} */}
-
-                </List>
-            </Box>
-            <Box>
-                <List>
-                    <ListItem>
-                        <ListItemButton onClick={handleDownloadAll}>
-                            Download All
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem>
-                        {uploadComponent}
-                    </ListItem>
-                </List>
-            </Box>
+        <div className="file-list">
+            {filteredSnippets.map((snippet, index) => (
+                <div key={index}>
+                    <div className="file-item"
+                    style={{
+                        color: 'white',
+                    }}
+                    >
+                        {snippet.slug}
+                    </div>
+                </div>
+            ))}
         </div>
     );
 }
+
+
+
+
+
+
+
+
+
+                    //     return (
+                    //         <ListItem key={index}>
+                    //             <ListItemIcon>
+                    //                 <ListItemButton onClick={() => handleDownload(file)}>
+                    //                     <DownloadIcon />
+                    //                 </ListItemButton>
+                    //             </ListItemIcon>
+                    //             <ListItemText primary={file} />
+                    //             <ListItemIcon>
+                    //                 <ListItemButton onClick={() => handleEdit(file)}>
+                    //                     <EditIcon />
+                    //                 </ListItemButton>
+                    //             </ListItemIcon>
+                    //             <ListItemIcon>
+                    //                 <ListItemButton onClick={() => handleDelete(file)}>
+                    //                     <DeleteIcon />
+                    //                 </ListItemButton>
+                    //             </ListItemIcon>
+                    //         </ListItem>
+                    //     )
+                    // }
+                    // ) || <ListItem>
+                    //         <ListItemText primary="No files found" />
+                    //     </ListItem>}
+
+        //         </List>
+        //     </Box>
+        //     <Box>
+        //         <List>
+        //             <ListItem>
+        //                 <ListItemButton onClick={handleDownloadAll}>
+        //                     Download All
+        //                 </ListItemButton>
+        //             </ListItem>
+        //             <ListItem>
+        //                 {uploadComponent}
+        //             </ListItem>
+        //         </List>
+        //     </Box>
+        // </div>
+
 

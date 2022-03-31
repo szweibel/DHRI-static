@@ -11,7 +11,6 @@ export default function FrontPage(currentFile, allFiles) {
   const insights = allFiles.insights
   const authors = allFiles.authors
 
-  // console.log(authors);
 
   const formattedDependencies = Object.keys(dependencies).map(key => {
     const items = dependencies[key]
@@ -117,7 +116,6 @@ export default function FrontPage(currentFile, allFiles) {
 
   const formattedObjects = allObjects.
     filter(item => item !== null).map(obj => {
-      console.log(obj);
       return (
         <div className="frontpage-item" key={obj.title}>
           <h2>{obj.title}</h2>
@@ -135,7 +133,6 @@ export default function FrontPage(currentFile, allFiles) {
                 }
               if (obj.title === 'authors') {
                 // const author = authors.find(author => author.slug === key)
-                console.log(obj.author)
                 //const authors = ConvertMarkdown(item)
                 return (
                   <li key={key} className='authors-list'>

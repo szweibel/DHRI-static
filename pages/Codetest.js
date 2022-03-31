@@ -7,9 +7,10 @@ import JSInterpreter from '../components/JSInterpreterComponent';
 import { height } from '@mui/system';
 import TerminalComponent from '../components/TerminalComponent';
 import HTMLEditor from '../components/HTMLEditor';
+import fileList from '../components/FileList';
 
 export default function Test() {
-      
+
     return (
         <div>
             <div
@@ -50,8 +51,11 @@ export default function Test() {
                 {/* <TerminalComponent /> */}
             </div>
             <div>
-                <HTMLEditor />
-                    </div>
+                {/* <HTMLEditor /> */}
+            </div>
+            <div>
+                <FileList files='mobydick.txt'/>
+            </div>
         </div>
     )
 

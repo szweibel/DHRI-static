@@ -11,8 +11,9 @@ import Button from '@mui/material/Button';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import { PyodideContext } from './PyodideProvider';
 import CircularProgress from '@mui/material/CircularProgress';
+import FileList from "./FileList";
 
-export default function CodeEditorComponent({ defaultCode = "# Write your code here" }) {
+export default function CodeEditorComponent({ defaultCode = "# Write your code here", ...props }) {
   const [code, setCode] = useState(defaultCode);
   const [pyodideReady, setPyodideReady] = useState(false);
   const [pyodideLoaded, setPyodideLoaded] = useState(false);
@@ -22,7 +23,6 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
   const [error, setError] = useState(null);
   const outputRef = useRef(null);
   const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
-
 
   const {
     hasLoadPyodideBeenCalled,
@@ -77,8 +77,6 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
     runPyodide(code);
   }
 
-
-
   return (
     <div>
       {<><Script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js"  />
@@ -96,6 +94,7 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
       }}
       /></>}
       <div className="editorContainer">
+        <FileList {...props} />
         <div className="buttonsContainer">
           {!isPyodideLoading && <Button
             onClick={() => {

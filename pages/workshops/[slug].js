@@ -16,7 +16,8 @@ export default function WorkshopPage({
   workshops,
   guides,
   insights,
-  authors
+  authors,
+  snippets
 }) {
 
   const router = useRouter()
@@ -37,7 +38,7 @@ export default function WorkshopPage({
 
   // convert markdown to html and split into pages
   const htmlContent = function (content) {
-    const htmlifiedContent = ConvertMarkdown(content);
+    const htmlifiedContent = ConvertMarkdown(content, snippets=snippets);
     // split react element array into pages
     const allPages = [];
     const pages = htmlifiedContent.props.children.reduce((acc, curr) => {
@@ -228,6 +229,7 @@ export async function getStaticProps() {
     return markdownFiles
   }
   const workshopFiles = getFilesandProcess('workshops')
+  const snippetsFiles = getFilesandProcess('workshops/snippets')
   const installFiles = getFilesandProcess('guides')
   const insightsFiles = getFilesandProcess('insights')
   const authorFiles = getFilesandProcess('authors')
@@ -237,7 +239,8 @@ export async function getStaticProps() {
       workshops: workshopFiles.sort(),
       guides: installFiles.sort(),
       insights: insightsFiles.sort(),
-      authors: authorFiles.sort()
+      authors: authorFiles.sort(),
+      snippets: snippetsFiles.sort(),
     },
   }
 }
