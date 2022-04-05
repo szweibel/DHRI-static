@@ -22,7 +22,7 @@ export default function Footer() {
             </div>
 
             <div className="funding-text">
-                <p>The Digital Humanities Research Institute is funded through a generous grant from the National Endowment for the Humanities and with support from The Graduate Center&apos;s Provost&apos;s Office.</p>
+                <p align='center'>The Digital Humanities Research Institute is funded through a generous grant from the National Endowment for the Humanities and with support from The Graduate Center&apos;s Provost&apos;s Office.</p>
             </div>
         </footer>
     )

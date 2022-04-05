@@ -87,6 +87,7 @@ export default function AuthorPage({
 
   return (
     <Container
+      disableGutters = {true}
       maxWidth="xl"
       style={{ display: 'flex',
     marginTop: '1rem', }}

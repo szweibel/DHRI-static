@@ -109,16 +109,99 @@ header a {
   color: white;
 }
 
+.line {
+  width: 100%;
+  height: 4rem;
+  overflow: hidden;
+  padding: 1;
+  margin-bottom: 16px;
+}
+
+.lineUp {
+  animation: 2s anim-lineUp ease-out;
+  color: var(--foreground);
+  text-align: center;
+  font-size: 28px;
+  text-indent: 40px;
+}
+@keyframes anim-lineUp {
+  0% {
+    opacity: 0;
+    transform: translateY(80%);
+  }
+  20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
 .subtitle{
   color: var(--foreground);
+  font-style: italic;
 }
 .secondHeader{
   background-color: var(--background-page);
   margin-bottom: 20px;
 }
+
+.gcLogo{
+  width: 1325px;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .title{
   color: var(--foreground);
+  text-align: center;
+  font-size: 36px;
+	line-height: 42px;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
+
+.intro-text{
+  color: var(--foreground);
+  font-size: 22px;
+  text-align: justify;
+}
+
+.sectionTitle{
+  color: var(--foreground);
+  font-size: 28px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+  /*text-decoration: underline grey;*/
+  /*background-color: lightgrey;*/
+}
+
+.front-page-bkg{
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-page) !important;
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.5);
+  padding: 20px;
+}
+
+.rectangle{
+  width: 50%; 
+  height: 12px;
+  background: darkgray;
+  position:absolute;
+  left:50%;
+  transform:translate(-50%,-50%);
+  border-radius: 10px;
+}
+
+
 
 .workshopContainer {
   display:flex;
@@ -242,6 +325,7 @@ header > .topBar{
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
   margin-top: 30px;
+  /*background-color: lightgrey;*/
 }
 
 .overlay {
