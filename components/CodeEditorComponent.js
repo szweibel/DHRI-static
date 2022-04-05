@@ -8,6 +8,7 @@ const EditorComponent = dynamic(
 );
 import Button from '@mui/material/Button';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import CloseIcon from '@mui/icons-material/Close';
 import { PyodideContext } from './PyodideProvider';
 import CircularProgress from '@mui/material/CircularProgress';
 import FileList from "./FileList";
@@ -48,11 +49,39 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
     setCode(newValue);
   };
 
+  const allSnippets = props.allSnippets;
+  // chosenSnippets is a string of files separated by commas, make it an array
+  const chosenSnippets = typeof props.snippets === 'string' ? props.snippets.split(',') : [];
+
+  var filteredSnippets = [];
+
+  // for item in chosenSnippets
+  // if item in slug of item in allSnippets
+  // add item to filteredSnippets
+  if (chosenSnippets != undefined) {
+    chosenSnippets.forEach(snippet => {
+      const currentFile = allSnippets.find(file => file.slug === snippet.trim());
+      if (currentFile != undefined) {
+        filteredSnippets.push(currentFile);
+      }
+    })
+  }
+
   const runPyodide = async (code) => {
     setIsoutput(false);
     setIsError(false);
     setError(null);
     outputRef.current = "";
+
+    // gets rid of user-defined variables
+    pyodide.globals.clear();
+    await pyodide.loadPackage("matplotlib");
+    pyodide.runPython(
+      `
+import matplotlib
+matplotlib.use("module://matplotlib.backends.html5_canvas_backend")
+`
+    );
     pyodide.globals.set('print', (s) => {
       outputRef.current = outputRef.current + String(s) + "\n";
     });
@@ -61,6 +90,15 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
     });
     await pyodide.loadPackage("nltk");
     await pyodide.loadPackagesFromImports(code);
+
+
+
+    filteredSnippets.forEach((snippet, index) => {
+      pyodide.runPython(
+        `
+file${index + 1} = ${JSON.stringify(snippet.content)}
+            `);
+    });
     return await pyodide.runPythonAsync(code).then(result => {
       setIsoutput(true);
       outputRef.current = outputRef.current + '\n' + result;
@@ -69,31 +107,39 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
       setIsError(true);
       setError(err);
     });
-    
+
   };
 
   function showValue() {
     runPyodide(code);
   }
 
+function closeOutput() {
+  setIsoutput(false);
+}
+
+function closeError() {
+  setIsError(false);
+}
+
   return (
     <div>
-      {<><Script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js"  />
-      <Script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.asm.js" 
-      onLoad={() => {
-        if (!isPyodideReady) {
-        async function load() {
-          globalThis.pyodide = await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.19.0/full/' })
-        }
-        load().then(() => {
-          setIsPyodideReady(true)
-          setPyodideLoaded(true);
-        })
-      } 
-      }}
-      /></>}
+      {<><Script src="https://cdn.jsdelivr.net/pyodide/v0.19.1/full/pyodide.js" />
+        <Script src="https://cdn.jsdelivr.net/pyodide/v0.19.1/full/pyodide.asm.js"
+          onLoad={() => {
+            if (!isPyodideReady) {
+              async function load() {
+                globalThis.pyodide = await loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.19.0/full/' })
+              }
+              load().then(() => {
+                setIsPyodideReady(true)
+                setPyodideLoaded(true);
+              })
+            }
+          }}
+        /></>}
       <div className="editorContainer">
-        <FileList {...props} />
+        <FileList snippets={filteredSnippets} />
         <div className="buttonsContainer">
           {!isPyodideLoading && <Button
             onClick={() => {
@@ -119,10 +165,10 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
             }} />
             Run</Button>}
           {isPyodideLoading && <CircularProgress
-          style={{
-            marginLeft: "10px",
-            marginTop: "10px"
-          }}
+            style={{
+              marginLeft: "10px",
+              marginTop: "10px"
+            }}
           />}
           <Button
             variant="text"
@@ -144,8 +190,8 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
         </div>
         <EditorComponent code={code} onChange={onChange} maxLines='Infinity' />
       </div>
-     
-        { isoutput && <div id='output'
+
+      {isoutput && <div id='output'
         // ref={outputRef}
         style={{
           margin: "10px",
@@ -159,7 +205,17 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
           font: "1.3rem Inconsolata, monospace",
           whiteSpace: "pre-wrap",
         }}>
-          {outputRef.current}
+          <CloseIcon
+            onClick={closeOutput}
+            style={{
+              float: "right",
+              fontSize: "20px",
+              color: "#32c259",
+              marginRight: "10px",
+              cursor: "pointer"
+            }}
+          />
+        {outputRef.current}
       </div>}
 
       {isError && <div id="error"
@@ -175,6 +231,16 @@ export default function CodeEditorComponent({ defaultCode = "# Write your code h
           overflow: "auto",
           whiteSpace: "pre-wrap"
         }}>
+          <CloseIcon
+            onClick={closeError}
+            style={{
+              float: "right",
+              fontSize: "20px",
+              color: "#32c259",
+              marginRight: "10px",
+              cursor: "pointer"
+            }}
+          />
         {String(error)}
       </div>}
     </div>

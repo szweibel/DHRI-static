@@ -25,6 +25,8 @@ export default function PythonREPLComponent() {
         let terminalLocation = '#' + id;
         async function main() {
             let namespace = pyodide.globals.get("dict")();
+
+            
             pyodide.runPython(
               `
                 import sys

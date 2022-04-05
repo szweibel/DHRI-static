@@ -15,9 +15,9 @@ import DownloadIcon from '@mui/icons-material/Download';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState, useEffect } from 'react';
-import { stringify } from 'gray-matter';
+import Tooltip from '@mui/material/Tooltip';
 
-export default function FileList(...props) {
+export default function FileList(filteredSnippets) {
     const [files, setFiles] = useState([]);
     const [open, setOpen] = useState(false);
     const [file, setFile] = useState(null);
@@ -43,28 +43,30 @@ export default function FileList(...props) {
     //     setUserFiles(fileList);
     // }
 
-    const allSnippets = props[0].allSnippets;
-    // if chosenSnippets is a string, make it an array with one element in it
-    const chosenSnippets = typeof props[0].snippets === 'string' ? [props[0].snippets] : props[0].snippets;
+    // const allSnippets = props[0].allSnippets;
+    // // chosenSnippets is a string of files separated by commas, make it an array
+    // const chosenSnippets = typeof props[0].snippets === 'string' ?  props[0].snippets.split(',') : [];
+    
+    // var filteredSnippets = [];
 
-    var filteredSnippets = [];
+    // // for item in chosenSnippets
+    // // if item in slug of item in allSnippets
+    // // add item to filteredSnippets
+    // if (chosenSnippets != undefined) {
+    //     chosenSnippets.forEach(snippet => {
+    //         const currentFile = allSnippets.find(file => file.slug === snippet.trim());
+    //         if (currentFile != undefined) {
+    //             filteredSnippets.push(currentFile);
+    //         }})
+    // }
 
-    // for item in chosenSnippets
-    // if item in slug of item in allSnippets
-    // add item to filteredSnippets
-    if (chosenSnippets != undefined) {
-        chosenSnippets.forEach(snippet => {
-            const currentFile = allSnippets.find(file => file.slug === snippet);
-            if (currentFile != undefined) {
-                filteredSnippets.push(currentFile);
-            }})
-    }
+
     useEffect(() => {
         if (!localStorage.getItem('filenames')) {
             localStorage.setItem('filenames', JSON.stringify([]));
         } else {
             const fileNames = localStorage.getItem('filenames');
-            console.log(fileNames);
+            // console.log(fileNames);
             // setUserFiles(fileNames);
         }
     }, []);
@@ -167,8 +169,9 @@ export default function FileList(...props) {
 
     return (
         <div className="file-list">
-            {filteredSnippets.map((snippet, index) => (
+            {filteredSnippets.snippets.map((snippet, index) => (
                 <div key={index}>
+                    <Tooltip title={'variable file' + (index + 1)}>
                     <div className="file-item"
                     style={{
                         color: 'white',
@@ -176,6 +179,7 @@ export default function FileList(...props) {
                     >
                         {snippet.slug}
                     </div>
+                    </Tooltip>
                 </div>
             ))}
         </div>
