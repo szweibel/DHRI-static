@@ -54,7 +54,7 @@ export default function Test() {
                 {/* <HTMLEditor /> */}
             </div>
             <div>
-                <FileList files='mobydick.txt'/>
+                {/* <FileList files='mobydick.txt'/> */}
             </div>
         </div>
     )
