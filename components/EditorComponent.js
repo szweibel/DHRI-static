@@ -7,7 +7,7 @@ import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools"
 import { useRef } from "react";
 
-export default function CodeEditorComponent({code, onChange, maxLines=null, language="python", debounce=null, height='100%', width='100%'}) {
+export default function CodeEditorComponent({code, onChange, maxLines=null, minLines=4, language="python", debounce=null, height='100%', width='100%'}) {
   const uniqueid = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
     return (
@@ -22,7 +22,7 @@ export default function CodeEditorComponent({code, onChange, maxLines=null, lang
           fontSize={22}
           width="auto"
           height="100%"
-          minLines={4}
+          minLines={minLines}
           maxLines={maxLines}
           showPrintMargin={false}
           showGutter={true}

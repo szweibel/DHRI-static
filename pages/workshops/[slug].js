@@ -9,8 +9,10 @@ import Sidebar from '../../components/Sidebar'
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Presentation from '../../components/Presentation';
+import SlideoutEditor from '../../components/SlideoutEditor'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 
 export default function WorkshopPage({
   workshops,
@@ -84,6 +86,9 @@ export default function WorkshopPage({
   const [currentContent, setCurrentContent] = useState([]);
   const [pageTitles, setPageTitles] = useState([]);
   const [currentHeader, setCurrentHeader] = useState(null);
+
+
+      
 
   // list of page titles and highlight current page
   useEffect(() => {
@@ -177,6 +182,7 @@ export default function WorkshopPage({
           {PaginationComponent(currentPage)}
           {currentContent}
           {PaginationComponent(currentPage)}
+          <SlideoutEditor />
         </div>
       </div>
     </Container>

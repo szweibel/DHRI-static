@@ -13,7 +13,7 @@ import { PyodideContext } from './PyodideProvider';
 import CircularProgress from '@mui/material/CircularProgress';
 import FileList from "./FileList";
 
-export default function CodeEditorComponent({ defaultCode = "# Write your code here", ...props }) {
+export default function CodeEditorComponent({ defaultCode = "# Write your code here", minLines, ...props }) {
   const [code, setCode] = useState(defaultCode);
   const [pyodideReady, setPyodideReady] = useState(false);
   const [pyodideLoaded, setPyodideLoaded] = useState(false);
@@ -188,7 +188,7 @@ function closeError() {
             Revert Code
           </Button>
         </div>
-        <EditorComponent code={code} onChange={onChange} maxLines='Infinity' />
+        <EditorComponent code={code} onChange={onChange} maxLines='Infinity' minLines={minLines} />
       </div>
 
       {isoutput && <div id='output'
